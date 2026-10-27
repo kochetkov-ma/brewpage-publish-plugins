@@ -1,0 +1,106 @@
+{
+  "cli": {
+    "package": "@moonshot-ai/kimi-code",
+    "version": "2.3.3",
+    "registry": "https://registry.npmjs.org",
+    "nodeVersion": "24.19.0"
+  },
+  "source": {
+    "repository": "https://github.com/kochetkov-ma/claude-brewcode",
+    "commit": "d2d42282fecec988447f9c9547959b31a8012644",
+    "directory": "skills/brewpage-publish",
+    "immutableFileCount": 7,
+    "managedSourceSha256Match": true
+  },
+  "nativeImport": {
+    "id": "brewpage-publish",
+    "version": "1.0.0",
+    "enabled": true,
+    "state": "ok",
+    "skillCount": 1,
+    "mcpServerCount": 1,
+    "enabledMcpServerCount": 1,
+    "hookCount": 0,
+    "commandCount": 0,
+    "hasErrors": false,
+    "diagnostics": []
+  },
+  "nativeMcpProbe": {
+    "endpoint": "https://brewpage.app/mcp",
+    "success": true,
+    "toolCount": 20,
+    "tools": [
+      "publish_html",
+      "publish_file",
+      "update_hosting",
+      "delete_resource",
+      "get_page",
+      "get_stats",
+      "publish_site",
+      "republish_site",
+      "update_html",
+      "publish_json",
+      "get_json",
+      "update_json",
+      "publish_kv",
+      "set_kv",
+      "get_kv",
+      "get_limits",
+      "search_gallery",
+      "set_visibility",
+      "bind_token",
+      "mint_token"
+    ]
+  },
+  "proofBoundary": {
+    "nativePluginImport": true,
+    "immutableSkillDiscovery": true,
+    "nativeMcpToolDiscovery": true,
+    "shellHelperExecution": false,
+    "modelInvocation": false,
+    "publication": false,
+    "consumerAccountRegistration": false,
+    "officialMarketplaceSubmission": false
+  },
+  "privacy": {
+    "publishedFields": [
+      "package versions",
+      "public repository identity",
+      "immutable source hashes",
+      "plugin metadata and counts",
+      "diagnostics",
+      "public MCP endpoint",
+      "tool names",
+      "proof boundaries"
+    ],
+    "excludedFields": [
+      "tokens",
+      "emails",
+      "runtime request and session identifiers",
+      "local absolute paths",
+      "other plugins",
+      "logs",
+      "user configuration",
+      "authentication state"
+    ]
+  },
+  "instructionContract": {
+    "verification": "Exact manifest skillInstructions equality against official 2.3.3 server-normalized import result; six explicit output/storage clauses checked",
+    "overrideSha256": "7ac71d62e44ba79b986ab364e567f6cc3fa60f85a6ef73462dd761114948cf2a",
+    "clauseCount": 6,
+    "clausesPresent": true,
+    "claudeHistoryAndStep7Superseded": true,
+    "nativePrivateStorageVerified": false,
+    "modelComplianceVerified": false,
+    "enforcedSandboxClaimed": false,
+    "officialRenderer": {
+      "method": "Executed exact renderSkillPrompt method and six dependency functions extracted from official npm 2.3.3 bundle, using server-normalized final skillInstructions and immutable source",
+      "rendererCodeSha256": "246fc4950391414b6b224c51ab30effc2c3a2413c4e8972e865fd9bdeffefb60",
+      "overridePrependedExactly": true,
+      "immutableStep7ConflictReproduced": true,
+      "nativeStep7SupersessionRendered": true,
+      "modelInvocation": false,
+      "modelComplianceVerified": false
+    }
+  }
+}

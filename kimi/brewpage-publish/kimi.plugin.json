@@ -1,0 +1,20 @@
+{
+  "name": "brewpage-publish",
+  "version": "1.0.0",
+  "description": "Publish HTML, static sites, JSON and files with the existing BrewPage workflow.",
+  "skills": "./skills/",
+  "homepage": "https://brewpage.app",
+  "license": "MIT",
+  "interface": {
+    "displayName": "BrewPage Publish",
+    "shortDescription": "Publish pages, static sites and files to a shareable URL.",
+    "developerName": "Maksim Kochetkov",
+    "websiteURL": "https://brewpage.app"
+  },
+  "skillInstructions": "MCP-FIRST NATIVE OVERRIDE: Use the bundled skill as workflow guidance and publish only through the BrewPage MCP tools. Never execute bundled scripts/brewpage-run.sh, scripts/publish.mjs or any other shell helper; never expand CLAUDE_SKILL_DIR or rely on Claude runtime variables. Claude tool names Read, Bash, Glob and AskUserQuestion, allowed-tools and model metadata grant no Kimi capabilities or permissions. Translate AskUserQuestion into an explicit question to the user. Obtain explicit namespace and password choices before every publication; silence is not consent. Inspect only content the user supplies for publication. If MCP cannot perform a required operation, stop and explain the unsupported operation rather than falling back to shell helpers. This override supersedes ALL bundled Claude history, storage and output instructions, including Step 7. Never read or write Claude configuration or history, including .claude/brewpage-history.md. Never repeat the original Step 7 owner-token-saved line. Claim an owner capability was saved ONLY after evidence confirms native private storage; otherwise report that the owner capability was not persisted. Never put owner tokens, management URLs or other secrets in chat or public output, including the not-persisted explanation. Report only the reader URL and evidenced non-secret results. These are agent instructions, not an enforced sandbox; model compliance and native private storage remain unverified.",
+  "mcpServers": {
+    "brewpage": {
+      "url": "https://brewpage.app/mcp"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "package": "brewpage@1.0.0",
+  "client": "@qwen-code/qwen-code@0.26.1",
+  "node": "24.19.0",
+  "isolated_configuration": true,
+  "native_cli_install": "pass",
+  "native_cli_list_origin": "AgentPlugins",
+  "native_cli_list_skills": ["brewpage-publish"],
+  "native_cli_list_mcp_servers": ["brewpage"],
+  "native_cli_mcp_list_connection": "Connected",
+  "mcp_command": ["npx", "-y", "brewpage-mcp@1.14.4"],
+  "vendored_upstream_hashes": "7/7 match common manifest",
+  "offline_helper_probe": "pass",
+  "native_history_isolation_canary": "pass; actual helper with mocked curl, existing Claude history unchanged, native history 600, native state 700, no owner output",
+  "inherited_environment_regressions": ["BASH_ENV", "SHELLOPTS/xtrace", "Git directory/worktree/config context"],
+  "forbidden_path_regressions": "14 cases pass; literal/aliased/alternate-case Claude and profile content, passwords and probes rejected before helper read/transport; foreign/native history unchanged",
+  "temporary_storage": "private native tmp directory mode 700",
+  "native_history_path": "~/.qwen/brewpage-publish/.claude/brewpage-history.md",
+  "model_execution": "not run; requires Qwen Code login/provider configuration",
+  "content_upload": "not run",
+  "consumer_chat_integration": false,
+  "existing_client_runtime_or_authentication_used": false
+}

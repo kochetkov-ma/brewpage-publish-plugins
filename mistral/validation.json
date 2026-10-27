@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-10-27T08:13:17.053215+00:00",
+  "vendor": {
+    "package": "mistral-vibe",
+    "version": "3.0.3",
+    "python": "3.14.0",
+    "wheel_sha256": "2e20118807cedde2bc2d96219531b28886df587b166d8a76f7b7179601ee87bf",
+    "source": "https://pypi.org/project/mistral-vibe/3.0.3/"
+  },
+  "isolation": {
+    "configuration": "temporary VIBE_HOME and XDG directories",
+    "environment": "env -i; PATH and isolated Vibe/XDG paths only",
+    "api_keys_or_auth_copied": false,
+    "model_requests": 0,
+    "content_publications": 0,
+    "user_config_mutations": 0
+  },
+  "native_inspection": {
+    "schemaVersion": 1,
+    "sourceFormat": "agent_plugins_1_0",
+    "valid": true,
+    "plugin": {
+      "name": "brewpage",
+      "description": "Publish pages, documents, files and static sites with BrewPage's existing publishing skill and remote MCP tools.",
+      "namespace": "brewpage",
+      "version": "1.0.0"
+    },
+    "skills": [
+      {
+        "name": "brewpage:brewpage-publish",
+        "sourceName": "brewpage-publish",
+        "description": "Publish text, Markdown, JSON, files or built static sites to BrewPage using the existing secure publishing workflow. Load when asked to publish content or create a shareable hosted link.",
+        "path": "skills/brewpage-publish/SKILL.md",
+        "userInvocable": true,
+        "allowedTools": []
+      }
+    ],
+    "toolGroups": [],
+    "hooks": [],
+    "knowledge": [],
+    "agents": [],
+    "libraries": [],
+    "connectors": [],
+    "unsupportedComponents": [],
+    "diagnostics": [],
+    "contentDigest": "sha256:f8b2833932c9da6f9267b956baae6f900c18983ead3da76d0ea42e55ed83e72c"
+  },
+  "native_resolution": {
+    "plugins": 1,
+    "mcp_servers": 1,
+    "issues": [],
+    "skill_name": "brewpage:brewpage-publish",
+    "user_invocable": true,
+    "model_invocable": true,
+    "native_adapter_rendered": true
+  },
+  "upstream_files_sha256_verified": 7,
+  "existing_runner_read_only_probe": "pass",
+  "mcp_discovery": {
+    "method": "Vibe MCPRegistry.get_tools_async on native-resolved server; initialize/tools/list only",
+    "url": "https://brewpage.app/mcp",
+    "transport": "streamable-http",
+    "tool_count": 20,
+    "tool_names": [
+      "brewpage_bind_token",
+      "brewpage_delete_resource",
+      "brewpage_get_json",
+      "brewpage_get_kv",
+      "brewpage_get_limits",
+      "brewpage_get_page",
+      "brewpage_get_stats",
+      "brewpage_mint_token",
+      "brewpage_publish_file",
+      "brewpage_publish_html",
+      "brewpage_publish_json",
+      "brewpage_publish_kv",
+      "brewpage_publish_site",
+      "brewpage_republish_site",
+      "brewpage_search_gallery",
+      "brewpage_set_kv",
+      "brewpage_set_visibility",
+      "brewpage_update_hosting",
+      "brewpage_update_html",
+      "brewpage_update_json"
+    ],
+    "tool_calls": 0,
+    "failures": {}
+  },
+  "limits": [
+    "No model-driven publishing or MCP tool execution was performed.",
+    "Le Chat connector setup is independent from this CLI plugin.",
+    "Native launcher isolates existing runner state; no model-driven end-to-end content publication was performed."
+  ],
+  "native_history_isolation": {
+    "original_claude_history_sha256_unchanged": true,
+    "claude_canary_absent_from_native_history": true,
+    "claude_history_explicit_path_refused": true,
+    "inherited_claude_and_git_context_ignored": true,
+    "relative_content_path_refused": true,
+    "absolute_read_only_probe": "pass",
+    "state_mode": "0700",
+    "history_mode": "0600",
+    "history_initialized_using": "unchanged upstream bp_history_init/history.py",
+    "network_requests": 0,
+    "model_calls": 0,
+    "claude_alias_symlink_path_refused": true
+  },
+  "native_launcher_syntax": "pass",
+  "native_case_insensitive_path_isolation": {
+    "case_insensitive_filesystem_samefile_precondition": true,
+    "cases": [
+      {
+        "component": ".CLAUDE",
+        "operation": "probe",
+        "result": "refused before runner"
+      },
+      {
+        "component": ".CLAUDE",
+        "operation": "content",
+        "result": "refused before runner"
+      },
+      {
+        "component": ".CLAUDE",
+        "operation": "password",
+        "result": "refused before runner"
+      },
+      {
+        "component": ".CLAUDE-PROFILE",
+        "operation": "probe",
+        "result": "refused before runner"
+      },
+      {
+        "component": ".CLAUDE-PROFILE",
+        "operation": "content",
+        "result": "refused before runner"
+      },
+      {
+        "component": ".CLAUDE-PROFILE",
+        "operation": "password",
+        "result": "refused before runner"
+      }
+    ],
+    "blocked_before_state_creation": true,
+    "blocked_before_upstream_runner": true,
+    "canaries_unchanged": true,
+    "source_read_only_probe": "pass",
+    "private_state_mode": "0700",
+    "private_history_mode": "0600",
+    "network_requests": 0,
+    "model_calls": 0
+  }
+}

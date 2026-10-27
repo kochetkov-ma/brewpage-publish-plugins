@@ -1,0 +1,28 @@
+{
+  "package": "dsh-brewpage@1.0.0",
+  "harness": "@deepseek-ai/dsh@0.2.1-rc.2",
+  "node": "24.19.0",
+  "pnpm": "12.15.0",
+  "isolated_configuration": true,
+  "native_cli_install_local_directory": "pass",
+  "native_cli_install_packed_tarball": "pass",
+  "native_cli_dump_composed_config": "pass",
+  "native_cli_dump_config_schema": "pass",
+  "native_cordis_registry_skill_discovery_and_load": "pass",
+  "vendored_upstream_hashes": "7/7 match common manifest",
+  "offline_helper_probe": "pass",
+  "native_history_isolation_canary": "pass; actual helper with mocked curl, existing Claude history unchanged, native history 600, native state 700, no owner output",
+  "inherited_environment_regressions": ["BASH_ENV", "SHELLOPTS/xtrace", "Git directory/worktree/config context"],
+  "forbidden_path_regressions": "14 cases pass; literal/aliased/alternate-case Claude and profile content, passwords and probes rejected before helper read/transport; foreign/native history unchanged",
+  "temporary_storage": "private native tmp directory mode 700",
+  "native_history_path": "~/.dsh/brewpage-publish/.claude/brewpage-history.md",
+  "mcp_command": ["npx", "-y", "brewpage-mcp@1.14.4"],
+  "model_execution": "not run; requires Harness provider configuration",
+  "content_upload": "not run",
+  "consumer_chat_integration": false,
+  "notes": [
+    "Node 20.15.0 silently skipped the published CLI entry point; Node 24.19.0 executed it.",
+    "pnpm 12.15.0 emitted its agent-skills approval notice; Harness skill loading was separately exercised through the actual native provider.",
+    "No existing client runtime or authentication state was used."
+  ]
+}

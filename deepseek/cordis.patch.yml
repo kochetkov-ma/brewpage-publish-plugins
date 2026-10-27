@@ -1,0 +1,11 @@
+- insert:
+    - id: brewpage-skills
+      name: dsh-brewpage
+    - id: brewpage-mcp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: brewpage
+        transport: stdio
+        command: npx
+        args: ['-y', 'brewpage-mcp@1.14.4']
+        failOnStartupError: true

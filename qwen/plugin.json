@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "brewpage",
+  "version": "1.0.0",
+  "description": "Publish pages, documents, files and static sites with the existing BrewPage publishing skill and MCP server.",
+  "author": { "name": "Maksim Kochetkov" },
+  "homepage": "https://brewpage.app",
+  "license": "MIT"
+}

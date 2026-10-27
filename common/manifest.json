@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "name": "brewpage-publish",
+  "source": {
+    "repository": "https://github.com/kochetkov-ma/claude-brewcode",
+    "commit": "d2d42282fecec988447f9c9547959b31a8012644",
+    "directory": "skills/brewpage-publish",
+    "license": "MIT"
+  },
+  "artifact": {
+    "folder": "brewpage-publish",
+    "zip": "brewpage-publish.zip",
+    "zip_layout": "SKILL.md at archive root",
+    "sha256": "f9eff21533003cdc047e88c567182e9596b1978d09e519dcb86c7ecb32822195"
+  },
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha256": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84"
+    },
+    {
+      "path": "README.md",
+      "sha256": "8f6f84f03e6a20e73d2748b23d5e5fd4c61b83a05e39c90933357ed687b29e15"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "42d0e03a8294e05dd1f4e385c187eea55c633903299d2bd4eb57f0fd4c44efc1"
+    },
+    {
+      "path": "scripts/brewpage-lib.sh",
+      "sha256": "f5268fad7202b93bc697837ccb08ff4b25ea3919f1be6e716c2387ef9a798019"
+    },
+    {
+      "path": "scripts/brewpage-run.sh",
+      "sha256": "00539a0e090ec322504b51dc85a263d7fa618742db63657af066f5e016765a27"
+    },
+    {
+      "path": "scripts/history.py",
+      "sha256": "24d68381f27b13a727a5f342ae7396948a6e80123a926a627ecf956992906e61"
+    },
+    {
+      "path": "scripts/publish.mjs",
+      "sha256": "23d15a831a4ae654b21c9ff469a17fbf3db96528a41969641ef105c2d3cf4f81"
+    }
+  ],
+  "validation": {
+    "source_files_refetched_from_immutable_raw_github": 7,
+    "source_hashes_match_prior_verified_receipt": 7,
+    "zip_roundtrip_files": 7,
+    "shell_syntax": "pass",
+    "node_syntax": "pass",
+    "python_syntax": "pass",
+    "embedded_credential_pattern_scan": "pass",
+    "runtime_publish": "not run",
+    "compatibility": "Existing Claude Code metadata preserved verbatim; provider runtime compatibility requires native verification."
+  },
+  "provider_artifacts": [
+    {
+      "provider": "Yandex AI Studio",
+      "zip": "yandex-brewpage-publish.zip",
+      "zip_layout": "one top-level brewpage-publish/ folder containing the same seven source files",
+      "sha256": "8ea7a8d9eac21b78bb4fc15c1e065e7f1d32ce475bc3b49287552467af656486",
+      "documentation": "https://aistudio.yandex.ru/ru/docs/ai-studio/concepts/agents/skills",
+      "validation": {
+        "single_top_level_folder": "pass",
+        "source_hashes_match": 7,
+        "zip_roundtrip_files": 7,
+        "native_upload": "not run during packaging",
+        "runtime_publish": "not run"
+      }
+    },
+    {
+      "provider": "Mistral Work",
+      "folder": "mistral-work",
+      "zip": "mistral-work-brewpage-publish.zip",
+      "zip_layout": "SKILL.md at archive root; unchanged source files under upstream/",
+      "sha256": "c114b528e19613968d3b5a8f1a6af324fa7022cd103e513ec404bafd04a6f3a4",
+      "adaptation": "Connected BrewPage MCP capability workflow; original Claude-specific runtime metadata omitted from active SKILL.md.",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "5d4157ee3b0bedc18421165c5e7406175b03912b8870a46f07d47f81d44eafb9"
+        },
+        {
+          "path": "upstream/LICENSE",
+          "sha256": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84"
+        },
+        {
+          "path": "upstream/README.md",
+          "sha256": "8f6f84f03e6a20e73d2748b23d5e5fd4c61b83a05e39c90933357ed687b29e15"
+        },
+        {
+          "path": "upstream/SKILL.md",
+          "sha256": "42d0e03a8294e05dd1f4e385c187eea55c633903299d2bd4eb57f0fd4c44efc1"
+        },
+        {
+          "path": "upstream/scripts/brewpage-lib.sh",
+          "sha256": "f5268fad7202b93bc697837ccb08ff4b25ea3919f1be6e716c2387ef9a798019"
+        },
+        {
+          "path": "upstream/scripts/brewpage-run.sh",
+          "sha256": "00539a0e090ec322504b51dc85a263d7fa618742db63657af066f5e016765a27"
+        },
+        {
+          "path": "upstream/scripts/history.py",
+          "sha256": "24d68381f27b13a727a5f342ae7396948a6e80123a926a627ecf956992906e61"
+        },
+        {
+          "path": "upstream/scripts/publish.mjs",
+          "sha256": "23d15a831a4ae654b21c9ff469a17fbf3db96528a41969641ef105c2d3cf4f81"
+        }
+      ],
+      "validation": {
+        "zip_roundtrip_files": 9,
+        "upstream_source_hashes_match": 7,
+        "frontmatter_yaml": "pass: Ruby Psych safe_load",
+        "skill_creator_quick_validate": "unavailable: Python PyYAML not installed",
+        "native_import": "not run during packaging",
+        "runtime_publish": "not run"
+      }
+    }
+  ]
+}

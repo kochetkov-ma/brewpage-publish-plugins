@@ -1,0 +1,12 @@
+{
+  "name": "dsh-brewpage",
+  "version": "1.0.0",
+  "description": "BrewPage publishing skill and MCP connection for DeepSeek Harness.",
+  "type": "module",
+  "license": "MIT",
+  "main": "skills.js",
+  "files": ["skills.js", "cordis.patch.yml", "skills", "LICENSE", "README.md", "verify-native.mjs", "verify-isolation.py", "verification.json"],
+  "engines": { "dsh": "0.2.1-rc.2" },
+  "peerDependencies": { "@deepseek-ai/dsh-skill-filesystem": "0.2.1-rc.2" },
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } }
+}
