@@ -1,0 +1,42 @@
+{
+  "version": "1.0.1",
+  "change": "Metadata only; native verification.json remains the historical 1.0.0 receipt.",
+  "description": "Host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file with BrewPage.",
+  "keywords": [
+    "html-hosting",
+    "static-sites",
+    "ai-artifacts",
+    "publishing",
+    "file-sharing",
+    "markdown",
+    "documents",
+    "reports",
+    "brewpage"
+  ],
+  "immutableSourceHashes": {
+    "LICENSE": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84",
+    "README.md": "8f6f84f03e6a20e73d2748b23d5e5fd4c61b83a05e39c90933357ed687b29e15",
+    "SKILL.md": "42d0e03a8294e05dd1f4e385c187eea55c633903299d2bd4eb57f0fd4c44efc1",
+    "scripts/publish.mjs": "23d15a831a4ae654b21c9ff469a17fbf3db96528a41969641ef105c2d3cf4f81",
+    "scripts/brewpage-lib.sh": "f5268fad7202b93bc697837ccb08ff4b25ea3919f1be6e716c2387ef9a798019",
+    "scripts/brewpage-run.sh": "00539a0e090ec322504b51dc85a263d7fa618742db63657af066f5e016765a27",
+    "scripts/history.py": "24d68381f27b13a727a5f342ae7396948a6e80123a926a627ecf956992906e61"
+  },
+  "immutableSourcesMatched": "7/7",
+  "archive": {
+    "path": "brewpage-kimi-code-1.0.1.zip",
+    "sha256": "e919d763cb69db505343c970059652d5a5f4b700f84d8c673ba5baa9a4323a45",
+    "roundtrip": "all archive members match current source bytes"
+  },
+  "preservedVersion100": {
+    "brewpage-kimi-code-1.0.0.zip": "2072392983923b251bae05b8b54372a5c921cd5af70bb9ccca6d995e80b25a1b"
+  },
+  "runtimeAndSecurityUnchanged": true,
+  "modelInvocation": false,
+  "nativeImportRepeated": false,
+  "npmPublished": false,
+  "catalogIndexingClaimed": false,
+  "validation": "Executed actual readInterface/stringField$5/stringArrayField$1/isObject$1 from pinned @moonshot-ai/kimi-code@2.3.3; exact source and tarball hashes verified; archive roundtrip",
+  "skillInstructionsSha256": "7ac71d62e44ba79b986ab364e567f6cc3fa60f85a6ef73462dd761114948cf2a",
+  "metadataParserFunctionsSha256": "5166cbe85c55a1a9e0ef6d6c6f3edb3abd86bbde24351bea69ba7eaca851c21e"
+}

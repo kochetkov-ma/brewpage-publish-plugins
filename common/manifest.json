@@ -121,6 +121,63 @@
         "skill_creator_quick_validate": "unavailable: Python PyYAML not installed",
         "native_import": "not run during packaging",
         "runtime_publish": "not run"
+      },
+      "record_scope": "Historical archive content hashes; active folder now reflects version1.0.1."
+    },
+    {
+      "provider": "Mistral Work",
+      "version": "1.0.1",
+      "folder": "mistral-work",
+      "zip": "mistral-work-brewpage-publish-v1.0.1.zip",
+      "zip_layout": "SKILL.md at archive root; unchanged source files under upstream/",
+      "sha256": "8e487553bde63c4360c1772cbf1351e1358fdda1ee3a78c6e8d62aefc2df17d2",
+      "adaptation": "Functional frontmatter description only; portable body unchanged.",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "ef8f9750e6b47cbc9ced6e90da8c4591cbb57bf1bc4fbc96c69160768d0d981b"
+        },
+        {
+          "path": "upstream/LICENSE",
+          "sha256": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84"
+        },
+        {
+          "path": "upstream/README.md",
+          "sha256": "8f6f84f03e6a20e73d2748b23d5e5fd4c61b83a05e39c90933357ed687b29e15"
+        },
+        {
+          "path": "upstream/SKILL.md",
+          "sha256": "42d0e03a8294e05dd1f4e385c187eea55c633903299d2bd4eb57f0fd4c44efc1"
+        },
+        {
+          "path": "upstream/scripts/brewpage-lib.sh",
+          "sha256": "f5268fad7202b93bc697837ccb08ff4b25ea3919f1be6e716c2387ef9a798019"
+        },
+        {
+          "path": "upstream/scripts/brewpage-run.sh",
+          "sha256": "00539a0e090ec322504b51dc85a263d7fa618742db63657af066f5e016765a27"
+        },
+        {
+          "path": "upstream/scripts/history.py",
+          "sha256": "24d68381f27b13a727a5f342ae7396948a6e80123a926a627ecf956992906e61"
+        },
+        {
+          "path": "upstream/scripts/publish.mjs",
+          "sha256": "23d15a831a4ae654b21c9ff469a17fbf3db96528a41969641ef105c2d3cf4f81"
+        }
+      ],
+      "validation": {
+        "zip_crc": "pass",
+        "zip_roundtrip_files": 9,
+        "upstream_source_hashes_match": 7,
+        "portable_body_sha256": "2db15381327b6b996d62479143b81a15274d7110bd45a1591e270962985a15f2",
+        "portable_body_chars": 4107,
+        "native_saved_instruction_body_is_separate_surface": true,
+        "runtime_publish": "not run"
       }
     }
   ]

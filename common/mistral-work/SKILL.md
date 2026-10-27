@@ -1,6 +1,6 @@
 ---
 name: brewpage-publish
-description: Publish user-selected text, Markdown, JSON, files or built static sites through the connected BrewPage MCP tools, with explicit visibility and password choices.
+description: HTML hosting, static sites and AI artifact publishing; share Markdown, documents, reports and any files through HTTPS links. Publish user-selected content through connected BrewPage MCP tools, with explicit visibility and password choices.
 license: MIT
 ---
 

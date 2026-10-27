@@ -1,7 +1,8 @@
 {
   "name": "dsh-brewpage",
-  "version": "1.0.0",
-  "description": "BrewPage publishing skill and MCP connection for DeepSeek Harness.",
+  "version": "1.0.1",
+  "description": "Host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file with BrewPage.",
+  "keywords": ["html-hosting", "static-sites", "ai-artifacts", "publishing", "file-sharing", "markdown", "documents", "reports", "brewpage"],
   "type": "module",
   "license": "MIT",
   "main": "skills.js",

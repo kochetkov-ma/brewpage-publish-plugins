@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "name": "brewpage-publish",
+  "package_version": "1.0.1",
+  "source": {
+    "repository": "https://github.com/kochetkov-ma/claude-brewcode",
+    "commit": "d2d42282fecec988447f9c9547959b31a8012644",
+    "directory": "skills/brewpage-publish",
+    "license": "MIT"
+  },
+  "artifact": {
+    "folder": "brewpage-publish",
+    "zip": "yandex-brewpage-publish-v1.0.1.zip",
+    "sha256": "09719ef9b15b19996b23351ae3c1fbaa3eebf4e28fa8c6e13db606d97e09f2bf",
+    "layout": "one top-level folder; one active SKILL.md; eight files",
+    "same_bytes_as_native_imported_archive": true
+  },
+  "active_manifest": {
+    "path": "brewpage-publish/SKILL.md",
+    "sha256": "834aca10b3736497609b90a99ec5ab66058e7c45c26f00a403e9e396a84954da",
+    "portable_body_sha256": "2db15381327b6b996d62479143b81a15274d7110bd45a1591e270962985a15f2",
+    "metadata_fields": [
+      "name",
+      "description",
+      "license"
+    ],
+    "language": "Russian native description; portable English workflow"
+  },
+  "upstream_files": [
+    {
+      "original_path": "LICENSE",
+      "archive_path": "brewpage-publish/upstream/LICENSE",
+      "sha256": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84"
+    },
+    {
+      "original_path": "README.md",
+      "archive_path": "brewpage-publish/upstream/README.md",
+      "sha256": "8f6f84f03e6a20e73d2748b23d5e5fd4c61b83a05e39c90933357ed687b29e15"
+    },
+    {
+      "original_path": "SKILL.md",
+      "archive_path": "brewpage-publish/upstream/SKILL.md.source",
+      "sha256": "42d0e03a8294e05dd1f4e385c187eea55c633903299d2bd4eb57f0fd4c44efc1"
+    },
+    {
+      "original_path": "scripts/brewpage-lib.sh",
+      "archive_path": "brewpage-publish/upstream/scripts/brewpage-lib.sh",
+      "sha256": "f5268fad7202b93bc697837ccb08ff4b25ea3919f1be6e716c2387ef9a798019"
+    },
+    {
+      "original_path": "scripts/brewpage-run.sh",
+      "archive_path": "brewpage-publish/upstream/scripts/brewpage-run.sh",
+      "sha256": "00539a0e090ec322504b51dc85a263d7fa618742db63657af066f5e016765a27"
+    },
+    {
+      "original_path": "scripts/history.py",
+      "archive_path": "brewpage-publish/upstream/scripts/history.py",
+      "sha256": "24d68381f27b13a727a5f342ae7396948a6e80123a926a627ecf956992906e61"
+    },
+    {
+      "original_path": "scripts/publish.mjs",
+      "archive_path": "brewpage-publish/upstream/scripts/publish.mjs",
+      "sha256": "23d15a831a4ae654b21c9ff469a17fbf3db96528a41969641ef105c2d3cf4f81"
+    }
+  ],
+  "validation": {
+    "archive_crc": "pass",
+    "archive_roundtrip_files": 8,
+    "active_manifests": 1,
+    "upstream_hashes_match": 7,
+    "native_import": "one personal catalog Skill created",
+    "native_mcp_discovery_tools": 20,
+    "runtime_publish": "not run",
+    "public_marketplace_submission": false
+  },
+  "documentation": [
+    "https://aistudio.yandex.ru/ru/docs/ai-studio/concepts/agents/skills",
+    "https://aistudio.yandex.ru/ru/docs/ai-studio/pricing"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "LICENSE": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84",
+  "README.md": "6db89ea81fb3ac570abef9b191df570762dcfaf0b5365808583e6240bdf07ca3",
+  "cordis.patch.yml": "4d1c1404fef6916f78b333c6ff2ba84328444c3f0a90ea384e7012d4052e9c3a",
+  "dsh-brewpage-1.0.0.tgz": "993233b5a51b57dfdc50442011501e8c01d66b50288d5cd60689cce77dd0c49e",
+  "dsh-brewpage-1.0.1.tgz": "07270dbed35fe8b01abae3dfb95b38fef642909070627d87bd9e3750aaa10143",
+  "metadata-verification.json": "11b0093c667e0ea113b2e5dd0cba9d34bbd9b50533c98a297240c158ce41a884",
+  "package.json": "f43f863b62f933317872a66e4c51536b2185c015292a26d7b51aec1ad6fada79",
+  "skills/brewpage-publish/SKILL.md": "4aa4ad85f755df4c12fe40f193cb0242e1108897da56a37431f3f790e7268f8e",
+  "skills/brewpage-publish/scripts/brewpage-native.py": "5dadf41a6f8f25e188be8030f2365b3570f9a2a9e6481bb3472dfda495f28c94",
+  "skills/brewpage-publish/upstream/LICENSE": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84",
+  "skills/brewpage-publish/upstream/README.md": "8f6f84f03e6a20e73d2748b23d5e5fd4c61b83a05e39c90933357ed687b29e15",
+  "skills/brewpage-publish/upstream/SKILL.md": "42d0e03a8294e05dd1f4e385c187eea55c633903299d2bd4eb57f0fd4c44efc1",
+  "skills/brewpage-publish/upstream/scripts/brewpage-lib.sh": "f5268fad7202b93bc697837ccb08ff4b25ea3919f1be6e716c2387ef9a798019",
+  "skills/brewpage-publish/upstream/scripts/brewpage-run.sh": "00539a0e090ec322504b51dc85a263d7fa618742db63657af066f5e016765a27",
+  "skills/brewpage-publish/upstream/scripts/history.py": "24d68381f27b13a727a5f342ae7396948a6e80123a926a627ecf956992906e61",
+  "skills/brewpage-publish/upstream/scripts/publish.mjs": "23d15a831a4ae654b21c9ff469a17fbf3db96528a41969641ef105c2d3cf4f81",
+  "skills.js": "a1d15e9e743faf2088aefaaaef40b97e0bc4337bd58adaeb4ded0128221b5e03",
+  "verification.json": "46095be9aa7301dd533b02b6f408efd518038cb6e8a1f37a5cab9f244919e011",
+  "verify-isolation.py": "c8fca6c5f46de46d029db291213c5adac3f5c9904823196a5c6357f440b5f724",
+  "verify-native.mjs": "23386ced2fb438d50ef8c184229602ff4ba304df73f5e8b0b134dcef21bc97ab"
+}

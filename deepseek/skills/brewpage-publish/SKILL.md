@@ -1,6 +1,6 @@
 ---
 name: brewpage-publish
-description: Publish text, Markdown, JSON, files, or built static sites to BrewPage and return a shareable URL. Use when asked to publish, upload, host, or share content with BrewPage.
+description: Host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file with BrewPage. Use when asked to publish, upload, host, or share content with BrewPage.
 user-invocable: true
 disable-model-invocation: false
 ---

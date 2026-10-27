@@ -2,6 +2,8 @@
 
 Native Harness bundle containing the existing BrewPage publishing skill and the pinned `brewpage-mcp@1.14.4` stdio server. This is for DeepSeek Harness, not the DeepSeek consumer chat website or a consumer plugin store.
 
+Version `1.0.1` updates discovery metadata: host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file. Runtime, security and immutable source remain unchanged. The exact `1.0.0` release tarball is retained alongside the new tarball. Description and keywords become npm search metadata only if published to npm; no npm publication, indexing or Harness catalog ranking is claimed.
+
 The seven upstream files under `skills/brewpage-publish/upstream/` are unchanged from the MIT-licensed [source commit](https://github.com/kochetkov-ma/claude-brewcode/tree/d2d42282fecec988447f9c9547959b31a8012644/skills/brewpage-publish). The native skill translates Claude tools and uses `scripts/brewpage-native.py` for every helper invocation. It preserves explicit consent, archive review and token secrecy; MCP accompanies the existing workflow.
 
 The adapter resolves input and password-file paths before changing directory, removes inherited Claude variables, and forces history into `~/.dsh/brewpage-publish/.claude/brewpage-history.md` (file 600, private state directory 700). The nested filename belongs solely to this adapter's native state. It never imports a project's or another runtime's Claude history or credentials. Never invoke the upstream helper directly.
@@ -16,7 +18,7 @@ Requires Node.js `24.19.0`, pnpm `12.15.0`, and DeepSeek Harness `0.2.1-rc.2`. F
 
 ```sh
 npm pack --ignore-scripts
-dsh plugin --profile brewpage add ./dsh-brewpage-1.0.0.tgz
+dsh plugin --profile brewpage add ./dsh-brewpage-1.0.1.tgz
 dsh --profile brewpage --dump-config
 ```
 
@@ -31,10 +33,12 @@ Verified with Node `24.19.0` and Harness `0.2.1-rc.2` in a fresh temporary `DSH_
 To repeat the native fixture, create an isolated temporary directory, copy `verify-native.mjs` there, then run:
 
 ```sh
-npm install --ignore-scripts --no-audit --no-fund @deepseek-ai/dsh@0.2.1-rc.2 /absolute/path/dsh-brewpage-1.0.0.tgz
+npm install --ignore-scripts --no-audit --no-fund @deepseek-ai/dsh@0.2.1-rc.2 /absolute/path/dsh-brewpage-1.0.1.tgz
 node verify-native.mjs
 ```
 
 No model call, API key, content upload or existing-client installation was used. Model-driven execution and rendering of a published result remain unverified. Default Node `20.15.0` silently skipped the Harness CLI's `import.meta.main` entry point; use the verified Node version.
+
+Native verification above records the `1.0.0` baseline. For `1.0.1`, `metadata-verification.json` records package metadata, archive roundtrip, unchanged runtime/security bytes and all seven source hashes; it does not claim a repeated native install or model execution.
 
 Native contracts: [bundle packaging](https://deepseek-harness.github.io/deepseek-harness/en/develop/basic/publish.html), [skill provider](https://github.com/deepseek-ai/deepseek-harness/tree/master/packages/skill/skill-filesystem), [MCP bundle template](https://github.com/deepseek-ai/deepseek-harness/tree/master/packages/preset/agent-preset/skills/cordis-plugin-development/templates/mcp).

@@ -1,7 +1,8 @@
 {
-  "README.md": "80cd5a7b58012f58690ce4f8868780e23f715d5b3b45a5ed43f98c8cc5ce9453",
+  "README.md": "0e12fefafb85f7ce67bfda109888459a9a5095523b547ba126213f28399f18ad",
   "brewpage-kimi-code-1.0.0.zip": "2072392983923b251bae05b8b54372a5c921cd5af70bb9ccca6d995e80b25a1b",
-  "brewpage-publish/kimi.plugin.json": "1f0c1183deb48311773c69a1e2d8ae76d2c442eccd5ca80d6130ae69c2ffe2cb",
+  "brewpage-kimi-code-1.0.1.zip": "e919d763cb69db505343c970059652d5a5f4b700f84d8c673ba5baa9a4323a45",
+  "brewpage-publish/kimi.plugin.json": "909aac3d78bc22a898b9208d3d902ba88efae2b269ef1399e77234448eb850c3",
   "brewpage-publish/skills/brewpage-publish/LICENSE": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84",
   "brewpage-publish/skills/brewpage-publish/README.md": "8f6f84f03e6a20e73d2748b23d5e5fd4c61b83a05e39c90933357ed687b29e15",
   "brewpage-publish/skills/brewpage-publish/SKILL.md": "42d0e03a8294e05dd1f4e385c187eea55c633903299d2bd4eb57f0fd4c44efc1",
@@ -9,6 +10,7 @@
   "brewpage-publish/skills/brewpage-publish/scripts/brewpage-run.sh": "00539a0e090ec322504b51dc85a263d7fa618742db63657af066f5e016765a27",
   "brewpage-publish/skills/brewpage-publish/scripts/history.py": "24d68381f27b13a727a5f342ae7396948a6e80123a926a627ecf956992906e61",
   "brewpage-publish/skills/brewpage-publish/scripts/publish.mjs": "23d15a831a4ae654b21c9ff469a17fbf3db96528a41969641ef105c2d3cf4f81",
+  "metadata-verification.json": "15ea585ff56420b914e7bf9b8874866e4e330b8f30b16aa6c353c397c0d49eec",
   "source-hashes.json": "0f1037b4f2715a649795b3914e2f50984a13b66dcb01c64b965c8e8361e773ee",
   "verification.json": "ad93221fd2dcc3d956bb3864b0abdef63a8eeffbc31020319da01422cf248002"
 }

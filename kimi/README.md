@@ -2,6 +2,8 @@
 
 Native `kimi.plugin.json` packages the existing BrewPage skill with its remote MCP service. The seven files in `skills/brewpage-publish/` are byte-identical to public source commit `d2d42282fecec988447f9c9547959b31a8012644` in `kochetkov-ma/claude-brewcode`.
 
+Version `1.0.1` updates plugin display metadata: host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file. The immutable active skill and the complete MCP security override remain unchanged. Extract `brewpage-kimi-code-1.0.1.zip`; the exact `1.0.0` archive is retained.
+
 Install from an extracted directory in Kimi Code:
 
 ```text
@@ -19,6 +21,8 @@ Native verification used official npm package `@moonshot-ai/kimi-code@2.3.3`, No
 The final manifest was reimported after the output/storage override changed. Its exact `skillInstructions` matched the official server-normalized import result; six explicit output/storage clauses passed local contract assertions. The exact `renderSkillPrompt` method and six dependencies extracted from official 2.3.3 also rendered that override before the immutable source, reproducing the old Step 7 line and its native supersession. This validates imported/rendered instructions, not model behavior.
 
 This proves package import and MCP tool discovery. No model invocation, authentication copy, paid operation or publication was performed. End-to-end model-driven publishing remains unverified.
+
+Native verification above records the `1.0.0` baseline. `metadata-verification.json` records `1.0.1` validation with the actual pinned Kimi `2.3.3` metadata parser functions, archive roundtrip and all seven source hashes. It does not claim a repeated native import, official catalog indexing or model execution.
 
 This package is a Kimi Code plugin. It is not registered in a consumer Kimi account and has not been submitted to the Kimi official marketplace. The documented consumer publication application requires a created and basic-tested personal plugin in Kimi Work. Kimi Code's public third-party marketplace intake remains undocumented; official repository issue #1566 is open.
 

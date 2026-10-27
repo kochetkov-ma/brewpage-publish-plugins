@@ -1,13 +1,13 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "brewpage",
-  "version": "1.0.0",
-  "description": "Publish pages, documents, files and static sites with BrewPage's existing publishing skill and remote MCP tools.",
+  "version": "1.0.1",
+  "description": "Host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file with BrewPage.",
   "author": { "name": "Maksim Kochetkov", "url": "https://github.com/kochetkov-ma" },
   "homepage": "https://brewpage.app",
   "repository": "https://github.com/kochetkov-ma/claude-brewcode",
   "license": "MIT",
-  "keywords": ["publishing", "hosting", "brewpage"],
+  "keywords": ["html-hosting", "static-sites", "ai-artifacts", "publishing", "file-sharing", "markdown", "documents", "reports", "brewpage"],
   "extensions": {
     "ai.mistral.vibe": {
       "schemaVersion": 1,

@@ -1,13 +1,15 @@
 {
   "name": "brewpage-publish",
-  "version": "1.0.0",
-  "description": "Publish HTML, static sites, JSON and files with the existing BrewPage workflow.",
+  "version": "1.0.1",
+  "description": "Host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file with BrewPage.",
+  "keywords": ["html-hosting", "static-sites", "ai-artifacts", "publishing", "file-sharing", "markdown", "documents", "reports", "brewpage"],
   "skills": "./skills/",
   "homepage": "https://brewpage.app",
   "license": "MIT",
   "interface": {
     "displayName": "BrewPage Publish",
-    "shortDescription": "Publish pages, static sites and files to a shareable URL.",
+    "shortDescription": "Host HTML, static sites and AI artifacts; share any file.",
+    "longDescription": "Host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file with BrewPage.",
     "developerName": "Maksim Kochetkov",
     "websiteURL": "https://brewpage.app"
   },
