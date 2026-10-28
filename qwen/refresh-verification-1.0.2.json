@@ -1,0 +1,25 @@
+{
+  "version": "1.0.2",
+  "mcp_version": "1.15.1",
+  "artifact": "brewpage-qwen-1.0.2.zip",
+  "sha256": "ac5fb6293d45d67ff576fb4566bed5b3fe84cd3e4450fdf80c74ea814b400c4b",
+  "baseline_artifact": "brewpage-qwen-1.0.1.zip",
+  "baseline_sha256": "69e4f03730854ade5ea97540a97189864de7801effa0b86379f65d3fe7f5c6d1",
+  "changed_files": [
+    "README.md",
+    "mcp.json",
+    "plugin.json"
+  ],
+  "file_count": 14,
+  "archive_roundtrip": "pass",
+  "unchanged_upstream_files": 7,
+  "unchanged_skill_launcher_security_bytes": true,
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "public_release_source_verified": true,
+  "public_release_published": false,
+  "limits": [
+    "Local package consistency only; no fresh native/provider/schema checks.",
+    "Historical verification receipts remain unchanged; README identifies their baseline versions."
+  ]
+}

@@ -4,12 +4,12 @@ Host HTML pages and static sites, publish AI artifacts, and share Markdown, docu
 
 ## Download and install
 
-Download the matching artifact from [release v1.0.1](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.0.1), review its contents, verify its [SHA-256](SHASUMS256.txt), and follow the package guide:
+Download the matching artifact from [release v1.0.2](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.0.2), review its contents, verify its [SHA-256](SHASUMS256.txt), and follow the package guide:
 
 | Host | Artifact | Installation guide |
 |---|---|---|
-| Qwen Code | `brewpage-qwen-1.0.1.zip` | [Qwen](qwen/README.md) |
-| DeepSeek Harness | `dsh-brewpage-1.0.1.tgz` | [DeepSeek](deepseek/README.md) |
+| Qwen Code | `brewpage-qwen-1.0.2.zip` | [Qwen](qwen/README.md) |
+| DeepSeek Harness | `dsh-brewpage-1.0.2.tgz` | [DeepSeek](deepseek/README.md) |
 | Mistral Vibe Code | `brewpage-vibe-1.0.1.zip` | [Vibe Code](mistral/brewpage/README.md) |
 | Kimi Code | `brewpage-kimi-code-1.0.1.zip` | [Kimi Code](kimi/README.md) |
 | Skill directory / ZIP | `brewpage-publish.zip` (unchanged original) | [Original skill](common/README.md) |
@@ -19,12 +19,12 @@ Download the matching artifact from [release v1.0.1](https://github.com/kochetko
 For source installation, use this release tag:
 
 ```sh
-git clone --branch v1.0.1 --depth 1 https://github.com/kochetkov-ma/brewpage-publish-plugins.git
+git clone --branch v1.0.2 --depth 1 https://github.com/kochetkov-ma/brewpage-publish-plugins.git
 ```
 
 The package guides contain installation commands and pinned host versions. BrewPage needs no signup or API key; a host may require its own login or provider configuration. Review visibility, password and expiry choices before publishing. Keep ownership credentials out of shared output.
 
-Version 1.0.1 updates discovery descriptions for HTML hosting, static sites and AI artifact publishing, followed by Markdown, documents, reports and any files. It also adds the portable Yandex adapter source. Historical assets remain available unchanged in [release v1.0.0](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.0.0).
+Version 1.0.2 updates Qwen and DeepSeek to the pinned `brewpage-mcp@1.15.1` server. The other five packages retain their existing filenames, versions and exact bytes. Historical archives and verification receipts remain unchanged. [Qwen refresh receipt](qwen/refresh-verification-1.0.2.json) and [DeepSeek refresh receipt](deepseek/refresh-verification-1.0.2.json) record archive, pin and unchanged skill/launcher checks; both receipts are also release assets. Native import, MCP execution and model-driven publishing were not repeated for this release.
 
 ## Provenance and limits
 

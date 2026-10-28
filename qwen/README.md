@@ -1,8 +1,8 @@
 # BrewPage for Qwen Code
 
-Agent Plugins v1 package containing the existing BrewPage publishing skill and pinned `brewpage-mcp@1.14.4` stdio server. This targets Qwen Code's native extension loader, not Qwen consumer chat or a consumer plugin store.
+Agent Plugins v1 package containing the existing BrewPage publishing skill and pinned `brewpage-mcp@1.15.1` stdio server. This targets Qwen Code's native extension loader, not Qwen consumer chat or a consumer plugin store.
 
-Version 1.0.1 updates discovery metadata for HTML hosting, static sites and AI artifact publishing, followed by Markdown, documents, reports and any files. Launcher, MCP configuration, consent and security behavior are unchanged. Manifest keywords do not prove vendor-catalog indexing; the active skill description supplies the runtime selection trigger. Distribute `brewpage-qwen-1.0.1.zip`; `manifest.json` records its inventory and SHA-256.
+Version 1.0.2 updates the pinned MCP server to 1.15.1. Publishing skill, launcher, consent and security override bytes are unchanged. Distribute `brewpage-qwen-1.0.2.zip`; `manifest.json` records its inventory and SHA-256. Prior archives and verification receipts remain historical evidence. Manifest keywords do not prove vendor-catalog indexing.
 
 The seven upstream files under `skills/brewpage-publish/upstream/` are unchanged from the MIT-licensed [source commit](https://github.com/kochetkov-ma/claude-brewcode/tree/d2d42282fecec988447f9c9547959b31a8012644/skills/brewpage-publish). The native skill translates Claude tools and uses `scripts/brewpage-native.py` for every helper invocation. It preserves explicit consent, archive review and token secrecy; MCP accompanies the existing workflow.
 
@@ -22,7 +22,7 @@ qwen extensions list
 qwen mcp list
 ```
 
-Review and accept Qwen's installation prompt. It must list both the `brewpage-publish` skill and `brewpage` MCP server. The extension list must report `Origin: AgentPlugins`, `brewpage (1.0.1)`, and both capabilities. After public distribution, install the downloaded/extracted package using the same local-directory command; a private hub repository is not a public install source.
+Review and accept Qwen's installation prompt. It must list both the `brewpage-publish` skill and `brewpage` MCP server. The extension list must report `Origin: AgentPlugins`, `brewpage (1.0.2)`, and both capabilities. After public distribution, install the downloaded/extracted package using the same local-directory command; a private hub repository is not a public install source.
 
 Start Qwen Code, complete its own supported login, and ask it to load `brewpage-publish`. Publishing needs Bash, curl, jq, Python 3 with `fcntl`, and Git inside repositories; sites also need Node, zip and unzip. Use macOS, Linux or WSL. Answer namespace and password choices explicitly. No BrewPage signup or API key is needed.
 
@@ -30,7 +30,7 @@ Start Qwen Code, complete its own supported login, and ask it to load `brewpage-
 
 Version 1.0.0 was verified with official Qwen Code `0.26.1`, installed at an exact npm pin into a temporary directory with a separate empty `HOME`. The native loader enumerated `brewpage-publish` and `brewpage`, and `qwen mcp list` established the MCP stdio connection. All seven vendored upstream files matched the common-package SHA256 values. The helper's local `probe` succeeded without publishing. The original receipt is retained as `verification-1.0.0.json`.
 
-Version 1.0.1 has fresh schema, archive and unchanged-runtime hash checks in `verification.json`; native installation, MCP connection and isolation fixtures were not repeated for this metadata-only update.
+`verification.json` records historical 1.0.1 metadata checks. The [1.0.2 refresh receipt](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/download/v1.0.2/qwen-refresh-verification-1.0.2.json) records local archive, pin and unchanged skill/launcher checks. Native installation, MCP connection and isolation fixtures were not repeated for 1.0.2.
 
 No existing client configuration, authentication, API key, model call or BrewPage content upload was used. Skill discovery and MCP connection are verified; model-driven skill execution and rendering of a published result remain unverified.
 

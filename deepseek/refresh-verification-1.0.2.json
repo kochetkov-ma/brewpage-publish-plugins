@@ -1,0 +1,25 @@
+{
+  "version": "1.0.2",
+  "mcp_version": "1.15.1",
+  "artifact": "dsh-brewpage-1.0.2.tgz",
+  "sha256": "32ac1ccef603c34ed11e3af3b930439642ec1334fc2774fe7d9763cc1e72bc23",
+  "baseline_artifact": "dsh-brewpage-1.0.1.tgz",
+  "baseline_sha256": "07270dbed35fe8b01abae3dfb95b38fef642909070627d87bd9e3750aaa10143",
+  "changed_files": [
+    "README.md",
+    "cordis.patch.yml",
+    "package.json"
+  ],
+  "file_count": 17,
+  "archive_roundtrip": "pass",
+  "unchanged_upstream_files": 7,
+  "unchanged_skill_launcher_security_bytes": true,
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "public_release_source_verified": true,
+  "public_release_published": false,
+  "limits": [
+    "Local package consistency only; no fresh native/provider/schema checks.",
+    "Historical verification receipts remain unchanged; README identifies their baseline versions."
+  ]
+}
