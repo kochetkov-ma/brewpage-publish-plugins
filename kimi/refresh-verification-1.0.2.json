@@ -1,0 +1,31 @@
+{
+  "version": "1.0.2",
+  "user_agent": "brewpage-kimi/1.0.2 (+https://brewpage.app)",
+  "upstream_commit": "809e0fa27793a68177d73368b9ec3bc3488e4f2e",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "brewpage-kimi-code-1.0.2.zip",
+  "sha256": "9728d0e9ceb1604b9d46b513f88240c2954c614f4ce4b5feeac9619252897809",
+  "baseline_artifact": "brewpage-kimi-code-1.0.1.zip",
+  "baseline_sha256": "e919d763cb69db505343c970059652d5a5f4b700f84d8c673ba5baa9a4323a45",
+  "changed_files": [
+    "kimi.plugin.json",
+    "skills/brewpage-publish/README.md",
+    "skills/brewpage-publish/SKILL.md",
+    "skills/brewpage-publish/scripts/brewpage-lib.sh",
+    "skills/brewpage-publish/scripts/brewpage-run.sh"
+  ],
+  "file_count": 8,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 7,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "skillInstructions_unchanged": true
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "note": "skillInstructions forbids the bundled shell helpers; Kimi publishes through MCP, whose User-Agent the host sets.",
+  "limits": [
+    "Local package checks only; native host import and model-driven publishing were not repeated."
+  ]
+}

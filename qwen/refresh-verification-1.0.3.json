@@ -1,0 +1,32 @@
+{
+  "version": "1.0.3",
+  "user_agent": "brewpage-qwen/1.0.3 (+https://brewpage.app)",
+  "upstream_commit": "809e0fa27793a68177d73368b9ec3bc3488e4f2e",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "brewpage-qwen-1.0.3.zip",
+  "sha256": "b712cd4ae60dd4e6ffc0271c7e164386d30b8ea76157b27b1748cf0c73f842ec",
+  "baseline_artifact": "brewpage-qwen-1.0.2.zip",
+  "baseline_sha256": "ac5fb6293d45d67ff576fb4566bed5b3fe84cd3e4450fdf80c74ea814b400c4b",
+  "changed_files": [
+    "qwen/README.md",
+    "qwen/plugin.json",
+    "qwen/skills/brewpage-publish/upstream/README.md",
+    "qwen/skills/brewpage-publish/upstream/SKILL.md",
+    "qwen/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
+    "qwen/skills/brewpage-publish/upstream/scripts/brewpage-run.sh",
+    "qwen/verify-isolation.py"
+  ],
+  "file_count": 14,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 7,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "verify-isolation.py": "pass; asserts upload -A == brewpage-qwen/1.0.3 (+https://brewpage.app)"
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "limits": [
+    "Local package checks only; native host import and model-driven publishing were not repeated."
+  ]
+}

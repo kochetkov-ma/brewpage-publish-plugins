@@ -25,7 +25,8 @@ def verify():
         shim = commands / 'curl'
         marker = root / 'curl-called'
         observed = root / 'curl-environment.json'
-        shim.write_text('#!/usr/bin/env python3\nimport json, os\nfrom pathlib import Path\nPath(' + repr(str(marker)) + ').touch()\nPath(' + repr(str(observed)) + ').write_text(json.dumps(dict(os.environ)))\nprint(' + repr(json.dumps(response)) + ')\n')
+        arguments = root / 'curl-arguments.json'
+        shim.write_text('#!/usr/bin/env python3\nimport json, os\nfrom pathlib import Path\nPath(' + repr(str(marker)) + ').touch()\nPath(' + repr(str(observed)) + ').write_text(json.dumps(dict(os.environ)))\nimport sys\nPath(' + repr(str(arguments)) + ').write_text(json.dumps(sys.argv[1:]))\nprint(' + repr(json.dumps(response)) + ')\n')
         shim.chmod(0o700)
         env = dict(os.environ, HOME=str(home), CLAUDE_PROJECT_DIR=str(project), CLAUDE_CONFIG_DIR=str(project / '.claude'),
                    PATH=str(commands) + os.pathsep + os.environ['PATH'])
@@ -62,6 +63,9 @@ def verify():
         assert 'SYNTHETIC_CLAUDE_OWNER_CANARY' not in history.read_text(), 'Claude history must never be imported'
         assert 'SYNTHETIC_' not in result.stdout + result.stderr, 'no owner capability may reach output'
         assert (root / 'curl-called').exists(), 'fixture must exercise real helper response handling'
+        argv = json.loads(arguments.read_text())
+        version = json.loads((package / 'package.json').read_text())['version']
+        assert argv[argv.index('-A') + 1] == 'brewpage-deepseek/' + version + ' (+https://brewpage.app)', 'upload must send the plugin User-Agent'
         assert not (project / '.gitignore').exists(), 'native adapter must not mutate project ignore state'
         startup = root / 'startup.sh'
         startup.write_text('export CLAUDE_PROJECT_DIR=' + repr(str(project)) + '\n')

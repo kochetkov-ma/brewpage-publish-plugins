@@ -1,8 +1,8 @@
 # BrewPage Publish for Kimi Code
 
-Native `kimi.plugin.json` packages the existing BrewPage skill with its remote MCP service. The seven files in `skills/brewpage-publish/` are byte-identical to public source commit `d2d42282fecec988447f9c9547959b31a8012644` in `kochetkov-ma/claude-brewcode`.
+Native `kimi.plugin.json` packages the existing BrewPage skill with its remote MCP service. The seven files in `skills/brewpage-publish/` are synced from public source commit `809e0fa27793a68177d73368b9ec3bc3488e4f2e` in `kochetkov-ma/claude-brewcode`; the only deviation is the User-Agent value `brewpage-kimi/1.0.2 (+https://brewpage.app)`.
 
-Version `1.0.1` updates plugin display metadata: host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file. The immutable active skill and the complete MCP security override remain unchanged. Extract `brewpage-kimi-code-1.0.1.zip`; the exact `1.0.0` archive is retained.
+Version `1.0.1` updates plugin display metadata: host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file. The immutable active skill and the complete MCP security override remain unchanged. Version `1.0.2` syncs the bundled skill to that commit; the MCP-only override is unchanged, so the bundled helpers stay unused. Extract `brewpage-kimi-code-1.0.2.zip`; the exact `1.0.0` and `1.0.1` archives are retained. `refresh-verification-1.0.2.json` records the 1.0.2 checks.
 
 Install from an extracted directory in Kimi Code:
 
@@ -33,4 +33,4 @@ Sources:
 - https://www.kimi.com/code/docs/en/kimi-code-cli/reference/server-api.html
 - https://www.kimi.com/en/help/plugins-and-skills/publish
 - https://github.com/MoonshotAI/kimi-code/issues/1566
-- https://github.com/kochetkov-ma/claude-brewcode/tree/d2d42282fecec988447f9c9547959b31a8012644/skills/brewpage-publish
+- https://github.com/kochetkov-ma/claude-brewcode/tree/809e0fa27793a68177d73368b9ec3bc3488e4f2e/skills/brewpage-publish

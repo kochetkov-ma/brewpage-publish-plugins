@@ -2,17 +2,17 @@
 
 An Agent Plugins 1.0 package containing the existing MIT-licensed BrewPage publishing skill and the remote BrewPage MCP server. No separate prompt, model or publishing runtime is added.
 
-Version 1.0.1 updates discovery metadata for HTML hosting, static sites and AI artifact publishing, followed by Markdown, documents, reports and any files. Launcher, MCP configuration, consent and security behavior are unchanged. Manifest keywords do not prove vendor-catalog indexing; the active skill description supplies the runtime selection trigger.
+Version 1.0.2 syncs the bundled skill to upstream `809e0fa2`; the runner sends `User-Agent: brewpage-mistral-vibe/1.0.2 (+https://brewpage.app)` on every brewpage.app request. Version 1.0.1 updated discovery metadata for HTML hosting, static sites and AI artifact publishing, followed by Markdown, documents, reports and any files. Launcher, MCP configuration, consent and security behavior are unchanged. Manifest keywords do not prove vendor-catalog indexing; the active skill description supplies the runtime selection trigger.
 
 ## Install
 
-Review the files, then extract `brewpage-vibe-1.0.1.zip` into your project's `.vibe/plugins/` directory. The resulting manifest must be `.vibe/plugins/brewpage/plugin.json`. Trust that project in Vibe Code, then start a session or run `/reload-plugins`. Open `/plugins` to inspect BrewPage and `/mcp` to inspect its remote server.
+Review the files, then extract `brewpage-vibe-1.0.2.zip` into your project's `.vibe/plugins/` directory. The resulting manifest must be `.vibe/plugins/brewpage/plugin.json`. Trust that project in Vibe Code, then start a session or run `/reload-plugins`. Open `/plugins` to inspect BrewPage and `/mcp` to inspect its remote server.
 
 Vibe Code exposes the bundled skill as `/brewpage:brewpage-publish`. The MCP endpoint is `https://brewpage.app/mcp` (Streamable HTTP, no API key or account required). Normal Vibe approval rules apply to MCP tools.
 
 ## Existing skill compatibility
 
-All seven original skill files are preserved byte for byte under `skills/brewpage-publish/upstream/`, from `skills/brewpage-publish` at commit `d2d42282fecec988447f9c9547959b31a8012644` of [claude-brewcode](https://github.com/kochetkov-ma/claude-brewcode/tree/d2d42282fecec988447f9c9547959b31a8012644/skills/brewpage-publish).
+All seven original skill files are synced under `skills/brewpage-publish/upstream/` from `skills/brewpage-publish` at commit `809e0fa27793a68177d73368b9ec3bc3488e4f2e` of [claude-brewcode](https://github.com/kochetkov-ma/claude-brewcode/tree/809e0fa27793a68177d73368b9ec3bc3488e4f2e/skills/brewpage-publish); the only deviation is the User-Agent value.
 
 The small native `SKILL.md` adapter loads the original workflow and translates its tool names and invocation arguments to Vibe's host tools. Its local `run.py` launcher executes the existing secure runner in a private Mistral workspace; no publishing code is rewritten. Content and password paths must be absolute; Claude configuration/history paths are refused. Vibe's approvals apply.
 

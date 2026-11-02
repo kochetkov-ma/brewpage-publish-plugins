@@ -1,19 +1,20 @@
 {
   "schema_version": 1,
   "name": "brewpage-publish",
-  "package_version": "1.0.1",
+  "package_version": "1.0.2",
   "source": {
     "repository": "https://github.com/kochetkov-ma/claude-brewcode",
-    "commit": "d2d42282fecec988447f9c9547959b31a8012644",
+    "commit": "809e0fa27793a68177d73368b9ec3bc3488e4f2e",
     "directory": "skills/brewpage-publish",
-    "license": "MIT"
+    "license": "MIT",
+    "deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples"
   },
   "artifact": {
     "folder": "brewpage-publish",
-    "zip": "yandex-brewpage-publish-v1.0.1.zip",
-    "sha256": "09719ef9b15b19996b23351ae3c1fbaa3eebf4e28fa8c6e13db606d97e09f2bf",
+    "zip": "yandex-brewpage-publish-v1.0.2.zip",
+    "sha256": "17793768ce648477d970580f79f213f77dd07e3e15e7bfb1bf3350d5eb1933b1",
     "layout": "one top-level folder; one active SKILL.md; eight files",
-    "same_bytes_as_native_imported_archive": true
+    "same_bytes_as_native_imported_archive": false
   },
   "active_manifest": {
     "path": "brewpage-publish/SKILL.md",
@@ -35,22 +36,22 @@
     {
       "original_path": "README.md",
       "archive_path": "brewpage-publish/upstream/README.md",
-      "sha256": "8f6f84f03e6a20e73d2748b23d5e5fd4c61b83a05e39c90933357ed687b29e15"
+      "sha256": "f46498f0c1a9bbf5bb9afda5a64e9b6609037428841bbbd456ead72cf08a519b"
     },
     {
       "original_path": "SKILL.md",
       "archive_path": "brewpage-publish/upstream/SKILL.md.source",
-      "sha256": "42d0e03a8294e05dd1f4e385c187eea55c633903299d2bd4eb57f0fd4c44efc1"
+      "sha256": "73f3337c94c083cda10033b9b344a5060b9ff95f21224889cfb887a0551e2c53"
     },
     {
       "original_path": "scripts/brewpage-lib.sh",
       "archive_path": "brewpage-publish/upstream/scripts/brewpage-lib.sh",
-      "sha256": "f5268fad7202b93bc697837ccb08ff4b25ea3919f1be6e716c2387ef9a798019"
+      "sha256": "0e8562efb95fc278560b8fafefbb3e2a7ecec9ab1a7927cda9ccaf90020b51b3"
     },
     {
       "original_path": "scripts/brewpage-run.sh",
       "archive_path": "brewpage-publish/upstream/scripts/brewpage-run.sh",
-      "sha256": "00539a0e090ec322504b51dc85a263d7fa618742db63657af066f5e016765a27"
+      "sha256": "29dbc64a4db30d930b50a9766486c1b4a59eba1f4c95e48cb1cf2a06e2e0e76a"
     },
     {
       "original_path": "scripts/history.py",
@@ -68,7 +69,7 @@
     "archive_roundtrip_files": 8,
     "active_manifests": 1,
     "upstream_hashes_match": 7,
-    "native_import": "one personal catalog Skill created",
+    "native_import": "not repeated for v1.0.2; v1.0.1 was imported into one personal catalog",
     "native_mcp_discovery_tools": 20,
     "runtime_publish": "not run",
     "public_marketplace_submission": false
@@ -76,5 +77,13 @@
   "documentation": [
     "https://aistudio.yandex.ru/ru/docs/ai-studio/concepts/agents/skills",
     "https://aistudio.yandex.ru/ru/docs/ai-studio/pricing"
+  ],
+  "historical_artifacts": [
+    {
+      "zip": "yandex-brewpage-publish-v1.0.1.zip",
+      "sha256": "09719ef9b15b19996b23351ae3c1fbaa3eebf4e28fa8c6e13db606d97e09f2bf",
+      "source_commit": "d2d42282fecec988447f9c9547959b31a8012644",
+      "same_bytes_as_native_imported_archive": true
+    }
   ]
 }

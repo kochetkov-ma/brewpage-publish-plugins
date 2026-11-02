@@ -1,38 +1,31 @@
 {
-  "schema_version": 1,
-  "package": "brewpage@1.0.1",
-  "change": "metadata-only discovery description, keywords, active skill frontmatter description and distribution documentation",
-  "schema_validation": {
-    "status": "pass",
-    "schema_url": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-    "schema_sha256": "0a4aad95ce337878ad38802ebf0daa3fde76abe3f65400c86bcbb1ec0b3ab883",
-    "method": "Recursive assertions against exact official schema: types, const, required, properties, additionalProperties, patterns, lengths, array items",
-    "negative_controls": {
-      "tags": "rejected",
-      "category": "rejected",
-      "non_string_keyword": "rejected"
-    }
-  },
-  "artifact": {
-    "zip": "brewpage-vibe-1.0.1.zip",
-    "sha256": "2ccc90627138ae4e9bc7d5f1833ce32f6ab66c02db56650459ec4bc9eaa85a97",
-    "files_roundtripped": 13,
-    "crc": "pass"
-  },
-  "upstream_files_sha256_verified": 7,
-  "runtime_files_unchanged": [
-    "mcp.json",
-    "skills/brewpage-publish/run.py"
+  "version": "1.0.2",
+  "user_agent": "brewpage-mistral-vibe/1.0.2 (+https://brewpage.app)",
+  "upstream_commit": "809e0fa27793a68177d73368b9ec3bc3488e4f2e",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "brewpage-vibe-1.0.2.zip",
+  "sha256": "4421ab3d11ccfcac725cbd11fd34bafbe4460fb8c859fbadf33cf3e1438261dd",
+  "baseline_artifact": "brewpage-vibe-1.0.1.zip",
+  "baseline_sha256": "2ccc90627138ae4e9bc7d5f1833ce32f6ab66c02db56650459ec4bc9eaa85a97",
+  "changed_files": [
+    "brewpage/README.md",
+    "brewpage/plugin.json",
+    "brewpage/skills/brewpage-publish/upstream/README.md",
+    "brewpage/skills/brewpage-publish/upstream/SKILL.md",
+    "brewpage/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
+    "brewpage/skills/brewpage-publish/upstream/scripts/brewpage-run.sh"
   ],
-  "historical_native_verification": {
-    "version": "1.0.0",
-    "receipt": "validation-1.0.0.json",
-    "sha256": "9bb161bd062452f52d0e2a6f6b34dde976160d63f3f154d3cd44dc0c718ff4b1",
-    "status": "original receipt retained byte for byte; not rerun for 1.0.1"
+  "file_count": 13,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 7,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "run.py --check-isolation": "pass in a temporary VIBE_HOME (0700 state, 0600 history)"
   },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
   "limits": [
-    "Native installation, discovery, MCP connectivity and isolation fixtures were not rerun for 1.0.1.",
-    "Manifest metadata does not prove vendor-catalog indexing.",
-    "No model calls, MCP execution, content publications or existing user configuration/authentication access were performed for this update."
+    "Local package checks only; native host import and model-driven publishing were not repeated."
   ]
 }
