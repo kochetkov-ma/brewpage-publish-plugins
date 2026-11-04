@@ -28,6 +28,8 @@ Version 1.0.3 syncs every package to upstream [`809e0fa2`](https://github.com/ko
 
 ## Provenance and limits
 
+Separate native integration: [BrewPage for self-hosted n8n](integrations/n8n-community-node/README.md), an unverified community node with its own npm provenance workflow; independent of the plugin release assets above.
+
 All seven original skill files retain their MIT license and immutable [claude-brewcode source](https://github.com/kochetkov-ma/claude-brewcode/tree/809e0fa27793a68177d73368b9ec3bc3488e4f2e/skills/brewpage-publish). [PROVENANCE.json](PROVENANCE.json) lists the exact distribution-source and release-asset hashes. Yandex preserves the original manifest as `upstream/SKILL.md.source` so its archive contains exactly one active `SKILL.md`.
 
 These are independent GitHub distributions. Publication here does not establish admission to an official vendor catalog. The Yandex v1.0.1 package was imported into a personal AI Studio catalog and its MCP tools discovered; runtime publishing and public marketplace submission are unverified. Import and execution of the exact Mistral Work ZIP remain unverified. Native package verification records distinguish the 1.0.0 installation baseline from the 1.0.1 metadata and archive checks. Model-driven publishing and resulting hosted-page rendering have not been verified.

@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "nodeSourceSha256": "0c3330650a541c9921b9ee1c90bca56bee758606d59f8adfa96154752408d6d0",
+  "files": {
+    "LICENSE": "0cd52b46f781dcd5dcc96c54afc72c007626beb3a60331430c02afde25cd60a9",
+    "README.md": "7bd1936eead9fc7c0ffe08c35b8561cb8c0c4f19f6845e24072cb56f9082441f",
+    "dist/nodes/BrewPage/BrewPage.node.d.ts": "c6d52824a2274be64d88182fa54ef76d3fadddf97e8f3e06d612257426e9f57a",
+    "dist/nodes/BrewPage/BrewPage.node.js": "b726ef3c5ead50480f7aa52e0781881321c51db4bd7f5b10ac02f7288d732a90",
+    "dist/nodes/BrewPage/BrewPage.node.json": "10c322d07060a3ff2a0e0cbf052883e3248adcee91f22a672fe321f163f27444",
+    "dist/nodes/BrewPage/brewpage.svg": "d130144ee1de9d116510fc360471b67842524b1f9ed222c50a6ff2bf291adbcd",
+    "package.json": "2d3dcfb4cc3ab18123fea0088e34430147a89b13fae43a275b0dffa324cee88d"
+  }
+}

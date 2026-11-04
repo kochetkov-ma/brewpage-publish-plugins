@@ -1,0 +1,9 @@
+{
+  "node": "n8n-nodes-brewpage.brewPage",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": ["Productivity"],
+  "resources": {
+    "primaryDocumentation": [{ "url": "https://brewpage.app/api" }]
+  }
+}

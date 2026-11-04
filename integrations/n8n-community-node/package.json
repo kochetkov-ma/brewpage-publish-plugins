@@ -1,0 +1,23 @@
+{
+  "name": "brewpage-n8n-build",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "npm --prefix package run build",
+    "lint": "npm --prefix package run lint",
+    "format": "prettier --check README.md package.json && npm --prefix package run format",
+    "test": "npm --prefix package test",
+    "test:native": "npm --prefix package run test:native",
+    "test:provenance": "npm --prefix package run test:provenance"
+  },
+  "devDependencies": {
+    "@n8n/node-cli": "0.55.5",
+    "n8n-workflow": "2.44.2",
+    "prettier": "3.9.10",
+    "typescript": "5.9.3"
+  },
+  "overrides": {
+    "qs": "6.16.2"
+  }
+}

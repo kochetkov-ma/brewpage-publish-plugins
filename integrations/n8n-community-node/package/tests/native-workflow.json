@@ -1,0 +1,42 @@
+{
+  "id": "brewpage-local-fixture",
+  "name": "BrewPage isolated native fixture",
+  "active": false,
+  "nodes": [
+    {
+      "id": "manual",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 0],
+      "parameters": {}
+    },
+    {
+      "id": "publish",
+      "name": "BrewPage",
+      "type": "CUSTOM.brewPage",
+      "typeVersion": 1,
+      "position": [250, 0],
+      "parameters": {
+        "operation": "publish",
+        "content": "<h1>Local fixture</h1>",
+        "format": "html",
+        "access": "unlisted",
+        "ttl": 15
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[{ "node": "BrewPage", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "none",
+    "saveDataSuccessExecution": "none",
+    "saveManualExecutions": false,
+    "saveExecutionProgress": false
+  },
+  "pinData": {}
+}

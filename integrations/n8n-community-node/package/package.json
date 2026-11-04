@@ -1,0 +1,46 @@
+{
+  "name": "n8n-nodes-brewpage",
+  "version": "0.1.0",
+  "description": "Publish HTML and Markdown reports to temporary BrewPage reader links",
+  "license": "MIT",
+  "author": {
+    "name": "Maksim Kochetkov",
+    "email": "apmatypa88@gmail.com"
+  },
+  "homepage": "https://brewpage.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kochetkov-ma/brewpage-publish-plugins.git",
+    "directory": "integrations/n8n-community-node/package"
+  },
+  "keywords": [
+    "n8n-community-node-package",
+    "html",
+    "markdown",
+    "reports",
+    "publishing",
+    "brewpage"
+  ],
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "n8n-node build",
+    "lint": "n8n-node lint",
+    "format": "prettier --check nodes tests scripts package.json tsconfig.json README.md",
+    "test": "node --test tests/publish.test.cjs",
+    "test:native": "node --test tests/native.test.cjs",
+    "test:provenance": "node --test tests/provenance.test.cjs"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "strict": true,
+    "credentials": [],
+    "nodes": [
+      "dist/nodes/BrewPage/BrewPage.node.js"
+    ]
+  },
+  "devDependencies": {
+    "n8n-workflow": "2.44.2"
+  }
+}
