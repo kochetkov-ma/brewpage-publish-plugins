@@ -1,0 +1,38 @@
+{
+  "name": "brewpage-zapier",
+  "version": "1.0.0",
+  "description": "Publish pages, files and JSON documents to BrewPage from Zapier",
+  "private": true,
+  "license": "MIT",
+  "author": {
+    "name": "Maksim Kochetkov",
+    "email": "info@brewpage.app"
+  },
+  "homepage": "https://brewpage.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kochetkov-ma/brewpage-publish-plugins.git",
+    "directory": "integrations/zapier-app"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">=22.20.0"
+  },
+  "scripts": {
+    "format": "prettier --check .",
+    "lint": "eslint . && prettier --check .",
+    "test": "NODE_ENV=test node --test --test-reporter=spec 'test/*.test.js'",
+    "validate": "zapier-platform validate"
+  },
+  "dependencies": {
+    "form-data": "4.0.6",
+    "zapier-platform-core": "19.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "eslint": "10.13.0",
+    "nock": "15.0.5",
+    "prettier": "3.9.10",
+    "zapier-platform-cli": "19.3.0"
+  }
+}
