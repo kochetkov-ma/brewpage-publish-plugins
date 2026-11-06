@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "name": "brewpage",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "format": "agent_plugins_1_0",
   "upstream": {
     "repository": "https://github.com/kochetkov-ma/claude-brewcode",
@@ -11,9 +11,9 @@
   },
   "upstream_directory": "skills/brewpage-publish/upstream",
   "artifact": {
-    "zip": "brewpage-qwen-1.0.3.zip",
+    "zip": "brewpage-qwen-1.0.4.zip",
     "layout": "qwen/plugin.json",
-    "sha256": "b712cd4ae60dd4e6ffc0271c7e164386d30b8ea76157b27b1748cf0c73f842ec",
+    "sha256": "b90135ba98588edf70c8fc4dc8edeb003b72ba403bffddb7e22fe416164332ff",
     "file_count": 14
   },
   "files": [
@@ -23,7 +23,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "e8951e38180c24cf40ed554a26e820d0f90e58cbc6b13bba289cddee41087377"
+      "sha256": "1392eea1219d3eb10eb8c32593d4bd6bad1086ba4a3ee14a28310a31011b102e"
     },
     {
       "path": "mcp.json",
@@ -31,7 +31,7 @@
     },
     {
       "path": "plugin.json",
-      "sha256": "f226041951e7fd9f094173431cf50546da3a638866e7b9e60efa165513b71045"
+      "sha256": "59c8289b6f464fed1f49064516021513dd6e28c9acfacd32be75863cfdecf6e9"
     },
     {
       "path": "skills/brewpage-publish/SKILL.md",
@@ -47,15 +47,15 @@
     },
     {
       "path": "skills/brewpage-publish/upstream/README.md",
-      "sha256": "6ebc695cb8016ecbf4bc1477240c2cbb4b307e7b48ba2b9985c0e0ed7e7ebdf8"
+      "sha256": "3d34f00d4232d06ff231f73fd9ec2bffcf71a0d1e144b476f8029a14aeff05ff"
     },
     {
       "path": "skills/brewpage-publish/upstream/SKILL.md",
-      "sha256": "9383505b8a970fd111a6e8ff07fe11cbd98e82eaf88e4ec8a0301d2ff26e38a9"
+      "sha256": "deccfcf2d1a366918a69c9c0a6f792d14acb6b3d90d5c95850cf9792e8f8be79"
     },
     {
       "path": "skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
-      "sha256": "28c8daa4416e99ff937b6424a096861adcd2cfa5601628656adec876c6879b34"
+      "sha256": "5ac0798e8a2914e2882e92ea723613d6184c87794cf112bfbcadbe80e583986f"
     },
     {
       "path": "skills/brewpage-publish/upstream/scripts/brewpage-run.sh",
@@ -74,8 +74,14 @@
       "sha256": "6e97e97a2646b8171760890754df2bbf7d36a321a4bec707f1cfe803532fb84f"
     }
   ],
-  "validation": "refresh-verification-1.0.3.json",
+  "validation": "refresh-verification-1.0.4.json",
   "historical_artifacts": [
+    {
+      "zip": "brewpage-qwen-1.0.3.zip",
+      "sha256": "b712cd4ae60dd4e6ffc0271c7e164386d30b8ea76157b27b1748cf0c73f842ec",
+      "manifest": "manifest-1.0.3.json",
+      "validation": "refresh-verification-1.0.3.json"
+    },
     {
       "zip": "brewpage-qwen-1.0.2.zip",
       "sha256": "ac5fb6293d45d67ff576fb4566bed5b3fe84cd3e4450fdf80c74ea814b400c4b",

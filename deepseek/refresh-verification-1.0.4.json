@@ -1,0 +1,32 @@
+{
+  "version": "1.0.4",
+  "user_agent": "brewpage-deepseek/1.0.4 (+https://brewpage.app)",
+  "upstream_commit": "809e0fa27793a68177d73368b9ec3bc3488e4f2e",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "dsh-brewpage-1.0.4.tgz",
+  "sha256": "2261ef8c5916cc1d0c3003cbc6984a1e2e466e391d2b0cd0e404ee45e5598bbe",
+  "baseline_artifact": "dsh-brewpage-1.0.3.tgz",
+  "baseline_sha256": "d0efdbaa7ae3611a2a7f3722427f6f0dd8921a311cb026a4cf20b18bfc8bc8a3",
+  "changed_files": [
+    "README.md",
+    "package.json",
+    "skills/brewpage-publish/upstream/README.md",
+    "skills/brewpage-publish/upstream/SKILL.md",
+    "skills/brewpage-publish/upstream/scripts/brewpage-lib.sh"
+  ],
+  "file_count": 17,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 7,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "verify-isolation.py": "pass; asserts upload -A == brewpage-deepseek/1.0.4 (+https://brewpage.app)",
+    "verify-native.mjs": "pass with @deepseek-ai/dsh@0.2.1-rc.2 and the 1.0.4 tarball (Node 24.15.0)"
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "limits": [
+    "Local package checks only; native host import and model-driven publishing were not repeated."
+  ],
+  "change": "Guide links back to the collection and BrewPage; User-Agent version moved to 1.0.4"
+}

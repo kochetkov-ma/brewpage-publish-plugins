@@ -1,5 +1,10 @@
 # BrewPage publishing skill for Yandex AI Studio
 
+<a href="https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/latest"><img height="18" alt="GitHub release" src="https://img.shields.io/github/v/release/kochetkov-ma/brewpage-publish-plugins"></a>
+<a href="https://github.com/kochetkov-ma/brewpage-publish-plugins/blob/main/LICENSE"><img height="18" alt="license MIT" src="https://img.shields.io/badge/license-MIT-green"></a>
+
+Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-publish-plugins#readme) for [BrewPage](https://brewpage.app).
+
 Import `yandex-brewpage-publish-v1.0.2.zip` through Agent Core → Skills → Create skill. It contains one top-level `brewpage-publish/` folder and exactly one active `SKILL.md`. The active Russian description covers HTML hosting, static sites and AI artifact publishing first, then Markdown, documents, reports, JSON and any files shared by link.
 
 The portable instructions use connected BrewPage MCP capabilities and their current schemas. They retain explicit visibility/password choices, preview, TTL, archive review, credential privacy and failure handling. They do not execute the original Claude helpers. Connect the external endpoint `https://brewpage.app/mcp` using Streamable HTTP without authorization; no account or API key is required by BrewPage.
@@ -11,3 +16,7 @@ The v1.0.1 archive (retained) matches the eight-file package successfully import
 [Skills have no separate fee](https://aistudio.yandex.ru/ru/docs/ai-studio/concepts/agents/skills); content consumed by a model is billed as model context. [MCP-server storage is not billed](https://aistudio.yandex.ru/ru/docs/ai-studio/pricing), while underlying tool services may charge. This package does not provision Cloud Functions, networks, service accounts or paid runtime resources.
 
 Validation covers archive CRC, extracted-file hashes, one active manifest, all seven upstream hashes and portable-body preservation. Historical original-only archives remain available under `../common/` unchanged.
+
+## Related
+
+[All BrewPage integrations](https://github.com/kochetkov-ma/brewpage-publish-plugins#integrations) · [BrewPage](https://brewpage.app) · [API guide](https://brewpage.app/api) · [MCP server](https://github.com/kochetkov-ma/brewpage-openapi)

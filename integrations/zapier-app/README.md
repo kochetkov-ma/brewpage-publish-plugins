@@ -1,8 +1,11 @@
 # BrewPage for Zapier
 
+<a href="https://github.com/kochetkov-ma/brewpage-publish-plugins/actions/workflows/zapier-app.yml"><img height="18" alt="Zapier app CI" src="https://github.com/kochetkov-ma/brewpage-publish-plugins/actions/workflows/zapier-app.yml/badge.svg"></a>
+<a href="https://github.com/kochetkov-ma/brewpage-publish-plugins/blob/main/LICENSE"><img height="18" alt="license MIT" src="https://img.shields.io/badge/license-MIT-green"></a>
+
 Publish HTML and Markdown pages, files and JSON documents from a Zap and get back
 an HTTPS link. [BrewPage](https://brewpage.app) needs no signup or API key.
-Part of [BrewPage publishing plugins](../../README.md).
+Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-publish-plugins#readme).
 
 This is the source of the Zapier Platform CLI integration. It is not yet
 registered, pushed or listed in the Zapier App Directory; see
@@ -147,3 +150,7 @@ Sources: [publishing requirements](https://docs.zapier.com/platform/publish/inte
 
 [info@brewpage.app](mailto:info@brewpage.app). MIT; see [LICENSE](LICENSE). The
 license covers this integration, not the hosted BrewPage service.
+
+## Related
+
+[All BrewPage integrations](https://github.com/kochetkov-ma/brewpage-publish-plugins#integrations) · [BrewPage](https://brewpage.app) · [API guide](https://brewpage.app/api) · [MCP server](https://github.com/kochetkov-ma/brewpage-openapi)

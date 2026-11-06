@@ -1,11 +1,11 @@
-b712cd4ae60dd4e6ffc0271c7e164386d30b8ea76157b27b1748cf0c73f842ec  brewpage-qwen-1.0.3.zip
-d0efdbaa7ae3611a2a7f3722427f6f0dd8921a311cb026a4cf20b18bfc8bc8a3  dsh-brewpage-1.0.3.tgz
+b90135ba98588edf70c8fc4dc8edeb003b72ba403bffddb7e22fe416164332ff  brewpage-qwen-1.0.4.zip
+2261ef8c5916cc1d0c3003cbc6984a1e2e466e391d2b0cd0e404ee45e5598bbe  dsh-brewpage-1.0.4.tgz
 4421ab3d11ccfcac725cbd11fd34bafbe4460fb8c859fbadf33cf3e1438261dd  brewpage-vibe-1.0.2.zip
 9728d0e9ceb1604b9d46b513f88240c2954c614f4ce4b5feeac9619252897809  brewpage-kimi-code-1.0.2.zip
 76857a1dd58e2dd5ea7d8c2aba5ceaed9f0261bc435fecd3b82799769b527d11  mistral-work-brewpage-publish-v1.0.2.zip
 17793768ce648477d970580f79f213f77dd07e3e15e7bfb1bf3350d5eb1933b1  yandex-brewpage-publish-v1.0.2.zip
 d7263de697b3b214dac875299c641f53d1cd88ff54372d37f9c60c65a78d802a  brewpage-publish.zip
-a5e621b50df5c6f8dd5e88fe3f6d93bffcbbd3d8906cfc7691020b810a4ca612  qwen-refresh-verification-1.0.3.json
-0ba9284a5b1bb0e0f8f903c9834d8f34b62a1fd597dd41aa441c0f2eb5971e58  deepseek-refresh-verification-1.0.3.json
+85793321d5d57f55c65eeba3fc9e581997264fd35fc172653da68d4a3e53df76  qwen-refresh-verification-1.0.4.json
+c17bf9be5b1f2050fc2781e432a69c52acbfb0d065dab86c1e91e2b91067961f  deepseek-refresh-verification-1.0.4.json
 0b61fd7c9c205d98b76bf28a476364b7baeec5057ef9bc963f47a5cfc27bc0b1  kimi-refresh-verification-1.0.2.json
 957959106a79e870b596a416fd303cb4c50325908cb0362f18cd77cf8da139da  mistral-vibe-validation-1.0.2.json
