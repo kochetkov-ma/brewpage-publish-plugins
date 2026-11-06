@@ -72,9 +72,7 @@ jobs:
           node scripts/provenance.cjs pack "$npm_root"
       - name: Dry-run the exact publish command without OIDC
         working-directory: integrations/n8n-community-node/package
-        env:
-          NPM_CONFIG_PROVENANCE: "false"
-        run: npm publish "./release/$RELEASE.tgz" --provenance-file="./release/$RELEASE.sigstore" --access=public --registry=https://registry.npmjs.org --dry-run
+        run: npm publish "./release/$RELEASE.tgz" --provenance --access=public --registry=https://registry.npmjs.org --dry-run
       - name: Record actual code and native check results
         working-directory: integrations/n8n-community-node/package
         env:
@@ -186,7 +184,4 @@ jobs:
           test "$(curl -s -o /dev/null -w '%{http_code}' https://registry.npmjs.org/n8n-nodes-brewpage/0.1.1)" = 404
       - name: Publish the verified bytes with trusted publishing
         working-directory: integrations/n8n-community-node/package
-        # Env provenance=false stops npm generating a second bundle; the verified one is attached.
-        env:
-          NPM_CONFIG_PROVENANCE: "false"
-        run: npm publish "./release/$RELEASE.tgz" --provenance-file="./release/$RELEASE.sigstore" --access=public --registry=https://registry.npmjs.org
+        run: npm publish "./release/$RELEASE.tgz" --provenance --access=public --registry=https://registry.npmjs.org
