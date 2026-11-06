@@ -16,7 +16,7 @@ helpers.getRequestHelperFunctions = (...args) => ({
     if (
       options.url !== "https://brewpage.app/api/html" ||
       options.headers["User-Agent"] !==
-        "brewpage-n8n/0.1.2 (+https://brewpage.app)"
+        "brewpage-n8n/0.1.3 (+https://brewpage.app)"
     ) {
       throw new Error("Unexpected native request");
     }
@@ -24,7 +24,9 @@ helpers.getRequestHelperFunctions = (...args) => ({
       throw new Error("OWNER_SENTINEL MANAGE_SENTINEL PRIVATE_SENTINEL");
     }
     return {
-      link: "https://abcdefghij.brewpage.app/",
+      id: "AbCdEf1234",
+      namespace: "my",
+      link: "https://my-abcdefghij.brewpage.app/",
       access: "unlisted",
       expiresAt: "2026-12-01T00:00:00Z",
       ownerToken: "OWNER_SENTINEL",

@@ -7,7 +7,7 @@ const { spawnSync } = require("node:child_process");
 const REPOSITORY = "kochetkov-ma/brewpage-publish-plugins";
 const WORKFLOW = ".github/workflows/n8n-community-node-provenance.yml";
 const NAME = "n8n-nodes-brewpage";
-const VERSION = "0.1.2";
+const VERSION = "0.1.3";
 const FILES = [
   "LICENSE",
   "README.md",

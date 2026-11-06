@@ -7,7 +7,7 @@ import {
   type INodeTypeDescription,
 } from "n8n-workflow";
 
-const USER_AGENT = "brewpage-n8n/0.1.2 (+https://brewpage.app)";
+const USER_AGENT = "brewpage-n8n/0.1.3 (+https://brewpage.app)";
 const NOT_CONFIRMED =
   "Publication was not confirmed. Check nonempty content (up to 5 MiB), format, access and lifetime (1–30 days). Check for an existing publication before retrying.";
 const MAX_BYTES = 5 * 1024 * 1024;
@@ -184,26 +184,9 @@ async function publishItem(
   });
   if (!response || typeof response !== "object") return undefined;
   const result = response as Record<string, unknown>;
-  if (typeof result.link !== "string") return undefined;
-  const link = new URL(result.link);
-  const validPath =
-    link.hostname === "brewpage.app"
-      ? /^\/public\/[A-Za-z0-9]{10}\/?$/.test(link.pathname)
-      : /^(?:[a-z0-9-]{1,33}-)?[a-z0-9]{10}\.brewpage\.app$/.test(
-          link.hostname,
-        ) && link.pathname === "/";
-  const reservedHost = RESERVED_HOST_LABELS.includes(
-    link.hostname.split(".")[0],
-  );
+  const link = confirmedLink(result, access);
   if (
-    link.protocol !== "https:" ||
-    link.username ||
-    link.password ||
-    link.port ||
-    link.search ||
-    link.hash ||
-    reservedHost ||
-    !validPath ||
+    !link ||
     result.access !== access ||
     typeof result.expiresAt !== "string" ||
     !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?Z$/.test(
@@ -227,4 +210,44 @@ async function publishItem(
     },
     pairedItem: { item: index },
   };
+}
+
+// Every reader link a create returns: path `/<ns>/<id>` or own host `<label>.brewpage.app/`.
+function confirmedLink(
+  result: Record<string, unknown>,
+  access: string,
+): URL | undefined {
+  const { link: raw, namespace, id } = result;
+  if (
+    typeof raw !== "string" ||
+    typeof namespace !== "string" ||
+    typeof id !== "string" ||
+    !/^[a-z0-9-]{1,32}$/.test(namespace) ||
+    !/^[A-Za-z0-9]{10}$/.test(id) ||
+    (namespace === "public") !== (access === "public")
+  )
+    return undefined;
+  const link = new URL(raw);
+  const prefix =
+    namespace === "public"
+      ? ""
+      : `${namespace.startsWith("-") ? "n" : ""}${namespace}-`;
+  const label = link.hostname.slice(0, -".brewpage.app".length);
+  const valid =
+    link.hostname === "brewpage.app"
+      ? link.pathname === `/${namespace}/${id}`
+      : link.hostname.endsWith(".brewpage.app") &&
+        label.startsWith(prefix) &&
+        /^[a-z0-9]{10}$/.test(label.slice(prefix.length)) &&
+        !RESERVED_HOST_LABELS.includes(label) &&
+        link.pathname === "/";
+  return link.protocol === "https:" &&
+    !link.username &&
+    !link.password &&
+    !link.port &&
+    !link.search &&
+    !link.hash &&
+    valid
+    ? link
+    : undefined;
 }

@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-brewpage",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Publish HTML and Markdown reports to temporary BrewPage reader links",
   "license": "MIT",
   "author": {

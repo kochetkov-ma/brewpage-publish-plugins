@@ -15,7 +15,9 @@ const input = {
   ttl: 15,
 };
 const reply = {
-  link: "https://abcdefghij.brewpage.app/",
+  id: "AbCdEf1234",
+  namespace: "my",
+  link: "https://my-abcdefghij.brewpage.app/",
   access: "unlisted",
   expiresAt: "2026-12-01T00:00:00Z",
   ownerToken: "OWNER_SENTINEL",
@@ -54,22 +56,61 @@ test("HTML and Markdown publish exact bounded requests and only safe reader meta
     "Compiled node loads only the host-provided n8n-workflow peer",
   );
   const cases = [
-    {
-      format: "html",
-      access: "unlisted",
-      ttl: 1,
-      link: "https://abcdefghij.brewpage.app/",
-      merged: false,
-    },
-    {
-      format: "markdown",
-      access: "public",
-      ttl: 30,
-      link: "https://brewpage.app/public/AbCdEf1234",
-      merged: true,
-    },
-  ];
-  assert.equal(cases.length, 2, "Fixture covers both formats and access modes");
+    ["html", "unlisted", 1, "my", "https://my-abcdefghij.brewpage.app/", false],
+    [
+      "markdown",
+      "unlisted",
+      15,
+      "my",
+      "https://brewpage.app/my/AbCdEf1234",
+      false,
+    ],
+    [
+      "html",
+      "public",
+      30,
+      "public",
+      "https://brewpage.app/public/AbCdEf1234",
+      false,
+    ],
+    [
+      "markdown",
+      "public",
+      7,
+      "public",
+      "https://brewpage.app/public/AbCdEf1234",
+      true,
+    ],
+    ["html", "public", 2, "public", "https://abcdefghij.brewpage.app/", true],
+    [
+      "markdown",
+      "unlisted",
+      3,
+      "team",
+      "https://brewpage.app/team/AbCdEf1234",
+      true,
+    ],
+    [
+      "html",
+      "unlisted",
+      4,
+      "-team",
+      "https://n-team-abcdefghij.brewpage.app/",
+      true,
+    ],
+  ].map(([format, access, ttl, namespace, link, merged]) => ({
+    format,
+    access,
+    ttl,
+    namespace,
+    link,
+    merged,
+  }));
+  assert.equal(
+    cases.length,
+    7,
+    "Fixture covers every format x access and each create link shape",
+  );
   for (const row of cases) {
     const parameters = {
       ...input,
@@ -85,6 +126,7 @@ test("HTML and Markdown publish exact bounded requests and only safe reader meta
         {
           ...reply,
           access: row.access,
+          namespace: row.namespace,
           link: row.link,
           result: { action: row.merged ? "merged" : "created" },
         },
@@ -105,7 +147,7 @@ test("HTML and Markdown publish exact bounded requests and only safe reader meta
             ...(row.access === "public" ? { ns: "public" } : {}),
           },
           headers: {
-            "User-Agent": "brewpage-n8n/0.1.2 (+https://brewpage.app)",
+            "User-Agent": "brewpage-n8n/0.1.3 (+https://brewpage.app)",
             Accept: "application/json",
           },
           body: { content: input.content, format: row.format },
@@ -173,8 +215,16 @@ test("invalid inputs and unsafe or failed responses throw one sanitized NodeOper
     ...[
       "https://evil.test/",
       "https://brewpage.app/manage/OWNER_SENTINEL",
-      "https://abcdefghij.brewpage.app/?ownerToken=OWNER_SENTINEL",
+      "https://my-abcdefghij.brewpage.app/?ownerToken=OWNER_SENTINEL",
       "https://brewpage.app/api/abcdefghij",
+      "https://brewpage.app/api/AbCdEf1234",
+      "https://brewpage.app/my/AbCdEf1234/extra",
+      "https://brewpage.app/my/ZzZzZz9999",
+      "https://brewpage.app/public/AbCdEf1234",
+      "https://abcdefghij.brewpage.app/",
+      "https://team-abcdefghij.brewpage.app/",
+      "https://my-abcdefghij.brewpage.app/index.html",
+      "https://my-abcdefghij.evil.test/",
       ...[
         "unlock",
         "www",
@@ -194,8 +244,8 @@ test("invalid inputs and unsafe or failed responses throw one sanitized NodeOper
         "fe-bounces",
         "account",
       ].map((label) => `https://${label}.brewpage.app/`),
-      "http://abcdefghij.brewpage.app/",
-      "https://user:pass@abcdefghij.brewpage.app/",
+      "http://my-abcdefghij.brewpage.app/",
+      "https://user:pass@my-abcdefghij.brewpage.app/",
     ].map((link) => ({ name: link, response: { ...reply, link }, calls: 1 })),
     {
       name: "impossible date",
@@ -213,6 +263,24 @@ test("invalid inputs and unsafe or failed responses throw one sanitized NodeOper
       calls: 1,
     },
     {
+      name: "public namespace for unlisted",
+      response: {
+        ...reply,
+        namespace: "public",
+        link: "https://brewpage.app/public/AbCdEf1234",
+      },
+      calls: 1,
+    },
+    {
+      name: "missing id",
+      response: {
+        ...reply,
+        id: undefined,
+        link: "https://brewpage.app/my/AbCdEf1234",
+      },
+      calls: 1,
+    },
+    {
       name: "transport",
       response: () => {
         throw new Error("OWNER_SENTINEL MANAGE_SENTINEL PRIVATE_SENTINEL");
@@ -222,7 +290,7 @@ test("invalid inputs and unsafe or failed responses throw one sanitized NodeOper
   ];
   assert.equal(
     cases.length,
-    39,
+    49,
     "Fixture matrix covers every reserved backend label and required rejection",
   );
   for (const row of cases) {

@@ -89,7 +89,7 @@ test("native n8n 2.44.7 executes installed node with stubbed transport and sanit
     );
     assert.equal(
       (row.name === "success"
-        ? /https:\/\/abcdefghij\.brewpage\.app\//
+        ? /https:\/\/my-abcdefghij\.brewpage\.app\//
         : /Publication was not confirmed/
       ).test(logs),
       true,
