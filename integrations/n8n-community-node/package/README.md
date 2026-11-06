@@ -15,7 +15,7 @@ template.
 
 ## Use
 
-On self-hosted n8n, install `n8n-nodes-brewpage@0.1.1` through **Settings →
+On self-hosted n8n, install `n8n-nodes-brewpage@0.1.2` through **Settings →
 Community nodes** after npm publication and accept the native unverified-code
 notice. Add **BrewPage**, choose **Publish Report**, select HTML or Markdown,
 and map Content from a previous node, for example `={{ $json.report }}`.
@@ -45,7 +45,7 @@ Credential/response redaction in this node does not guarantee platform-wide
 secrecy.
 
 The only network destination is `https://brewpage.app/api/html`. Requests send
-`User-Agent: brewpage-n8n/0.1.1 (+https://brewpage.app)`. Redirects are disabled.
+`User-Agent: brewpage-n8n/0.1.2 (+https://brewpage.app)`. Redirects are disabled.
 Every failure throws an n8n `NodeOperationError` with one fixed message and no
 original error or response; there is no automatic retry, because a timed-out
 publication may already exist.
@@ -88,15 +88,17 @@ The catalog job runs the unmodified official `n8n-node lint`, which passes.
 
 With the `publish` input set, a publish job runs only after the sign and catalog
 jobs pass. It re-verifies the same-run tarball and bundle, checks that the
-version is not yet on the registry, and publishes those bytes once through npm
-trusted publishing (GitHub OIDC), attaching the verified bundle. No registry
-token is stored in the repository or in CI. The npm package must name this
+version is not yet on the registry, and publishes that verified tarball once
+through npm trusted publishing (GitHub OIDC). npm generates the registry
+provenance in the publish job itself, for the same run, commit and workflow; the
+sign job's bundle stays a release artifact for local verification. No registry
+token is stored in the repository or in CI. The npm package names this
 repository and workflow file as its trusted publisher.
 
 To verify a downloaded release artifact locally with npm 11.15.0:
 
 ```sh
-node scripts/provenance.cjs verify /absolute/path/to/npm release/n8n-nodes-brewpage-0.1.1.tgz release/n8n-nodes-brewpage-0.1.1.sigstore REVIEWED_40_HEX_SHA https://github.com/kochetkov-ma/brewpage-publish-plugins/actions/runs/RUN_ID/attempts/ATTEMPT
+node scripts/provenance.cjs verify /absolute/path/to/npm release/n8n-nodes-brewpage-0.1.2.tgz release/n8n-nodes-brewpage-0.1.2.sigstore REVIEWED_40_HEX_SHA https://github.com/kochetkov-ma/brewpage-publish-plugins/actions/runs/RUN_ID/attempts/ATTEMPT
 ```
 
 The npm directory is the ordinary pinned CLI installation, containing its

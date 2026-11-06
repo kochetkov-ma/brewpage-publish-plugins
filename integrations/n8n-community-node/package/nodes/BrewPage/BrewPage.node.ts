@@ -7,7 +7,7 @@ import {
   type INodeTypeDescription,
 } from "n8n-workflow";
 
-const USER_AGENT = "brewpage-n8n/0.1.1 (+https://brewpage.app)";
+const USER_AGENT = "brewpage-n8n/0.1.2 (+https://brewpage.app)";
 const NOT_CONFIRMED =
   "Publication was not confirmed. Check nonempty content (up to 5 MiB), format, access and lifetime (1–30 days). Check for an existing publication before retrying.";
 const MAX_BYTES = 5 * 1024 * 1024;

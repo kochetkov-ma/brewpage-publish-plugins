@@ -84,7 +84,7 @@ test("unsigned fixture validation binds complete provenance and package metadata
   const run =
     "https://github.com/kochetkov-ma/brewpage-publish-plugins/actions/runs/123/attempts/1";
   const subject = {
-    name: "pkg:npm/n8n-nodes-brewpage@0.1.1",
+    name: "pkg:npm/n8n-nodes-brewpage@0.1.2",
     digest: { sha512: "b".repeat(128) },
   };
   const statement = {
@@ -119,7 +119,7 @@ test("unsigned fixture validation binds complete provenance and package metadata
   };
   const manifest = {
     name: "n8n-nodes-brewpage",
-    version: "0.1.1",
+    version: "0.1.2",
     license: "MIT",
     repository: REPO_METADATA,
     peerDependencies: { "n8n-workflow": "*" },

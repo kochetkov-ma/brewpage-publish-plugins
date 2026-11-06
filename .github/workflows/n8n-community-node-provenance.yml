@@ -22,7 +22,7 @@ concurrency:
 
 env:
   EXPECTED_SHA: ${{ inputs.expected_sha }}
-  RELEASE: n8n-nodes-brewpage-0.1.1
+  RELEASE: n8n-nodes-brewpage-0.1.2
 
 jobs:
   build:
@@ -128,7 +128,7 @@ jobs:
       - name: Upload signed and verified release evidence
         uses: actions/upload-artifact@v7.0.2
         with:
-          name: n8n-nodes-brewpage-0.1.1-${{ github.sha }}
+          name: n8n-nodes-brewpage-0.1.2-${{ github.sha }}
           path: integrations/n8n-community-node/package/release/
           if-no-files-found: error
           retention-days: 1
@@ -174,7 +174,7 @@ jobs:
         run: npm install --global npm@11.15.0 --ignore-scripts
       - uses: actions/download-artifact@v8.0.2
         with:
-          name: n8n-nodes-brewpage-0.1.1-${{ github.sha }}
+          name: n8n-nodes-brewpage-0.1.2-${{ github.sha }}
           path: integrations/n8n-community-node/package/release/
       - name: Re-verify the signed same-run artifact
         working-directory: integrations/n8n-community-node/package
@@ -182,7 +182,7 @@ jobs:
           set -euo pipefail
           npm_root="$(npm root --global)/npm"
           node scripts/provenance.cjs verify "$npm_root" "release/$RELEASE.tgz" "release/$RELEASE.sigstore" "$EXPECTED_SHA" "https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/attempts/$GITHUB_RUN_ATTEMPT"
-          test "$(curl -s -o /dev/null -w '%{http_code}' https://registry.npmjs.org/n8n-nodes-brewpage/0.1.1)" = 404
+          test "$(curl -s -o /dev/null -w '%{http_code}' https://registry.npmjs.org/n8n-nodes-brewpage/0.1.2)" = 404
       - name: Publish the verified bytes with trusted publishing
         working-directory: integrations/n8n-community-node/package
         run: npm publish "./release/$RELEASE.tgz" --provenance --access=public --registry=https://registry.npmjs.org
