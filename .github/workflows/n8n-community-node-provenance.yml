@@ -71,6 +71,7 @@ jobs:
           npm_root="$(npm root --global)/npm"
           node scripts/provenance.cjs pack "$npm_root"
       - name: Dry-run the exact publish command without OIDC
+        if: inputs.publish
         working-directory: integrations/n8n-community-node/package
         run: npm publish "./release/$RELEASE.tgz" --provenance --access=public --registry=https://registry.npmjs.org --dry-run
       - name: Record actual code and native check results
