@@ -70,6 +70,11 @@ jobs:
           set -euo pipefail
           npm_root="$(npm root --global)/npm"
           node scripts/provenance.cjs pack "$npm_root"
+      - name: Dry-run the exact publish command without OIDC
+        working-directory: integrations/n8n-community-node/package
+        env:
+          NPM_CONFIG_PROVENANCE: "false"
+        run: npm publish "./release/$RELEASE.tgz" --provenance-file="./release/$RELEASE.sigstore" --access=public --registry=https://registry.npmjs.org --dry-run
       - name: Record actual code and native check results
         working-directory: integrations/n8n-community-node/package
         env:
@@ -184,4 +189,4 @@ jobs:
         # Env provenance=false stops npm generating a second bundle; the verified one is attached.
         env:
           NPM_CONFIG_PROVENANCE: "false"
-        run: npm publish "release/$RELEASE.tgz" --provenance-file="release/$RELEASE.sigstore" --access=public --registry=https://registry.npmjs.org
+        run: npm publish "./release/$RELEASE.tgz" --provenance-file="./release/$RELEASE.sigstore" --access=public --registry=https://registry.npmjs.org
