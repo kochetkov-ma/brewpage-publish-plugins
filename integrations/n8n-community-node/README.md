@@ -1,5 +1,8 @@
 # BrewPage n8n build workspace
 
+Part of [BrewPage publishing plugins](../../README.md) for
+[BrewPage](https://brewpage.app).
+
 The [published node source](package/README.md) is in `package/`. This private build
 root is never published. It isolates the development SDK/CLI and the compatible
 `qs` 6.16.2 override from the dependency-free community package.

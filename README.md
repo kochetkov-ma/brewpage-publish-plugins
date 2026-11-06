@@ -1,37 +1,60 @@
 # BrewPage publishing plugins
 
-Host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file by link with [BrewPage](https://brewpage.app). These MIT-licensed publishing skills and native adapters preserve explicit publication choices and keep ownership credentials private.
+[![License: MIT](https://img.shields.io/github/license/kochetkov-ma/brewpage-publish-plugins)](LICENSE)
+[![npm n8n-nodes-brewpage](https://img.shields.io/npm/v/n8n-nodes-brewpage?label=n8n-nodes-brewpage)](https://www.npmjs.com/package/n8n-nodes-brewpage)
+[![npm brewpage-mcp](https://img.shields.io/npm/v/brewpage-mcp?label=brewpage-mcp)](https://www.npmjs.com/package/brewpage-mcp)
 
-## Download and install
+Publish HTML pages, Markdown, files and static sites from AI agents and
+automation tools to [BrewPage](https://brewpage.app) and get an HTTPS link back.
+No signup or API key. Publications are temporary: 15 days by default, 30 at most
+(90 with a free profile).
 
-Download the matching artifact from [release v1.0.3](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.0.3), review its contents, verify its [SHA-256](SHASUMS256.txt), and follow the package guide:
+## Integrations
 
-| Host | Artifact | Installation guide |
-|---|---|---|
-| Qwen Code | `brewpage-qwen-1.0.3.zip` | [Qwen](qwen/README.md) |
-| DeepSeek Harness | `dsh-brewpage-1.0.3.tgz` | [DeepSeek](deepseek/README.md) |
-| Mistral Vibe Code | `brewpage-vibe-1.0.2.zip` | [Vibe Code](mistral/brewpage/README.md) |
-| Kimi Code | `brewpage-kimi-code-1.0.2.zip` | [Kimi Code](kimi/README.md) |
-| Skill directory / ZIP | `brewpage-publish.zip` (original skill) | [Original skill](common/README.md) |
-| Yandex AI Studio | `yandex-brewpage-publish-v1.0.2.zip` | [Portable MCP adapter](yandex/README.md) |
-| Mistral Work | `mistral-work-brewpage-publish-v1.0.2.zip` | [MCP skill adapter](common/mistral-work/SKILL.md) |
+AI-agent packages are assets of the latest release,
+[v1.0.3](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.0.3);
+check them against [SHASUMS256.txt](SHASUMS256.txt).
 
-For source installation, use this release tag:
+| Host | Folder | Install or use | Guide |
+| --- | --- | --- | --- |
+| Qwen Code | `qwen/` | `qwen extensions install /absolute/path/to/qwen` from `brewpage-qwen-1.0.3.zip` | [README](qwen/README.md) |
+| DeepSeek Harness | `deepseek/` | `dsh plugin --profile brewpage add ./dsh-brewpage-1.0.3.tgz` | [README](deepseek/README.md) |
+| Mistral Vibe Code | `mistral/` | Extract `brewpage-vibe-1.0.2.zip` into `.vibe/plugins/`, then `/reload-plugins` | [README](mistral/brewpage/README.md) |
+| Kimi Code | `kimi/` | Extract `brewpage-kimi-code-1.0.2.zip`, then `/plugins install /absolute/path/to/brewpage-publish` | [README](kimi/README.md) |
+| Yandex AI Studio | `yandex/` | Import `yandex-brewpage-publish-v1.0.2.zip` in Agent Core > Skills | [README](yandex/README.md) |
+| Mistral Work | `common/` | Use `mistral-work-brewpage-publish-v1.0.2.zip` | [SKILL.md](common/mistral-work/SKILL.md) |
+| Any skill directory or ZIP | `common/` | Use the `brewpage-publish/` folder or `brewpage-publish.zip` (original Claude skill) | [README](common/README.md) |
+| n8n (self-hosted) | `integrations/n8n-community-node/` | Settings > Community nodes > install `n8n-nodes-brewpage` | [README](integrations/n8n-community-node/package/README.md) |
+| Zapier | `integrations/zapier-app/` | Source of the Zapier integration; App Directory listing pending | [README](integrations/zapier-app/README.md) |
 
-```sh
-git clone --branch v1.0.3 --depth 1 https://github.com/kochetkov-ma/brewpage-publish-plugins.git
-```
+Every package states its pinned host versions, verification records and limits
+in its guide. [PROVENANCE.json](PROVENANCE.json) lists the source and release
+hashes of the AI-agent packages; the n8n and Zapier integrations have their own
+CI workflows under [`.github/workflows`](.github/workflows). These are
+independent distributions: a package here does not mean a vendor catalog has
+accepted it.
 
-The package guides contain installation commands and pinned host versions. BrewPage needs no signup or API key; a host may require its own login or provider configuration. Review visibility, password and expiry choices before publishing. Keep ownership credentials out of shared output.
+## Related
 
-Version 1.0.3 syncs every package to upstream [`809e0fa2`](https://github.com/kochetkov-ma/claude-brewcode/tree/809e0fa27793a68177d73368b9ec3bc3488e4f2e/skills/brewpage-publish), where the helper sends a User-Agent on every brewpage.app request. Each host package identifies itself as `brewpage-<host>/<package version> (+https://brewpage.app)`: `brewpage-qwen/1.0.3`, `brewpage-deepseek/1.0.3`, `brewpage-mistral-vibe/1.0.2`, `brewpage-kimi/1.0.2`, `brewpage-yandex/1.0.2`, `brewpage-mistral-work/1.0.2`; that value is the only deviation from upstream bytes. The original skill keeps upstream's `ClaudeCode/6.12.6`. Kimi, Yandex and Mistral Work publish through MCP, so their bundled helpers stay unused. Receipts: `deepseek/refresh-verification-1.0.3.json`, `qwen/refresh-verification-1.0.3.json`, `kimi/refresh-verification-1.0.2.json`, `mistral/validation.json` (also release assets). Native import, MCP execution and model-driven publishing were not repeated for this release; DeepSeek native discovery (`verify-native.mjs`) was.
+- [BrewPage](https://brewpage.app): the hosting service.
+- [API guide](https://brewpage.app/api) and the
+  [OpenAPI docs site](https://kochetkov-ma.github.io/brewpage-openapi/).
+- [MCP server and OpenAPI spec](https://github.com/kochetkov-ma/brewpage-openapi),
+  npm [`brewpage-mcp`](https://www.npmjs.com/package/brewpage-mcp); remote
+  endpoint `https://brewpage.app/mcp`.
+- [GitHub Action "Publish to BrewPage"](https://github.com/marketplace/actions/publish-to-brewpage).
+- [Cookbook](https://github.com/kochetkov-ma/brewpage-cookbook): recipes and
+  examples.
+- LangChain: [`langchain-brewpage`](https://pypi.org/project/langchain-brewpage/)
+  ([repo](https://github.com/kochetkov-ma/langchain-brewpage)).
+- LlamaIndex:
+  [`llama-index-tools-brewpage`](https://pypi.org/project/llama-index-tools-brewpage/)
+  ([repo](https://github.com/kochetkov-ma/llama-index-tools-brewpage)).
+- n8n: [`n8n-nodes-brewpage`](https://www.npmjs.com/package/n8n-nodes-brewpage).
 
-## Provenance and limits
+## Support and license
 
-Separate native integration: [BrewPage for self-hosted n8n](integrations/n8n-community-node/README.md), an unverified community node with its own npm provenance workflow; independent of the plugin release assets above.
+Questions and problems: [info@brewpage.app](mailto:info@brewpage.app).
 
-All seven original skill files retain their MIT license and immutable [claude-brewcode source](https://github.com/kochetkov-ma/claude-brewcode/tree/809e0fa27793a68177d73368b9ec3bc3488e4f2e/skills/brewpage-publish). [PROVENANCE.json](PROVENANCE.json) lists the exact distribution-source and release-asset hashes. Yandex preserves the original manifest as `upstream/SKILL.md.source` so its archive contains exactly one active `SKILL.md`.
-
-These are independent GitHub distributions. Publication here does not establish admission to an official vendor catalog. The Yandex v1.0.1 package was imported into a personal AI Studio catalog and its MCP tools discovered; runtime publishing and public marketplace submission are unverified. Import and execution of the exact Mistral Work ZIP remain unverified. Native package verification records distinguish the 1.0.0 installation baseline from the 1.0.1 metadata and archive checks. Model-driven publishing and resulting hosted-page rendering have not been verified.
-
-MIT; see [LICENSE](LICENSE). The license covers these distributed files, not the hosted BrewPage service or vendor products.
+MIT; see [LICENSE](LICENSE). The license covers the files in this repository,
+not the hosted BrewPage service or vendor products.
