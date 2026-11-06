@@ -7,7 +7,7 @@ const { spawnSync } = require("node:child_process");
 const REPOSITORY = "kochetkov-ma/brewpage-publish-plugins";
 const WORKFLOW = ".github/workflows/n8n-community-node-provenance.yml";
 const NAME = "n8n-nodes-brewpage";
-const VERSION = "0.1.0";
+const VERSION = "0.1.1";
 const FILES = [
   "LICENSE",
   "README.md",
@@ -85,7 +85,7 @@ function validateManifest(manifest) {
       version: VERSION,
       license: "MIT",
       repository: REPO_METADATA,
-      peerDependencies: {},
+      peerDependencies: { "n8n-workflow": "*" },
       devDependencies: { "n8n-workflow": "2.44.2" },
       dependencies: {},
       overrides: undefined,
@@ -101,7 +101,7 @@ function validateManifest(manifest) {
         nodes: ["dist/nodes/BrewPage/BrewPage.node.js"],
       },
     },
-    "Only the reviewed dependency-free package and development-only typing SDK may ship",
+    "Only the reviewed package with the host-provided n8n-workflow peer may ship",
   );
 }
 

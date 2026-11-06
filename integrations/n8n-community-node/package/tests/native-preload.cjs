@@ -16,7 +16,7 @@ helpers.getRequestHelperFunctions = (...args) => ({
     if (
       options.url !== "https://brewpage.app/api/html" ||
       options.headers["User-Agent"] !==
-        "brewpage-n8n/0.1.0 (+https://brewpage.app)"
+        "brewpage-n8n/0.1.1 (+https://brewpage.app)"
     ) {
       throw new Error("Unexpected native request");
     }

@@ -84,7 +84,7 @@ test("unsigned fixture validation binds complete provenance and package metadata
   const run =
     "https://github.com/kochetkov-ma/brewpage-publish-plugins/actions/runs/123/attempts/1";
   const subject = {
-    name: "pkg:npm/n8n-nodes-brewpage@0.1.0",
+    name: "pkg:npm/n8n-nodes-brewpage@0.1.1",
     digest: { sha512: "b".repeat(128) },
   };
   const statement = {
@@ -119,9 +119,10 @@ test("unsigned fixture validation binds complete provenance and package metadata
   };
   const manifest = {
     name: "n8n-nodes-brewpage",
-    version: "0.1.0",
+    version: "0.1.1",
     license: "MIT",
     repository: REPO_METADATA,
+    peerDependencies: { "n8n-workflow": "*" },
     devDependencies: { "n8n-workflow": "2.44.2" },
     files: ["dist"],
     n8n: {
@@ -239,10 +240,11 @@ test("unsigned fixture validation binds complete provenance and package metadata
       "Reject changed provenance binding",
     );
   for (const change of [
-    { version: "0.1.1" },
+    { version: "0.1.0" },
     { repository: { ...REPO_METADATA, directory: "wrong" } },
-    { peerDependencies: { "n8n-workflow": "*" } },
+    { peerDependencies: undefined },
     { peerDependencies: { "n8n-workflow": "2.44.2" } },
+    { peerDependencies: { "n8n-workflow": "*", unexpected: "*" } },
     { dependencies: { unexpected: "1.0.0" } },
     { overrides: { qs: "6.16.2" } },
     { optionalDependencies: { unexpected: "1.0.0" } },

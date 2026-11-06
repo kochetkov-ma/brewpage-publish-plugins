@@ -1,13 +1,13 @@
 {
   "schema": 1,
-  "nodeSourceSha256": "0c3330650a541c9921b9ee1c90bca56bee758606d59f8adfa96154752408d6d0",
+  "nodeSourceSha256": "6616a03fa2d58a55333a86af6a7132c10b3110c4fce017bd7d9fcfe558e189ab",
   "files": {
     "LICENSE": "0cd52b46f781dcd5dcc96c54afc72c007626beb3a60331430c02afde25cd60a9",
-    "README.md": "7bd1936eead9fc7c0ffe08c35b8561cb8c0c4f19f6845e24072cb56f9082441f",
-    "dist/nodes/BrewPage/BrewPage.node.d.ts": "c6d52824a2274be64d88182fa54ef76d3fadddf97e8f3e06d612257426e9f57a",
-    "dist/nodes/BrewPage/BrewPage.node.js": "b726ef3c5ead50480f7aa52e0781881321c51db4bd7f5b10ac02f7288d732a90",
+    "README.md": "dbacaaa60b0091469c97d9248a1e2b2f97573e3c06fe29bfcbe81835ae53e035",
+    "dist/nodes/BrewPage/BrewPage.node.d.ts": "99366499699150e34b16b085c81664110228039c955a9043981cff9e7f5da108",
+    "dist/nodes/BrewPage/BrewPage.node.js": "ea737c04099fc5a28a61650b38072b276004318c30dc4caec7d79d3c3f91eef3",
     "dist/nodes/BrewPage/BrewPage.node.json": "10c322d07060a3ff2a0e0cbf052883e3248adcee91f22a672fe321f163f27444",
     "dist/nodes/BrewPage/brewpage.svg": "d130144ee1de9d116510fc360471b67842524b1f9ed222c50a6ff2bf291adbcd",
-    "package.json": "2d3dcfb4cc3ab18123fea0088e34430147a89b13fae43a275b0dffa324cee88d"
+    "package.json": "bef8d2cb1314e0b45d79dc99f043ec585c55c50c79af9efa084b5560d6b4c4c3"
   }
 }

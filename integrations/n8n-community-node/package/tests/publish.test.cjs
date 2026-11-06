@@ -1,7 +1,11 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
+const { NodeOperationError } = require("n8n-workflow");
 const { BrewPage } = require("../dist/nodes/BrewPage/BrewPage.node.js");
+
+const NOT_CONFIRMED =
+  "Publication was not confirmed. Check nonempty content (up to 5 MiB), format, access and lifetime (1–30 days). Check for an existing publication before retrying.";
 
 const input = {
   operation: "publish",
@@ -45,9 +49,9 @@ test("HTML and Markdown publish exact bounded requests and only safe reader meta
     "utf8",
   );
   assert.deepEqual(
-    compiled.match(/\brequire\s*\(|\bimport\s*(?:\(|["'{*])/g),
-    null,
-    "Compiled node has no external module load or import",
+    compiled.match(/\brequire\s*\([^)]*\)|\bimport\s*(?:\(|["'{*])/g),
+    ['require("n8n-workflow")'],
+    "Compiled node loads only the host-provided n8n-workflow peer",
   );
   const cases = [
     {
@@ -101,7 +105,7 @@ test("HTML and Markdown publish exact bounded requests and only safe reader meta
             ...(row.access === "public" ? { ns: "public" } : {}),
           },
           headers: {
-            "User-Agent": "brewpage-n8n/0.1.0 (+https://brewpage.app)",
+            "User-Agent": "brewpage-n8n/0.1.1 (+https://brewpage.app)",
             Accept: "application/json",
           },
           body: { content: input.content, format: row.format },
@@ -135,7 +139,7 @@ test("HTML and Markdown publish exact bounded requests and only safe reader meta
   }
 });
 
-test("invalid inputs and unsafe or failed responses return one sanitized error without retries", async () => {
+test("invalid inputs and unsafe or failed responses throw one sanitized NodeOperationError without retries", async () => {
   // GIVEN invalid expressions and hostile responses carrying synthetic secrets.
   const cases = [
     { name: "empty", patch: { content: "" }, calls: 0 },
@@ -229,22 +233,31 @@ test("invalid inputs and unsafe or failed responses return one sanitized error w
         context({ ...input, ...row.patch }, row.response ?? reply, calls),
       ),
       (error) => {
-        // THEN serialized errors and stack contain no supplied synthetic secrets.
+        // THEN one n8n error with a fixed message and no original cause is thrown.
+        const serialized = JSON.parse(JSON.stringify(error));
         assert.deepEqual(
           {
-            name: error.name,
-            message: error.message,
-            cause: error.cause,
-            enumerableKeys: Object.keys(error),
+            type: error instanceof NodeOperationError,
+            node: error.node.name,
+            level: error.level,
+            serialized: {
+              ...serialized,
+              timestamp: typeof serialized.timestamp,
+            },
           },
           {
-            name: "Error",
-            message:
-              "Publication was not confirmed. Check nonempty content (up to 5 MiB), format, access and lifetime (1–30 days). Check for an existing publication before retrying.",
-            cause: undefined,
-            enumerableKeys: [],
+            type: true,
+            node: "BrewPage",
+            level: "warning",
+            serialized: {
+              message: NOT_CONFIRMED,
+              timestamp: "number",
+              name: "NodeOperationError",
+              context: { itemIndex: 0 },
+              cause: { name: "Error", message: NOT_CONFIRMED },
+            },
           },
-          `${row.name}: fixed error`,
+          `${row.name}: fixed n8n error`,
         );
         assert.deepEqual(
           (JSON.stringify(error) + error.stack).match(

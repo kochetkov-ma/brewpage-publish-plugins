@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-brewpage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Publish HTML and Markdown reports to temporary BrewPage reader links",
   "license": "MIT",
   "author": {
@@ -42,5 +42,8 @@
   },
   "devDependencies": {
     "n8n-workflow": "2.44.2"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
   }
 }
