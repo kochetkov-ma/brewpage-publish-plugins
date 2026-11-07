@@ -1,0 +1,17 @@
+{
+  "name": "brewpage",
+  "owner": {
+    "name": "Maksim Kochetkov",
+    "email": "info@brewpage.app",
+    "url": "https://brewpage.app"
+  },
+  "description": "BrewPage publishing plugin: brewpage-publish skill and remote MCP server",
+  "plugins": [
+    {
+      "name": "brewpage",
+      "source": "./agent-plugin",
+      "description": "Publish HTML, Markdown, files and multi-file static sites from an AI coding agent to BrewPage, a hosted service that returns an HTTPS link with no account or API key; via the brewpage-publish skill and the BrewPage remote MCP server.",
+      "category": "productivity"
+    }
+  ]
+}

@@ -16,9 +16,11 @@ No signup or API key. Publications are temporary: 15 days by default, 30 at most
 AI-agent packages are assets of the latest release,
 [v1.0.4](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.0.4);
 check them against [SHASUMS256.txt](SHASUMS256.txt).
+The agent plugin in `agent-plugin/` installs from this repository, which is also its Claude Code and Cursor marketplace.
 
 | Host | Folder | Install or use | Guide |
 | --- | --- | --- | --- |
+| Claude Code, Grok Build, Cursor, GitHub Copilot | `agent-plugin/` | Claude Code: `/plugin marketplace add kochetkov-ma/brewpage-publish-plugins`, then `/plugin install brewpage@brewpage` | [README](agent-plugin/README.md) |
 | Qwen Code | `qwen/` | `qwen extensions install /absolute/path/to/qwen` from `brewpage-qwen-1.0.4.zip` | [README](qwen/README.md) |
 | DeepSeek Harness | `deepseek/` | `dsh plugin --profile brewpage add ./dsh-brewpage-1.0.4.tgz` | [README](deepseek/README.md) |
 | Mistral Vibe Code | `mistral/` | Extract `brewpage-vibe-1.0.2.zip` into `.vibe/plugins/`, then `/reload-plugins` | [README](mistral/README.md) |
