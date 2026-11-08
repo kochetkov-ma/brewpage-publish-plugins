@@ -23,13 +23,12 @@ Tools appear as `brewpage_brewpage` (`publish_html`, `publish_file`, `publish_si
 
 ## Install
 
-From this repository:
-
 ```
-git clone https://github.com/kochetkov-ma/brewpage-publish-plugins
-agy plugin install ./brewpage-publish-plugins/integrations/antigravity-plugin
+agy plugin install https://github.com/kochetkov-ma/brewpage-publish-plugins/tree/main/integrations/antigravity-plugin
 agy plugin list
 ```
+
+From a local clone: `agy plugin install ./integrations/antigravity-plugin`.
 
 Then ask, for example, "Publish this report as a private BrewPage page and give me
 the link", or run `/brewpage-publish`.
