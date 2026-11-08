@@ -1,0 +1,44 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/refs/heads/master/server/utils/agents/imported-manifest.schema.json",
+  "active": true,
+  "hubId": "brewpage-publish",
+  "name": "Publish to BrewPage",
+  "schema": "skill-1.0.0",
+  "version": "1.0.0",
+  "description": "Publishes HTML or Markdown to BrewPage (brewpage.app), free instant hosting, and returns a shareable HTTPS link. No account or API key needed. Private (unlisted) by default; public pages are listed in the gallery and indexed.",
+  "author": "@kochetkov-ma",
+  "author_url": "https://github.com/kochetkov-ma/brewpage-publish-plugins/tree/main/integrations/anythingllm-skill",
+  "license": "MIT",
+  "examples": [
+    {
+      "prompt": "Publish this report as a web page and give me the link",
+      "call": "{\"content\": \"<h1>Q3 report</h1><p>Revenue up 12%.</p>\", \"format\": \"html\"}"
+    },
+    {
+      "prompt": "Share these meeting notes as a public page for 30 days",
+      "call": "{\"content\": \"# Meeting notes\\n\\n- Ship v2 on Friday\", \"format\": \"markdown\", \"visibility\": \"public\", \"ttl_days\": 30}"
+    }
+  ],
+  "entrypoint": {
+    "file": "handler.js",
+    "params": {
+      "content": {
+        "description": "The full HTML document or Markdown text to publish",
+        "type": "string"
+      },
+      "format": {
+        "description": "html or markdown (default html)",
+        "type": "string"
+      },
+      "visibility": {
+        "description": "private (default: unlisted, anyone with the link can open it) or public (listed in the gallery and search; only when the user asks for it, never with secrets or personal data)",
+        "type": "string"
+      },
+      "ttl_days": {
+        "description": "Days to keep the page, 1-30 (default 15)",
+        "type": "number"
+      }
+    }
+  },
+  "imported": true
+}
