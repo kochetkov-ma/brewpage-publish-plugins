@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "brewpage": {
+      "serverUrl": "https://brewpage.app/mcp"
+    },
+    "brewpage-local": {
+      "command": "npx",
+      "args": ["-y", "brewpage-mcp@1.16.10"],
+      "disabled": true
+    }
+  }
+}

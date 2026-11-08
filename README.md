@@ -21,6 +21,7 @@ The agent plugin in `agent-plugin/` installs from this repository, which is also
 | Host | Folder | Install or use | Guide |
 | --- | --- | --- | --- |
 | Claude Code, Grok Build, Cursor, GitHub Copilot | `agent-plugin/` | Claude Code: `/plugin marketplace add kochetkov-ma/brewpage-publish-plugins`, then `/plugin install brewpage@brewpage` | [README](agent-plugin/README.md) |
+| Google Antigravity | `integrations/antigravity-plugin/` | `agy plugin install ./integrations/antigravity-plugin` from a clone | [README](integrations/antigravity-plugin/README.md) |
 | Qwen Code | `qwen/` | `qwen extensions install /absolute/path/to/qwen` from `brewpage-qwen-1.0.4.zip` | [README](qwen/README.md) |
 | DeepSeek Harness | `deepseek/` | `dsh plugin --profile brewpage add ./dsh-brewpage-1.0.4.tgz` | [README](deepseek/README.md) |
 | Mistral Vibe Code | `mistral/` | Extract `brewpage-vibe-1.0.2.zip` into `.vibe/plugins/`, then `/reload-plugins` | [README](mistral/README.md) |

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "brewpage",
+  "displayName": "BrewPage",
+  "version": "1.0.0",
+  "description": "Publish HTML, Markdown, files and static sites to BrewPage from your agent and get a shareable HTTPS link back. No account or API key.",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "Publish this report as a private BrewPage page and give me the link",
+    "Turn the README into a public BrewPage page that search engines can find",
+    "Upload the dist/ folder as a BrewPage site for 7 days"
+  ],
+  "author": {
+    "name": "Maksim Kochetkov",
+    "email": "info@brewpage.app",
+    "url": "https://brewpage.app"
+  },
+  "homepage": "https://brewpage.app",
+  "repository": "https://github.com/kochetkov-ma/brewpage-publish-plugins",
+  "license": "MIT",
+  "keywords": ["brewpage", "publishing", "html-hosting", "markdown", "static-site", "file-sharing", "ai-artifacts", "mcp"]
+}
