@@ -29,6 +29,7 @@ The agent plugin in `agent-plugin/` installs from this repository, which is also
 | Mistral Work | `common/` | Use `mistral-work-brewpage-publish-v1.0.2.zip` | [SKILL.md](common/mistral-work/SKILL.md) |
 | Any skill directory or ZIP | `common/` | Use the `brewpage-publish/` folder or `brewpage-publish.zip` (original Claude skill) | [README](common/README.md) |
 | n8n (self-hosted) | `integrations/n8n-community-node/` | Settings > Community nodes > install `n8n-nodes-brewpage` | [README](integrations/n8n-community-node/package/README.md) |
+| n8n workflow template | `integrations/n8n-templates/` | Import `brewpage-release-digest.json` as a workflow; no community node or credentials | [README](integrations/n8n-templates/README.md) |
 | Zapier | `integrations/zapier-app/` | Source of the Zapier integration; App Directory listing pending | [README](integrations/zapier-app/README.md) |
 
 Every package states its pinned host versions, verification records and limits
