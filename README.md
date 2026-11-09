@@ -1,7 +1,6 @@
 # BrewPage publishing plugins
 
 <a href="https://www.npmjs.com/package/n8n-nodes-brewpage"><img height="18" alt="npm n8n-nodes-brewpage" src="https://img.shields.io/npm/v/n8n-nodes-brewpage?label=n8n-nodes-brewpage"></a>
-<a href="https://github.com/kochetkov-ma/brewpage-publish-plugins/actions/workflows/n8n-community-node-provenance.yml"><img height="18" alt="n8n node CI" src="https://github.com/kochetkov-ma/brewpage-publish-plugins/actions/workflows/n8n-community-node-provenance.yml/badge.svg"></a>
 <a href="https://github.com/kochetkov-ma/brewpage-publish-plugins/actions/workflows/zapier-app.yml"><img height="18" alt="Zapier app CI" src="https://github.com/kochetkov-ma/brewpage-publish-plugins/actions/workflows/zapier-app.yml/badge.svg"></a>
 <a href="https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/latest"><img height="18" alt="GitHub release" src="https://img.shields.io/github/v/release/kochetkov-ma/brewpage-publish-plugins"></a>
 <a href="https://github.com/kochetkov-ma/brewpage-publish-plugins/blob/main/LICENSE"><img height="18" alt="license MIT" src="https://img.shields.io/badge/license-MIT-green"></a>
@@ -29,15 +28,16 @@ The agent plugin in `agent-plugin/` installs from this repository, which is also
 | Yandex AI Studio | `yandex/` | Import `yandex-brewpage-publish-v1.0.2.zip` in Agent Core > Skills | [README](yandex/README.md) |
 | Mistral Work | `common/` | Use `mistral-work-brewpage-publish-v1.0.2.zip` | [SKILL.md](common/mistral-work/SKILL.md) |
 | Any skill directory or ZIP | `common/` | Use the `brewpage-publish/` folder or `brewpage-publish.zip` (original Claude skill) | [README](common/README.md) |
-| n8n (self-hosted) | `integrations/n8n-community-node/` | Settings > Community nodes > install `n8n-nodes-brewpage` | [README](integrations/n8n-community-node/package/README.md) |
+| n8n (self-hosted) | [n8n-nodes-brewpage](https://github.com/kochetkov-ma/n8n-nodes-brewpage) (own repository) | Settings > Community nodes > install `n8n-nodes-brewpage` | [README](https://github.com/kochetkov-ma/n8n-nodes-brewpage#readme) |
 | n8n workflow template | `integrations/n8n-templates/` | Import `brewpage-release-digest.json` as a workflow; no community node or credentials | [README](integrations/n8n-templates/README.md) |
 | AnythingLLM | `integrations/anythingllm-skill/` | Copy into `plugins/agent-skills/brewpage-publish/`; Community Hub listing pending | [README](integrations/anythingllm-skill/README.md) |
 | Zapier | `integrations/zapier-app/` | Source of the Zapier integration; App Directory listing pending | [README](integrations/zapier-app/README.md) |
 
 Every package states its pinned host versions, verification records and limits
 in its guide. [PROVENANCE.json](PROVENANCE.json) lists the source and release
-hashes of the AI-agent packages; the n8n and Zapier integrations have their own
-CI workflows under [`.github/workflows`](.github/workflows). These are
+hashes of the AI-agent packages; the Zapier integration has its own CI workflow
+under [`.github/workflows`](.github/workflows), and the n8n node is built and
+published from its own repository. These are
 independent distributions: a package here does not mean a vendor catalog has
 accepted it.
 
