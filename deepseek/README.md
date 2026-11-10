@@ -7,15 +7,15 @@ Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-p
 
 Native Harness bundle containing the existing BrewPage publishing skill and the pinned `brewpage-mcp@1.15.1` stdio server. This is for DeepSeek Harness, not the DeepSeek consumer chat website or a consumer plugin store.
 
-Version `1.0.4` adds links back to this collection and BrewPage in this guide and sets the User-Agent to `brewpage-deepseek/1.0.4 (+https://brewpage.app)`; nothing else changes. Version `1.0.3` synced the publishing skill to upstream `809e0fa2`, so every brewpage.app request sends that User-Agent. `verify-isolation.py` asserts that header on the mocked upload. Launcher and security override bytes are unchanged. Version `1.0.2` updated the pinned MCP server to `1.15.1`. Earlier release tarballs and verification receipts are retained. Description and keywords become npm search metadata only if published to npm; no npm publication, indexing or Harness catalog ranking is claimed.
+Version `1.0.5` syncs the publishing skill to upstream `48255159` (claude-brewcode v6.12.11) and sets the User-Agent to `brewpage-deepseek/1.0.5 (+https://brewpage.app)`. After publishing the agent gives you the page link and the management link; the management link is private: anyone who has it can edit or delete the page. The owner token stays in the native history file and is shown when you ask or when it cannot be saved. `.html` and Markdown files publish as pages. Version `1.0.4` added links back to this collection and BrewPage in this guide. Version `1.0.3` synced the publishing skill to upstream `809e0fa2`, so every brewpage.app request sends a User-Agent. `verify-isolation.py` asserts that header on the mocked upload. Launcher bytes are unchanged. Version `1.0.2` updated the pinned MCP server to `1.15.1`. Earlier release tarballs and verification receipts are retained. Description and keywords become npm search metadata only if published to npm; no npm publication, indexing or Harness catalog ranking is claimed.
 
-The seven upstream files under `skills/brewpage-publish/upstream/` are synced from the MIT-licensed [source commit](https://github.com/kochetkov-ma/claude-brewcode/tree/809e0fa27793a68177d73368b9ec3bc3488e4f2e/skills/brewpage-publish); the only deviation is the User-Agent value `brewpage-deepseek/1.0.4 (+https://brewpage.app)` (the `BP_UA` line, the delete hint and the README/SKILL curl examples). The native skill translates Claude tools and uses `scripts/brewpage-native.py` for every helper invocation. It preserves explicit consent, archive review and token secrecy; MCP accompanies the existing workflow.
+The seven upstream files under `skills/brewpage-publish/upstream/` are synced from the MIT-licensed [source commit](https://github.com/kochetkov-ma/claude-brewcode/tree/4825515919e33266eb8f44587f161040a2dac9ae/skills/brewpage-publish); the only deviation is the User-Agent value `brewpage-deepseek/1.0.5 (+https://brewpage.app)` (the `BP_UA` line, the delete hint and the README/SKILL curl examples). The native skill translates Claude tools and uses `scripts/brewpage-native.py` for every helper invocation. It preserves explicit consent, archive review and private owner-token history; MCP accompanies the existing workflow.
 
 The adapter resolves input and password-file paths before changing directory, removes inherited Claude variables, and forces history into `~/.dsh/brewpage-publish/.claude/brewpage-history.md` (file 600, private state directory 700). The nested filename belongs solely to this adapter's native state. It never imports a project's or another runtime's Claude history or credentials. Never invoke the upstream helper directly.
 
 The helper receives only PATH, HOME and locale variables plus adapter-owned root, private temporary storage and isolated Git settings. Shell startup/options, exported functions and inherited Git context are excluded. Probe, content and password paths containing `.claude` or `.claude-*` components are refused before helper reads, including alternate case and neutral aliases resolving there.
 
-Run `python3 verify-isolation.py` to repeat the isolated canary fixture. It exercises actual helper response handling with mocked curl, inherited BASH_ENV/SHELLOPTS/Git attacks, fourteen forbidden path cases and valid relative input/password paths. On macOS it asserts actual case-insensitive access before alternate-case regressions. It verifies unchanged foreign/native history on rejection, native-only owner storage, 700/600 permissions, archive consent and no owner token output. It makes no network request.
+Run `python3 verify-isolation.py` to repeat the isolated canary fixture. It exercises actual helper response handling with mocked curl, inherited BASH_ENV/SHELLOPTS/Git attacks, fourteen forbidden path cases and valid relative input/password paths. On macOS it asserts actual case-insensitive access before alternate-case regressions. It verifies unchanged foreign/native history on rejection, native-only owner storage, 700/600 permissions, archive consent, the management link on output and no saved owner token on output; when history cannot keep the token, the link, management link and token are handed over. It makes no network request.
 
 ## Install
 
@@ -23,7 +23,7 @@ Requires Node.js `24.19.0`, pnpm `12.15.0`, and DeepSeek Harness `0.2.1-rc.2`. F
 
 ```sh
 npm pack --ignore-scripts
-dsh plugin --profile brewpage add ./dsh-brewpage-1.0.4.tgz
+dsh plugin --profile brewpage add ./dsh-brewpage-1.0.5.tgz
 dsh --profile brewpage --dump-config
 ```
 
@@ -38,13 +38,13 @@ Verified with Node `24.19.0` and Harness `0.2.1-rc.2` in a fresh temporary `DSH_
 To repeat the native fixture, create an isolated temporary directory, copy `verify-native.mjs` there, then run:
 
 ```sh
-npm install --ignore-scripts --no-audit --no-fund @deepseek-ai/dsh@0.2.1-rc.2 /absolute/path/dsh-brewpage-1.0.4.tgz
+npm install --ignore-scripts --no-audit --no-fund @deepseek-ai/dsh@0.2.1-rc.2 /absolute/path/dsh-brewpage-1.0.5.tgz
 node verify-native.mjs
 ```
 
 No model call, API key, content upload or existing-client installation was used. Model-driven execution and rendering of a published result remain unverified. Default Node `20.15.0` silently skipped the Harness CLI's `import.meta.main` entry point; use the verified Node version.
 
-Native verification above records the `1.0.0` baseline; `metadata-verification.json` records historical `1.0.1` checks. The [1.0.2 refresh receipt](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/download/v1.0.2/deepseek-refresh-verification-1.0.2.json) records local archive, pin and unchanged skill/launcher checks; `refresh-verification-1.0.3.json` records the 1.0.3 sync checks and `refresh-verification-1.0.4.json` the 1.0.4 checks. Native installation, MCP connection and isolation fixtures were not repeated for `1.0.2`.
+Native verification above records the `1.0.0` baseline; `metadata-verification.json` records historical `1.0.1` checks. The [1.0.2 refresh receipt](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/download/v1.0.2/deepseek-refresh-verification-1.0.2.json) records local archive, pin and unchanged skill/launcher checks; `refresh-verification-1.0.3.json` records the 1.0.3 sync checks, `refresh-verification-1.0.4.json` the 1.0.4 checks and `refresh-verification-1.0.5.json` the 1.0.5 checks. Native installation, MCP connection and isolation fixtures were not repeated for `1.0.2`.
 
 Native contracts: [bundle packaging](https://deepseek-harness.github.io/deepseek-harness/en/develop/basic/publish.html), [skill provider](https://github.com/deepseek-ai/deepseek-harness/tree/master/packages/skill/skill-filesystem), [MCP bundle template](https://github.com/deepseek-ai/deepseek-harness/tree/master/packages/preset/agent-preset/skills/cordis-plugin-development/templates/mcp).
 

@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "brewpage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Publish HTML, Markdown, files and multi-file static sites from an AI coding agent to BrewPage, a hosted service that returns an HTTPS link with no account or API key; via the brewpage-publish skill and the BrewPage remote MCP server.",
   "author": {
     "name": "Maksim Kochetkov",

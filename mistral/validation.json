@@ -1,15 +1,16 @@
 {
-  "version": "1.0.2",
-  "user_agent": "brewpage-mistral-vibe/1.0.2 (+https://brewpage.app)",
-  "upstream_commit": "809e0fa27793a68177d73368b9ec3bc3488e4f2e",
+  "version": "1.0.3",
+  "user_agent": "brewpage-mistral-vibe/1.0.3 (+https://brewpage.app)",
+  "upstream_commit": "4825515919e33266eb8f44587f161040a2dac9ae",
   "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
-  "artifact": "brewpage-vibe-1.0.2.zip",
-  "sha256": "4421ab3d11ccfcac725cbd11fd34bafbe4460fb8c859fbadf33cf3e1438261dd",
-  "baseline_artifact": "brewpage-vibe-1.0.1.zip",
-  "baseline_sha256": "2ccc90627138ae4e9bc7d5f1833ce32f6ab66c02db56650459ec4bc9eaa85a97",
+  "artifact": "brewpage-vibe-1.0.3.zip",
+  "sha256": "25aab02b0577d5d3c596450b01b420c3eb2de2e3abd080b331624d65024d7215",
+  "baseline_artifact": "brewpage-vibe-1.0.2.zip",
+  "baseline_sha256": "4421ab3d11ccfcac725cbd11fd34bafbe4460fb8c859fbadf33cf3e1438261dd",
   "changed_files": [
     "brewpage/README.md",
     "brewpage/plugin.json",
+    "brewpage/skills/brewpage-publish/SKILL.md",
     "brewpage/skills/brewpage-publish/upstream/README.md",
     "brewpage/skills/brewpage-publish/upstream/SKILL.md",
     "brewpage/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
@@ -27,5 +28,6 @@
   "live_publish": "not run",
   "limits": [
     "Local package checks only; native host import and model-driven publishing were not repeated."
-  ]
+  ],
+  "change": "Publishing skill synced to upstream 48255159 (claude-brewcode v6.12.11). After publishing the agent gives the user the page link and the private management link; the owner token is shown on request or when it cannot be kept. User-Agent version moved to 1.0.3"
 }

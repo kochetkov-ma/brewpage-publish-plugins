@@ -1,0 +1,35 @@
+{
+  "version": "1.0.5",
+  "user_agent": "brewpage-deepseek/1.0.5 (+https://brewpage.app)",
+  "upstream_commit": "4825515919e33266eb8f44587f161040a2dac9ae",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "dsh-brewpage-1.0.5.tgz",
+  "sha256": "8e2c0018ab9fdfa5a1ce9c4056edf02b3b45560ad9d0e09cb88602b5e410de4d",
+  "baseline_artifact": "dsh-brewpage-1.0.4.tgz",
+  "baseline_sha256": "2261ef8c5916cc1d0c3003cbc6984a1e2e466e391d2b0cd0e404ee45e5598bbe",
+  "changed_files": [
+    "README.md",
+    "package.json",
+    "skills/brewpage-publish/SKILL.md",
+    "skills/brewpage-publish/upstream/README.md",
+    "skills/brewpage-publish/upstream/SKILL.md",
+    "skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
+    "skills/brewpage-publish/upstream/scripts/brewpage-run.sh",
+    "verify-isolation.py"
+  ],
+  "file_count": 17,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 7,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "verify-isolation.py": "pass; asserts upload -A == brewpage-deepseek/1.0.5 (+https://brewpage.app), OK + MANAGE lines on output, no saved owner token on output, URL/MANAGE/OWNER TOKEN lines when history cannot keep the token",
+    "verify-native.mjs": "pass with @deepseek-ai/dsh@0.2.1-rc.2 and the 1.0.5 tarball (Node 24.15.0)"
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "limits": [
+    "Local package checks only; native host import and model-driven publishing were not repeated."
+  ],
+  "change": "Publishing skill synced to upstream 48255159 (claude-brewcode v6.12.11). After publishing the agent gives the user the page link and the private management link; the owner token is shown on request or when it cannot be kept. User-Agent version moved to 1.0.5"
+}

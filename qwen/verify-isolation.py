@@ -21,12 +21,16 @@ def verify():
         original.write_text('SYNTHETIC_CLAUDE_OWNER_CANARY')
         original.chmod(0o600)
         before = hashlib.sha256(original.read_bytes()).hexdigest()
-        response = {'link': 'https://example.invalid/native-fixture', 'ownerToken': 'SYNTHETIC_NATIVE_OWNER_ONLY'}
+        manage = 'https://example.invalid/manage/native-fixture#k=fixture-key'
+        response = {'link': 'https://example.invalid/native-fixture', 'ownerToken': 'SYNTHETIC_NATIVE_OWNER_ONLY', 'manageUrl': manage}
+        published = 'OK https://example.invalid/native-fixture\nMANAGE: ' + manage + '\n'
+        history = home / runtime / 'brewpage-publish/.claude/brewpage-history.md'
+        unsafe = root / 'history-unsafe'
         shim = commands / 'curl'
         marker = root / 'curl-called'
         observed = root / 'curl-environment.json'
         arguments = root / 'curl-arguments.json'
-        shim.write_text('#!/usr/bin/env python3\nimport json, os\nfrom pathlib import Path\nPath(' + repr(str(marker)) + ').touch()\nPath(' + repr(str(observed)) + ').write_text(json.dumps(dict(os.environ)))\nimport sys\nPath(' + repr(str(arguments)) + ').write_text(json.dumps(sys.argv[1:]))\nprint(' + repr(json.dumps(response)) + ')\n')
+        shim.write_text('#!/usr/bin/env python3\nimport json, os\nfrom pathlib import Path\nPath(' + repr(str(marker)) + ').touch()\nPath(' + repr(str(observed)) + ').write_text(json.dumps(dict(os.environ)))\nimport sys\nPath(' + repr(str(arguments)) + ').write_text(json.dumps(sys.argv[1:]))\nif Path(' + repr(str(unsafe)) + ').exists():\n    Path(' + repr(str(history)) + ').unlink()\n    Path(' + repr(str(history)) + ').symlink_to(' + repr(str(original)) + ')\nprint(' + repr(json.dumps(response)) + ')\n')
         shim.chmod(0o700)
         env = dict(os.environ, HOME=str(home), CLAUDE_PROJECT_DIR=str(project), CLAUDE_CONFIG_DIR=str(project / '.claude'),
                    PATH=str(commands) + os.pathsep + os.environ['PATH'])
@@ -52,16 +56,15 @@ def verify():
         # WHEN native publishing receives only a mocked response without network traffic.
         result = run('publish', 'file', '--ns', 'public', '--password-file', 'password.txt', '--path', 'input.txt')
         assert result.returncode == 0, 'native publish fixture must succeed: ' + result.stderr
-        assert result.stdout == 'OK https://example.invalid/native-fixture\n', 'stdout must contain only reader URL'
+        assert result.stdout == published, 'stdout must carry the reader URL and the management link'
 
-        # THEN history stays runtime-private and neither owner token reaches output.
-        history = home / runtime / 'brewpage-publish/.claude/brewpage-history.md'
+        # THEN history stays runtime-private and a saved owner token never reaches output.
         assert hashlib.sha256(original.read_bytes()).hexdigest() == before, 'existing Claude history must remain unchanged'
         assert stat.S_IMODE(history.stat().st_mode) == 0o600, 'native history must have mode 600'
         assert stat.S_IMODE(history.parent.parent.stat().st_mode) == 0o700, 'native state must have mode 700'
         assert 'SYNTHETIC_NATIVE_OWNER_ONLY' in history.read_text(), 'new owner capability must reach native history'
         assert 'SYNTHETIC_CLAUDE_OWNER_CANARY' not in history.read_text(), 'Claude history must never be imported'
-        assert 'SYNTHETIC_' not in result.stdout + result.stderr, 'no owner capability may reach output'
+        assert 'SYNTHETIC_' not in result.stdout + result.stderr, 'a saved owner token must not reach output'
         assert (root / 'curl-called').exists(), 'fixture must exercise real helper response handling'
         argv = json.loads(arguments.read_text())
         version = json.loads((package / 'plugin.json').read_text())['version']
@@ -79,8 +82,8 @@ def verify():
             saved_before = history.read_text().count('SYNTHETIC_NATIVE_OWNER_ONLY')
             result = run('publish', 'file', '--ns', 'public', '--password-file', '', '--path', 'input.txt', extra=extra)
             assert result.returncode == 0, name + ': actual helper must still publish through mocked transport'
-            assert result.stdout == 'OK https://example.invalid/native-fixture\n', name + ': stdout must contain only reader URL'
-            assert 'SYNTHETIC_' not in result.stdout + result.stderr, name + ': owner data must not reach output'
+            assert result.stdout == published, name + ': stdout must carry the reader URL and the management link'
+            assert 'SYNTHETIC_' not in result.stdout + result.stderr, name + ': a saved owner token must not reach output'
             assert marker.exists(), name + ': fixture must exercise actual response handling'
             child = json.loads(observed.read_text())
             assert [key for key in extra if key in child and key != 'GIT_CONFIG_GLOBAL'] == [], name + ': unsafe inherited variables must be absent'
@@ -129,6 +132,13 @@ def verify():
             assert hashlib.sha256(history.read_bytes()).hexdigest() == native_before, name + ': native history must remain unchanged on path rejection'
             assert stat.S_IMODE(history.stat().st_mode) == 0o600, name + ': native history must remain mode 600'
             assert stat.S_IMODE(history.parent.parent.stat().st_mode) == 0o700, name + ': native state must remain mode 700'
+        # WHEN the history file turns unsafe during the upload THEN link, management link and token go to the user.
+        unsafe.touch()
+        unsaved = run('publish', 'file', '--ns', 'public', '--password-file', '', '--path', 'input.txt')
+        unsafe.unlink()
+        assert unsaved.returncode == 1, 'an unsaved owner token must not report success'
+        assert unsaved.stdout == 'FAILED: published but owner token could not be saved securely\nURL: https://example.invalid/native-fixture\nMANAGE: ' + manage + '\nOWNER TOKEN: SYNTHETIC_NATIVE_OWNER_ONLY\n', 'a live page must hand over its link, management link and token when history cannot keep them'
+        assert hashlib.sha256(original.read_bytes()).hexdigest() == before, 'unsafe history target must remain unchanged'
         marker.touch()
         (root / 'curl-called').unlink()
         history.unlink()
@@ -137,7 +147,7 @@ def verify():
         assert rejected.returncode == 1, 'native history symlink must be refused before upload'
         assert not (root / 'curl-called').exists(), 'unsafe history must prevent upload'
         assert hashlib.sha256(original.read_bytes()).hexdigest() == before, 'symlink target must remain unchanged'
-        print('PASS native isolation, BASH_ENV/SHELLOPTS/Git scrub, 14 forbidden path cases including alternate case, archive consent, relative paths, permissions, symlink refusal; mocked curl only')
+        print('PASS native isolation, BASH_ENV/SHELLOPTS/Git scrub, 14 forbidden path cases including alternate case, archive consent, relative paths, permissions, symlink refusal, management link output, unsaved-token handover; mocked curl only')
 
 
 verify()
