@@ -1,4 +1,4 @@
-// BrewPage publish skill for AnythingLLM: POST /api/html, return the reader link.
+// BrewPage publish skill for AnythingLLM: POST /api/html, return the page link, management link and owner token.
 const API = "https://brewpage.app/api/html";
 
 module.exports.runtime = {
@@ -7,14 +7,20 @@ module.exports.runtime = {
       if (!content || typeof content !== "string") return "Nothing to publish: content is empty.";
       this.introspect("Publishing to BrewPage...");
       const page = await this.publish({ content, format, visibility, ttl_days });
-      return `Published: ${page.link} (expires ${page.expiresAt}). Share this link as is.`;
+      // The skill keeps no state: the management link and owner token go to the user, else the page is unmanageable.
+      const owner = [
+        page.manageUrl &&
+          `Management link, give it to the user (private: anyone who has it can edit or delete the page; never post it publicly): ${page.manageUrl}`,
+        page.ownerToken && `Owner token, give it to the user (private; this skill does not keep it): ${page.ownerToken}`,
+      ].filter(Boolean);
+      return [`Published: ${page.link} (expires ${page.expiresAt}). Share this link as is.`, ...owner].join("\n");
     } catch (e) {
       this.logger(`brewpage-publish failed: ${e.message}`);
       return `BrewPage publish failed: ${e.message}`;
     }
   },
 
-  // Full API response; the owner token in it stays out of chat.
+  // Full API response: link, expiresAt, manageUrl, ownerToken.
   publish: async function ({ content, format, visibility, ttl_days }) {
     const query = new URLSearchParams();
     if (String(visibility).toLowerCase() === "public") query.set("ns", "public");

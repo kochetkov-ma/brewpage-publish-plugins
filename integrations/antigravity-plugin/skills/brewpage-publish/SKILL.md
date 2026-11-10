@@ -50,9 +50,10 @@ Pass the exact content, never a summary of it.
 
 ## After publishing
 
-Return the link from the tool result. The result also carries an owner token:
-tell the user to keep it, because `update_html`, `republish_site` and
-`delete_resource` need it. Do not store it anywhere else.
+Give the user the returned link and the `MANAGE LINK` (`manageUrl`; private: anyone
+who has it can edit or delete the page). Keep the owner token for `update_html`,
+`republish_site` and `delete_resource`, and show it when the user asks or when you
+cannot keep it. Never post either publicly (public page, repo, shared channel).
 
 ## Fallback
 

@@ -38,7 +38,9 @@ the link", or run `/brewpage-publish`.
 - Namespace `public` is listed in the gallery and sitemap and can be indexed by
   search engines. Any other namespace is private: unlisted, not indexed, open to
   anyone with the link; add a password to restrict it.
-- Each publish returns an owner token; keep it to update or delete the publication.
+- Each publish returns a management link and an owner token. The agent gives you
+  the management link; it is private: anyone who has it can edit or delete the page.
+  The owner token updates or deletes the publication through the tools.
 - [Privacy policy](https://brewpage.app/privacy), [terms](https://brewpage.app/terms).
 
 ## Validation

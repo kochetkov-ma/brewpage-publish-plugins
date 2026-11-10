@@ -26,10 +26,11 @@ Ask an agent (`@agent`) to publish something, for example "publish this report a
 | `visibility` | `private` (unlisted, anyone with the link can open it) or `public` (gallery and search) | `private` |
 | `ttl_days` | 1-30 | 15 |
 
-The skill sends `POST https://brewpage.app/api/html` and replies with the reader link and expiry.
-The owner token in the API response is never returned to the chat, so pages published by the skill
-cannot be edited or deleted later; they expire on their own. Never publish secrets or personal data
-as `public`. API reference: [llms.txt](https://brewpage.app/llms.txt).
+The skill sends `POST https://brewpage.app/api/html` and replies with the reader link, its expiry,
+the management link and the owner token. The management link is private: anyone who has it can edit
+or delete the page. The skill keeps no state, so save the management link if you want to change or
+remove the page before it expires; never post it or the token publicly (public page, repo, shared
+channel). Never publish secrets or personal data as `public`. API reference: [llms.txt](https://brewpage.app/llms.txt).
 
 ## License
 
