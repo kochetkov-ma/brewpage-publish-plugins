@@ -1,0 +1,36 @@
+{
+  "distribution_version": "1.0.5",
+  "baseline": "v1.0.4",
+  "upstream_commit": "4825515919e33266eb8f44587f161040a2dac9ae",
+  "upstream_label": "claude-brewcode v6.12.11",
+  "versions": {
+    "qwen": "1.0.5",
+    "deepseek": "1.0.5",
+    "mistral-vibe": "1.0.3",
+    "kimi": "1.0.3",
+    "yandex": "1.0.3",
+    "mistral-work": "1.0.3"
+  },
+  "tools": {
+    "python": "3.14.10",
+    "zlib": "1.2.12",
+    "node": "24.15.0",
+    "npm": "11.12.1"
+  },
+  "notes": {
+    "change": "After publishing the agent gives the user the page link and the private management link; the owner token is shown on request or when it cannot be kept",
+    "limit": "Local package checks only; native host import and model-driven publishing were not repeated.",
+    "isolation_asserts": "OK + MANAGE lines on output, no saved owner token on output, URL/MANAGE/OWNER TOKEN lines when history cannot keep the token",
+    "deepseek_verify_native": "pass with @deepseek-ai/dsh@0.2.1-rc.2 and the 1.0.5 tarball (Node 24.15.0)",
+    "mistral_work_adaptation": "upstream/ synced to the new commit; one paragraph of the active SKILL.md body changed, the result rule: reader URL and management link go to the user (MCP only, helpers unused).",
+    "kimi_tests": {
+      "skillInstructions_unchanged": false,
+      "skillInstructions_change": "output rule only: reader URL and management link go to the user; an owner token without evidenced private storage is handed to the user; nothing is posted publicly"
+    },
+    "kimi_note": "skillInstructions forbids the bundled shell helpers; Kimi publishes through MCP, whose User-Agent the host sets.",
+    "kimi_limits": [
+      "The changed skillInstructions text was not reimported or rendered by a native Kimi runtime."
+    ],
+    "yandex_native_import": "not repeated for v1.0.3; v1.0.1 was imported into one personal catalog"
+  }
+}
