@@ -13,13 +13,15 @@ BrewPage is a hosted, closed-source service. This plugin is MIT-licensed.
 | Part | Path | What it does |
 |------|------|--------------|
 | Manifest | `plugin.json` | Antigravity plugin manifest (`https://antigravity.google/schemas/v1/plugin.json`) |
-| MCP servers | `mcp_config.json` | `brewpage`: the remote server `https://brewpage.app/mcp` (Streamable HTTP, no sign-in), enabled. `brewpage-local`: `npx -y brewpage-mcp@1.16.10` over stdio, disabled; turn it on in `/mcp` if your network blocks the remote server (needs Node.js 20+) |
+| MCP servers | `mcp_config.json` | `brewpage`: the remote server `https://brewpage.app/mcp` (Streamable HTTP, no sign-in), enabled. `brewpage-local`: `npx -y brewpage-mcp@1.19.0` over stdio, disabled; turn it on in `/mcp` if your network blocks the remote server (needs Node.js 20+) |
 | Skill | `skills/brewpage-publish/SKILL.md` | Tells the agent when to publish, which tool to call and what to ask first (namespace, password, TTL) |
 | Logo | `assets/logo.svg` | BrewPage mark |
 
 Tools appear as `brewpage_brewpage` (`publish_html`, `publish_file`, `publish_site`,
 `publish_json`, `publish_kv`, `update_html`, `republish_site`, `delete_resource`,
-`get_limits`, `search_gallery` and more).
+`get_limits`, `search_gallery` and more). A page or site can also save what its
+visitors enter (Page data): the agent publishes it with `state` and reads the entries
+with `get_page_data`; you read them in the Data tab of the management link.
 
 ## Install
 

@@ -5,7 +5,7 @@
     },
     "brewpage-local": {
       "command": "npx",
-      "args": ["-y", "brewpage-mcp@1.16.10"],
+      "args": ["-y", "brewpage-mcp@1.19.0"],
       "disabled": true
     }
   }

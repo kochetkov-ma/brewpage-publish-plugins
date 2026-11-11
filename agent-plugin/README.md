@@ -22,7 +22,7 @@ scripts) is MIT-licensed.
 
 The skill is the MIT-licensed BrewPage publishing skill from
 [kochetkov-ma/claude-brewcode](https://github.com/kochetkov-ma/claude-brewcode)
-(`openclaw/brewpage-publish`, commit `4825515919e33266eb8f44587f161040a2dac9ae`),
+(`openclaw/brewpage-publish`, commit `fb7e4ef5ef17a9ce68f599eb341922535c1eec16`),
 with its User-Agent set to `brewpage-agent-plugin/0.1.1`.
 
 ## Install
@@ -58,6 +58,17 @@ gives you the page link and the management link. See
 | Whole HTML document, `.html` file | `POST /api/html?format=html` |
 | Any other file | `POST /api/files` |
 | Built static directory or `.zip` | `POST /api/sites` |
+
+## Page data
+
+A published HTML page or site can save what its visitors enter (game progress, form
+answers, guestbook messages, votes) with no backend of your own. Ask the agent for
+such a page: through the bundled MCP server it publishes the page with page data
+turned on and reads the entries back for you. You also read them in the Data tab of
+the management link, where they download as CSV. Saving works on the page's own
+address and on a connected custom domain. A page stores up to 1 MB, or 10 MB when it
+is in your free profile. See the
+[Page data reference](https://brewpage.app/api#page-data).
 
 ## Limits
 

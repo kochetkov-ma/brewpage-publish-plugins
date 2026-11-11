@@ -55,6 +55,17 @@ who has it can edit or delete the page). Keep the owner token for `update_html`,
 `republish_site` and `delete_resource`, and show it when the user asks or when you
 cannot keep it. Never post either publicly (public page, repo, shared channel).
 
+## Pages that save data
+
+A published HTML page or site can save what its visitors enter (game progress, form
+answers, guestbook messages, votes): Page data. Call `get_guide` before writing such
+a page, load `https://brewpage.app/js/state.js` in it and publish with `state` on
+`publish_html` or `publish_site` (`update_html` and `republish_site` change it).
+`get_page_data`, `set_page_data`, `configure_page_data` and `delete_page_data` read,
+write, configure and delete entries; they take the owner token, or the management
+link as `manageUrl`. The author also reads entries in the Data tab of the management
+link.
+
 ## Fallback
 
 If the remote `brewpage_brewpage` server is unreachable, the user can enable the
