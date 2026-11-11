@@ -1,0 +1,32 @@
+{
+  "version": "1.0.6",
+  "user_agent": "brewpage-qwen/1.0.6 (+https://brewpage.app)",
+  "upstream_commit": "5da825f1d535d9658f0de0893529c6ce06a613a5",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "brewpage-qwen-1.0.6.zip",
+  "sha256": "6f7062eee446c09b509ca87d224a64f1a8c8c589ea8de10ec0ee31b4ced23ee3",
+  "baseline_artifact": "brewpage-qwen-1.0.5.zip",
+  "baseline_sha256": "d931ba5156480c9bf77d1f017b55c3dda943bc8ca38ca5b08270aae53736653d",
+  "changed_files": [
+    "qwen/README.md",
+    "qwen/mcp.json",
+    "qwen/plugin.json",
+    "qwen/skills/brewpage-publish/upstream/README.md",
+    "qwen/skills/brewpage-publish/upstream/SKILL.md",
+    "qwen/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh"
+  ],
+  "file_count": 14,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 7,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "verify-isolation.py": "pass; asserts upload -A == brewpage-qwen/1.0.6 (+https://brewpage.app), OK + MANAGE lines on output, no saved owner token on output, URL/MANAGE/OWNER TOKEN lines when history cannot keep the token"
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "limits": [
+    "Local package checks only; native host import and model-driven publishing were not repeated."
+  ],
+  "change": "Publishing skill synced to upstream 5da825f1 (claude-brewcode v6.12.12). The skill explains page data: published pages can save what visitors enter; the author turns it on and reads the entries in the management link's Data tab. User-Agent version moved to 1.0.6"
+}

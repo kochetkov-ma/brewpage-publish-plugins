@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "brewpage",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file with BrewPage.",
   "author": { "name": "Maksim Kochetkov", "url": "https://github.com/kochetkov-ma" },
   "homepage": "https://brewpage.app",

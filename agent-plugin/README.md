@@ -22,8 +22,8 @@ scripts) is MIT-licensed.
 
 The skill is the MIT-licensed BrewPage publishing skill from
 [kochetkov-ma/claude-brewcode](https://github.com/kochetkov-ma/claude-brewcode)
-(`openclaw/brewpage-publish`, commit `fb7e4ef5ef17a9ce68f599eb341922535c1eec16`),
-with its User-Agent set to `brewpage-agent-plugin/0.1.1`.
+(`openclaw/brewpage-publish`, commit `5da825f1d535d9658f0de0893529c6ce06a613a5`, v6.12.12),
+with its User-Agent set to `brewpage-agent-plugin/0.1.2`.
 
 ## Install
 

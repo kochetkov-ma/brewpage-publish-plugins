@@ -1,0 +1,33 @@
+{
+  "version": "1.0.6",
+  "user_agent": "brewpage-deepseek/1.0.6 (+https://brewpage.app)",
+  "upstream_commit": "5da825f1d535d9658f0de0893529c6ce06a613a5",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "dsh-brewpage-1.0.6.tgz",
+  "sha256": "f3596f81181156c8d16356b42a0a5359b34139661f6ed6e806284f124510d394",
+  "baseline_artifact": "dsh-brewpage-1.0.5.tgz",
+  "baseline_sha256": "8e2c0018ab9fdfa5a1ce9c4056edf02b3b45560ad9d0e09cb88602b5e410de4d",
+  "changed_files": [
+    "README.md",
+    "cordis.patch.yml",
+    "package.json",
+    "skills/brewpage-publish/upstream/README.md",
+    "skills/brewpage-publish/upstream/SKILL.md",
+    "skills/brewpage-publish/upstream/scripts/brewpage-lib.sh"
+  ],
+  "file_count": 17,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 7,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "verify-isolation.py": "pass; asserts upload -A == brewpage-deepseek/1.0.6 (+https://brewpage.app), OK + MANAGE lines on output, no saved owner token on output, URL/MANAGE/OWNER TOKEN lines when history cannot keep the token",
+    "verify-native.mjs": "pass with @deepseek-ai/dsh@0.2.1-rc.2 and the 1.0.6 tarball (Node 24.15.0)"
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "limits": [
+    "Local package checks only; native host import and model-driven publishing were not repeated."
+  ],
+  "change": "Publishing skill synced to upstream 5da825f1 (claude-brewcode v6.12.12). The skill explains page data: published pages can save what visitors enter; the author turns it on and reads the entries in the management link's Data tab. User-Agent version moved to 1.0.6"
+}

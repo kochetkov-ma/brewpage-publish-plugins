@@ -5,9 +5,9 @@
 
 Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-publish-plugins#readme) for [BrewPage](https://brewpage.app).
 
-Native `kimi.plugin.json` packages the existing BrewPage skill with its remote MCP service. The seven files in `skills/brewpage-publish/` are synced from public source commit `4825515919e33266eb8f44587f161040a2dac9ae` in `kochetkov-ma/claude-brewcode`; the only deviation is the User-Agent value `brewpage-kimi/1.0.3 (+https://brewpage.app)`.
+Native `kimi.plugin.json` packages the existing BrewPage skill with its remote MCP service. The seven files in `skills/brewpage-publish/` are synced from public source commit `5da825f1d535d9658f0de0893529c6ce06a613a5` in `kochetkov-ma/claude-brewcode`; the only deviation is the User-Agent value `brewpage-kimi/1.0.4 (+https://brewpage.app)`.
 
-Version `1.0.1` updates plugin display metadata: host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file. The immutable active skill and the complete MCP security override remain unchanged. Version `1.0.2` synced the bundled skill to upstream `809e0fa2`. Version `1.0.3` syncs it to the commit above (claude-brewcode v6.12.11) and changes the override's output rule: the agent gives you the reader URL and the management link. The override stays MCP-only, so the bundled helpers stay unused. Extract `brewpage-kimi-code-1.0.3.zip`; the exact `1.0.0`, `1.0.1` and `1.0.2` archives are retained. `refresh-verification-1.0.3.json` records the 1.0.3 checks, `refresh-verification-1.0.2.json` the 1.0.2 checks.
+Version `1.0.1` updates plugin display metadata: host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file. The immutable active skill and the complete MCP security override remain unchanged. Version `1.0.2` synced the bundled skill to upstream `809e0fa2`. Version `1.0.3` synced it to upstream `48255159` (claude-brewcode v6.12.11) and changed the override's output rule: the agent gives you the reader URL and the management link. Version `1.0.4` syncs it to the commit above (claude-brewcode v6.12.12), which explains page data; the override is unchanged. The override stays MCP-only, so the bundled helpers stay unused. Extract `brewpage-kimi-code-1.0.4.zip`; the exact `1.0.0` to `1.0.3` archives are retained. `refresh-verification-1.0.4.json` records the 1.0.4 checks, `refresh-verification-1.0.3.json` the 1.0.3 checks, `refresh-verification-1.0.2.json` the 1.0.2 checks.
 
 Install from an extracted directory in Kimi Code:
 
@@ -38,7 +38,7 @@ Sources:
 - https://www.kimi.com/code/docs/en/kimi-code-cli/reference/server-api.html
 - https://www.kimi.com/en/help/plugins-and-skills/publish
 - https://github.com/MoonshotAI/kimi-code/issues/1566
-- https://github.com/kochetkov-ma/claude-brewcode/tree/4825515919e33266eb8f44587f161040a2dac9ae/skills/brewpage-publish
+- https://github.com/kochetkov-ma/claude-brewcode/tree/5da825f1d535d9658f0de0893529c6ce06a613a5/skills/brewpage-publish
 
 ## Related
 

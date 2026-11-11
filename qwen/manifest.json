@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
   "name": "brewpage",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "format": "agent_plugins_1_0",
   "upstream": {
     "repository": "https://github.com/kochetkov-ma/claude-brewcode",
-    "commit": "4825515919e33266eb8f44587f161040a2dac9ae",
+    "commit": "5da825f1d535d9658f0de0893529c6ce06a613a5",
     "directory": "skills/brewpage-publish",
     "license": "MIT"
   },
   "upstream_directory": "skills/brewpage-publish/upstream",
   "artifact": {
-    "zip": "brewpage-qwen-1.0.5.zip",
+    "zip": "brewpage-qwen-1.0.6.zip",
     "layout": "qwen/plugin.json",
-    "sha256": "d931ba5156480c9bf77d1f017b55c3dda943bc8ca38ca5b08270aae53736653d",
+    "sha256": "6f7062eee446c09b509ca87d224a64f1a8c8c589ea8de10ec0ee31b4ced23ee3",
     "file_count": 14
   },
   "files": [
@@ -23,15 +23,15 @@
     },
     {
       "path": "README.md",
-      "sha256": "7805751d5e88e33d56726c15c120303a44cf2fdfa895f64602c4a66cbc3bbcbf"
+      "sha256": "db40ef88e67c7163db9c692d0a0dc0a450073a746f32c626ed37cff4cadf9c9f"
     },
     {
       "path": "mcp.json",
-      "sha256": "dabd96035c7d537a8367b24816607cbffcf295ef078bcbf1e8f232afda09fa01"
+      "sha256": "17b54b880592917eca52d10d798a5c32ebc44fa206ddf93d2d7536c3f26b6944"
     },
     {
       "path": "plugin.json",
-      "sha256": "d20619a68a6a009aa27945efb53251b86d6f5f2f7f2b6e69df2a9b9d4a52234a"
+      "sha256": "101bcc39c6099e42d9a83aceae2516769e192bf74c648cdae5fffa58444f4a0d"
     },
     {
       "path": "skills/brewpage-publish/SKILL.md",
@@ -47,15 +47,15 @@
     },
     {
       "path": "skills/brewpage-publish/upstream/README.md",
-      "sha256": "753838847543ae617bbd91c016cca1af645beae24b540bc2cbeac8dfb833cad1"
+      "sha256": "c78ee3ab3623545790ec72a0acc5043d83d33456d5ed38f02146a191cde89abf"
     },
     {
       "path": "skills/brewpage-publish/upstream/SKILL.md",
-      "sha256": "53c87d5c1dc626594738b8df5a7a3fe280389047d581aba50c015e3707d47a2d"
+      "sha256": "bf92bfaebe6530c774af83d4861ecbd6779d488c5026bdfb95619c04a8e92d9a"
     },
     {
       "path": "skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
-      "sha256": "ba661c37b621aa8d5a043de3bf205cfd78b91b0b367fbfaa81b588b125046091"
+      "sha256": "887b2731ad384cf7fa202a34016f742f09871e17f47cb21efc70c0e592a16345"
     },
     {
       "path": "skills/brewpage-publish/upstream/scripts/brewpage-run.sh",
@@ -74,8 +74,14 @@
       "sha256": "9efa658ab34d84dec0e4b9efa696cbda98b12a85d601e657a99c90c43b003f47"
     }
   ],
-  "validation": "refresh-verification-1.0.5.json",
+  "validation": "refresh-verification-1.0.6.json",
   "historical_artifacts": [
+    {
+      "zip": "brewpage-qwen-1.0.5.zip",
+      "sha256": "d931ba5156480c9bf77d1f017b55c3dda943bc8ca38ca5b08270aae53736653d",
+      "manifest": "manifest-1.0.5.json",
+      "validation": "refresh-verification-1.0.5.json"
+    },
     {
       "zip": "brewpage-qwen-1.0.4.zip",
       "sha256": "b90135ba98588edf70c8fc4dc8edeb003b72ba403bffddb7e22fe416164332ff",

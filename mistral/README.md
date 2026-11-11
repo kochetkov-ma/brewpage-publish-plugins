@@ -7,7 +7,7 @@ Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-p
 
 Host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file with BrewPage.
 
-See the [bundled installation and compatibility guide](brewpage/README.md). Distribute `brewpage-vibe-1.0.3.zip`; `manifest.json` contains its SHA-256 and file inventory, and `validation.json` records the 1.0.3 sync checks and their limits. `manifest-1.0.2.json` and `validation-1.0.2.json` preserve 1.0.2, `manifest-1.0.1.json` and `validation-1.0.1.json` preserve 1.0.1. The unchanged `brewpage-vibe-1.0.0.zip`, `manifest-1.0.0.json` and `validation-1.0.0.json` preserve the earlier artifact and native verification.
+See the [bundled installation and compatibility guide](brewpage/README.md). Distribute `brewpage-vibe-1.0.4.zip`; `manifest.json` contains its SHA-256 and file inventory, and `validation.json` records the 1.0.4 sync checks and their limits. `manifest-1.0.3.json` and `validation-1.0.3.json` preserve 1.0.3, `manifest-1.0.2.json` and `validation-1.0.2.json` preserve 1.0.2, `manifest-1.0.1.json` and `validation-1.0.1.json` preserve 1.0.1. The unchanged `brewpage-vibe-1.0.0.zip`, `manifest-1.0.0.json` and `validation-1.0.0.json` preserve the earlier artifact and native verification.
 
 ## Related
 

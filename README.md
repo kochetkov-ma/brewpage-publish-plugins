@@ -13,7 +13,7 @@ No signup or API key. Publications are temporary: 15 days by default, 30 at most
 ## Integrations
 
 AI-agent packages are assets of the latest release,
-[v1.0.5](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.0.5);
+[v1.0.6](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.0.6);
 check them against [SHASUMS256.txt](SHASUMS256.txt).
 The agent plugin in `agent-plugin/` installs from this repository, which is also its Claude Code and Cursor marketplace.
 
@@ -21,12 +21,12 @@ The agent plugin in `agent-plugin/` installs from this repository, which is also
 | --- | --- | --- | --- |
 | Claude Code, Grok Build, Cursor, GitHub Copilot | `agent-plugin/` | Claude Code: `/plugin marketplace add kochetkov-ma/brewpage-publish-plugins`, then `/plugin install brewpage@brewpage` | [README](agent-plugin/README.md) |
 | Google Antigravity | `integrations/antigravity-plugin/` | `agy plugin install https://github.com/kochetkov-ma/brewpage-publish-plugins/tree/main/integrations/antigravity-plugin` | [README](integrations/antigravity-plugin/README.md) |
-| Qwen Code | `qwen/` | `qwen extensions install /absolute/path/to/qwen` from `brewpage-qwen-1.0.5.zip` | [README](qwen/README.md) |
-| DeepSeek Harness | `deepseek/` | `dsh plugin --profile brewpage add ./dsh-brewpage-1.0.5.tgz` | [README](deepseek/README.md) |
-| Mistral Vibe Code | `mistral/` | Extract `brewpage-vibe-1.0.3.zip` into `.vibe/plugins/`, then `/reload-plugins` | [README](mistral/README.md) |
-| Kimi Code | `kimi/` | Extract `brewpage-kimi-code-1.0.3.zip`, then `/plugins install /absolute/path/to/brewpage-publish` | [README](kimi/README.md) |
-| Yandex AI Studio | `yandex/` | Import `yandex-brewpage-publish-v1.0.3.zip` in Agent Core > Skills | [README](yandex/README.md) |
-| Mistral Work | `common/` | Use `mistral-work-brewpage-publish-v1.0.3.zip` | [SKILL.md](common/mistral-work/SKILL.md) |
+| Qwen Code | `qwen/` | `qwen extensions install /absolute/path/to/qwen` from `brewpage-qwen-1.0.6.zip` | [README](qwen/README.md) |
+| DeepSeek Harness | `deepseek/` | `dsh plugin --profile brewpage add ./dsh-brewpage-1.0.6.tgz` | [README](deepseek/README.md) |
+| Mistral Vibe Code | `mistral/` | Extract `brewpage-vibe-1.0.4.zip` into `.vibe/plugins/`, then `/reload-plugins` | [README](mistral/README.md) |
+| Kimi Code | `kimi/` | Extract `brewpage-kimi-code-1.0.4.zip`, then `/plugins install /absolute/path/to/brewpage-publish` | [README](kimi/README.md) |
+| Yandex AI Studio | `yandex/` | Import `yandex-brewpage-publish-v1.0.4.zip` in Agent Core > Skills | [README](yandex/README.md) |
+| Mistral Work | `common/` | Use `mistral-work-brewpage-publish-v1.0.4.zip` | [SKILL.md](common/mistral-work/SKILL.md) |
 | Any skill directory or ZIP | `common/` | Use the `brewpage-publish/` folder or `brewpage-publish.zip` (original Claude skill) | [README](common/README.md) |
 | n8n (self-hosted) | [n8n-nodes-brewpage](https://github.com/kochetkov-ma/n8n-nodes-brewpage) (own repository) | Settings > Community nodes > install `n8n-nodes-brewpage` | [README](https://github.com/kochetkov-ma/n8n-nodes-brewpage#readme) |
 | n8n workflow template | `integrations/n8n-templates/` | Import `brewpage-release-digest.json` as a workflow; no community node or credentials | [README](integrations/n8n-templates/README.md) |

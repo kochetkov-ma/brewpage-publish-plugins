@@ -1,0 +1,35 @@
+{
+  "distribution_version": "1.0.6",
+  "baseline": "v1.0.5",
+  "upstream_commit": "5da825f1d535d9658f0de0893529c6ce06a613a5",
+  "upstream_label": "claude-brewcode v6.12.12",
+  "versions": {
+    "qwen": "1.0.6",
+    "deepseek": "1.0.6",
+    "mistral-vibe": "1.0.4",
+    "kimi": "1.0.4",
+    "yandex": "1.0.4",
+    "mistral-work": "1.0.4"
+  },
+  "tools": {
+    "python": "3.14.10",
+    "zlib": "1.2.12",
+    "node": "24.15.0",
+    "npm": "11.12.1"
+  },
+  "notes": {
+    "change": "The skill explains page data: published pages can save what visitors enter; the author turns it on and reads the entries in the management link's Data tab",
+    "limit": "Local package checks only; native host import and model-driven publishing were not repeated.",
+    "isolation_asserts": "OK + MANAGE lines on output, no saved owner token on output, URL/MANAGE/OWNER TOKEN lines when history cannot keep the token",
+    "deepseek_verify_native": "pass with @deepseek-ai/dsh@0.2.1-rc.2 and the 1.0.6 tarball (Node 24.15.0)",
+    "mistral_work_adaptation": "upstream/ synced to the new commit; the active SKILL.md body is unchanged.",
+    "kimi_tests": {
+      "skillInstructions_unchanged": true
+    },
+    "kimi_note": "skillInstructions forbids the bundled shell helpers; Kimi publishes through MCP, whose User-Agent the host sets.",
+    "kimi_limits": [
+      "The bundled skill was not reimported or rendered by a native Kimi runtime."
+    ],
+    "yandex_native_import": "not repeated for v1.0.4; v1.0.1 was imported into one personal catalog"
+  }
+}
