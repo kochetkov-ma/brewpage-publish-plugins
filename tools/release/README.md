@@ -30,6 +30,7 @@ One release file per release, `releases/<distribution version>.json`:
 | `upstream_commit` | Full commit hash in `kochetkov-ma/claude-brewcode`; source of `skills/brewpage-publish` |
 | `upstream_label` | Upstream version as written in receipts, e.g. `claude-brewcode v6.12.11` |
 | `versions` | New version of each host package; every one must differ from the baseline |
+| `catalog_versions` | Optional since 1.0.8: User-Agent version of the code-host catalog copies `gitverse` (`skills/brewpage-publish/`) and `sourcecraft` (`.sourcecraft/skills/brewpage-publish/upstream/`); when present, both folders are vendored, checked and listed in `PROVENANCE.json` |
 | `tools` | Exact Python, zlib, Node and npm versions; the scripts refuse to run with others |
 | `notes` | Release wording that goes into the receipts and manifests |
 
@@ -81,8 +82,11 @@ distribution version.
 `python3 tools/release/release.py outputs --config tools/release/releases/X.json`
 prints the exact list. In short:
 
-- the seven vendored files in each of the seven package folders (upstream
-  bytes; host packages differ only in the User-Agent value)
+- the seven vendored files in each of the seven package folders, plus the two
+  code-host catalog folders when `catalog_versions` is set (upstream bytes;
+  host packages differ only in the User-Agent value). The SourceCraft
+  `SKILL.md` above its `upstream/` is hand-written; `build` checks its
+  frontmatter, that every `{{ input }}` is declared, and its User-Agent
 - the new archive of every package, `common/brewpage-publish.zip` and the
   DeepSeek npm tarball
 - `common/manifest.json`, `qwen/manifest.json`, `mistral/manifest.json`,

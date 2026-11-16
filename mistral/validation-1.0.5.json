@@ -1,0 +1,31 @@
+{
+  "version": "1.0.5",
+  "user_agent": "brewpage-mistral-vibe/1.0.5 (+https://brewpage.app)",
+  "upstream_commit": "5da825f1d535d9658f0de0893529c6ce06a613a5",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "brewpage-vibe-1.0.5.zip",
+  "sha256": "edd5216d29b44a4a5f252044b47663f75ecbf8adb098d926dc2e95bcafd9c387",
+  "baseline_artifact": "brewpage-vibe-1.0.4.zip",
+  "baseline_sha256": "af728f8649b32574350f135eb4971e31ddf92acb24bff1d9f574f0f1a10be773",
+  "changed_files": [
+    "brewpage/README.md",
+    "brewpage/plugin.json",
+    "brewpage/skills/brewpage-publish/upstream/README.md",
+    "brewpage/skills/brewpage-publish/upstream/SKILL.md",
+    "brewpage/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh"
+  ],
+  "file_count": 13,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 7,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "run.py --check-isolation": "pass in a temporary VIBE_HOME (0700 state, 0600 history)"
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "limits": [
+    "Local package checks only; native host import and model-driven publishing were not repeated."
+  ],
+  "change": "Publishing skill synced to upstream 5da825f1 (claude-brewcode v6.12.12). The skill itself is unchanged; the Qwen Code and DeepSeek Harness packages pin the local MCP server brewpage-mcp 2.0.0 (one tool per job; the older tool names still answer), the other packages use the remote server, which already runs 2.0.0. User-Agent version moved to 1.0.5"
+}

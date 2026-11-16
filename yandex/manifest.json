@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "name": "brewpage-publish",
-  "package_version": "1.0.5",
+  "package_version": "1.0.6",
   "source": {
     "repository": "https://github.com/kochetkov-ma/claude-brewcode",
     "commit": "5da825f1d535d9658f0de0893529c6ce06a613a5",
@@ -11,8 +11,8 @@
   },
   "artifact": {
     "folder": "brewpage-publish",
-    "zip": "yandex-brewpage-publish-v1.0.5.zip",
-    "sha256": "4df99f85f4cce9b5cd6cc3de82dd8a8d0cf4721c1a2161fe8deb8665f05a2fd8",
+    "zip": "yandex-brewpage-publish-v1.0.6.zip",
+    "sha256": "d07b1d3e2a0c7dcd9ab2247e114027fcde69576eb34c02066c74537189e8b9c7",
     "layout": "one top-level folder; one active SKILL.md; eight files",
     "same_bytes_as_native_imported_archive": false
   },
@@ -36,17 +36,17 @@
     {
       "original_path": "README.md",
       "archive_path": "brewpage-publish/upstream/README.md",
-      "sha256": "6ec13143c59c9f303b1624e8b4ee3da081d7d1772654d3a303420b691e546b0a"
+      "sha256": "a272bf9d187227c7654285d1bdd3871e08f88bfc6cd6e8cda4958aaa4c8b06b1"
     },
     {
       "original_path": "SKILL.md",
       "archive_path": "brewpage-publish/upstream/SKILL.md.source",
-      "sha256": "f05e7c8562e97cdb323031a5225574976a2998bf5184ae6072a2e7b64102c513"
+      "sha256": "bf015b79735a8b8ebc3b311ddeedbb6ec5d4484e72e47de89f82f106ea0f04ab"
     },
     {
       "original_path": "scripts/brewpage-lib.sh",
       "archive_path": "brewpage-publish/upstream/scripts/brewpage-lib.sh",
-      "sha256": "eaae508b4cdc9a4a59523a08076d815a194faf696390737f1bfa68dca2f5f243"
+      "sha256": "9804bb85a2443f04b611933a0a5d3275e78d35d049daf50ab04249dbb3cde1c6"
     },
     {
       "original_path": "scripts/brewpage-run.sh",
@@ -69,7 +69,7 @@
     "archive_roundtrip_files": 8,
     "active_manifests": 1,
     "upstream_hashes_match": 7,
-    "native_import": "not repeated for v1.0.5; v1.0.1 was imported into one personal catalog",
+    "native_import": "not repeated for v1.0.6; v1.0.1 was imported into one personal catalog",
     "native_mcp_discovery_tools": 20,
     "runtime_publish": "not run",
     "public_marketplace_submission": false
@@ -79,6 +79,12 @@
     "https://aistudio.yandex.ru/ru/docs/ai-studio/pricing"
   ],
   "historical_artifacts": [
+    {
+      "zip": "yandex-brewpage-publish-v1.0.5.zip",
+      "sha256": "4df99f85f4cce9b5cd6cc3de82dd8a8d0cf4721c1a2161fe8deb8665f05a2fd8",
+      "source_commit": "5da825f1d535d9658f0de0893529c6ce06a613a5",
+      "same_bytes_as_native_imported_archive": false
+    },
     {
       "zip": "yandex-brewpage-publish-v1.0.4.zip",
       "sha256": "19994ff6f30a6b513ffcae68fba17b7caffea01514116d7208af327a5aed47fd",

@@ -35,6 +35,13 @@ VENDORED = {
     'qwen': ('qwen/skills/brewpage-publish/upstream', {}),
     'deepseek': ('deepseek/skills/brewpage-publish/upstream', {}),
 }
+# Code-host catalog copies at the repository root; a release opts in with catalog_versions.
+CATALOGS = {
+    'gitverse': ('skills/brewpage-publish', {}),
+    'sourcecraft': ('.sourcecraft/skills/brewpage-publish/upstream', {'SKILL.md': 'SKILL.md.source'}),
+}
+CATALOG_ROOTS = ('.sourcecraft', 'skills')
+SOURCECRAFT_SKILL = '.sourcecraft/skills/brewpage-publish/SKILL.md'
 VERSION_FILES = {
     'qwen': 'qwen/plugin.json',
     'deepseek': 'deepseek/package.json',
@@ -71,7 +78,21 @@ def read_config(path):
         fail('upstream_commit must be a full 40-character commit hash')
     if sorted(cfg['versions']) != sorted(HOSTS):
         fail('versions must list exactly: ' + ', '.join(HOSTS))
+    if 'catalog_versions' in cfg and sorted(cfg['catalog_versions']) != sorted(CATALOGS):
+        fail('catalog_versions must list exactly: ' + ', '.join(CATALOGS))
     return cfg
+
+
+def catalogs(cfg):
+    return {key: CATALOGS[key] for key in cfg.get('catalog_versions', {})}
+
+
+def vendored_map(cfg):
+    return {**VENDORED, **catalogs(cfg)}
+
+
+def dirs(cfg):
+    return DIRS + (CATALOG_ROOTS if catalogs(cfg) else ())
 
 
 def check_tools(cfg):
@@ -87,7 +108,7 @@ def check_tools(cfg):
 
 
 def user_agent(cfg, key):
-    return 'brewpage-' + key + '/' + cfg['versions'][key] + ' (+https://brewpage.app)'
+    return 'brewpage-' + key + '/' + {**cfg['versions'], **cfg.get('catalog_versions', {})}[key] + ' (+https://brewpage.app)'
 
 
 def archives(versions):
@@ -165,7 +186,7 @@ def swapped(data, token, agent):
 
 
 def vendored_files(cfg, files, token):
-    for key, (directory, rename) in VENDORED.items():
+    for key, (directory, rename) in vendored_map(cfg).items():
         agent = None if key == 'original-skill' else user_agent(cfg, key)
         for name in SEVEN:
             yield key, name, directory + '/' + rename.get(name, name), swapped(files[name], token, agent)
@@ -210,6 +231,33 @@ def body_of(text):
     return text[text.index('\n---\n', 4) + 4:]
 
 
+def check_sourcecraft(text, agent):
+    """SourceCraft SKILL.md: name, quoted description, metadata.title, typed inputs, every {{ input }} declared."""
+    if not text.startswith('---\n'):
+        fail('SourceCraft SKILL.md has no frontmatter')
+    head_lines = text[4:text.index('\n---\n', 4)].split('\n')
+    if head_lines[0] != 'name: brewpage-publish' or not re.fullmatch(r'description: "[^"]+"', head_lines[1]) or head_lines[2] != 'metadata:':
+        fail('SourceCraft frontmatter must start with name: brewpage-publish, a quoted description and metadata:')
+    if not any(re.fullmatch(r'  title: \S.*', line) for line in head_lines):
+        fail('SourceCraft metadata.title is missing')
+    declared, start = {}, head_lines.index('  inputs:')
+    for line in head_lines[start + 1:]:
+        if not line.startswith('    '):
+            break
+        if re.fullmatch(r'    [a-z_]+:', line):
+            current = line.strip()[:-1]
+            declared[current] = {}
+        elif re.fullmatch(r'      type: .*', line):
+            declared[current]['type'] = line.split(': ', 1)[1]
+    if not declared or any(value.get('type') not in ('string', 'bool', 'choice') for value in declared.values()):
+        fail('SourceCraft inputs need an explicit type of string, bool or choice')
+    used = set(re.findall(r'\{\{ ([a-z_]+) \}\}', body_of(text)))
+    if used - set(declared) or not used:
+        fail('SourceCraft body uses undeclared inputs: ' + ', '.join(sorted(used - set(declared))))
+    if agent not in text:
+        fail('SourceCraft SKILL.md does not send User-Agent ' + agent)
+
+
 def vendor(args):
     cfg = read_config(args.config)
     check_tools(cfg)
@@ -217,11 +265,15 @@ def vendor(args):
     print('upstream User-Agent: ' + token)
     for key, name, relative, data in vendored_files(cfg, files, token):
         target = args.repo / relative
-        if not target.is_file():
+        if key in CATALOGS:
+            target.parent.mkdir(parents=True, exist_ok=True)
+        elif not target.is_file():
             fail('vendored file is missing: ' + relative)
-        differs = target.read_bytes() != data
+        differs = not target.is_file() or target.read_bytes() != data
         if differs:
             target.write_bytes(data)
+            if key in CATALOGS and name.startswith('scripts/'):
+                target.chmod(0o755)
         print(('WROTE ' if differs else 'SAME  ') + sha(data) + '  ' + relative)
 
 
@@ -290,9 +342,9 @@ def build(args):
     for key, name, relative, data in vendored_files(cfg, files, token):
         if (repo / relative).read_bytes() != data:
             fail('vendored bytes differ from raw GitHub + User-Agent swap: ' + key + ' ' + name)
-    print('SOURCE 7 files x 7 packages equal raw GitHub ' + commit + ' (User-Agent swap only); upstream UA ' + token)
+    print('SOURCE 7 files x ' + str(len(vendored_map(cfg))) + ' packages equal raw GitHub ' + commit + ' (User-Agent swap only); upstream UA ' + token)
 
-    for directory in DIRS:
+    for directory in dirs(cfg):
         for path in sorted((repo / directory).rglob('*')):
             if not path.is_file():
                 continue
@@ -482,10 +534,20 @@ def build(args):
                                          'same_bytes_as_native_imported_archive': old['artifact']['same_bytes_as_native_imported_archive']}] + old['historical_artifacts']
     dump('yandex/manifest.json', manifest)
 
+    # Code-host catalogs: GitVerse reads the seven files as they are, SourceCraft its own SKILL.md.
+    for key, (directory, rename) in catalogs(cfg).items():
+        if tree(directory) != sorted(rename.get(name, name) for name in SEVEN):
+            fail(key + ' file set changed: ' + directory)
+    if 'sourcecraft' in catalogs(cfg):
+        if tree('.sourcecraft') != sorted(['skills/brewpage-publish/SKILL.md'] + ['skills/brewpage-publish/upstream/' + name for name in tree(CATALOGS['sourcecraft'][0])]):
+            fail('stray files under .sourcecraft')
+        check_sourcecraft((repo / SOURCECRAFT_SKILL).read_text(encoding='utf-8'), user_agent(cfg, 'sourcecraft'))
+        print('SOURCECRAFT ' + SOURCECRAFT_SKILL + ': frontmatter, inputs and User-Agent pass')
+
     # PROVENANCE.json and SHASUMS256.txt: every file of the six folders, then the release assets.
     prov = json.loads(head('PROVENANCE.json'))
     old_inventory = prov['source_inventory_sha256']
-    paths = sorted((directory + '/' + name for directory in DIRS for name in tree(directory)), key=component)
+    paths = sorted((directory + '/' + name for directory in dirs(cfg) for name in tree(directory)), key=component)
     prov['upstream_commit'] = commit
     prov['distribution_version'] = cfg['distribution_version']
     prov['files'] = [{'path': path, 'sha256': fsha(path)} for path in paths]
@@ -501,7 +563,7 @@ def build(args):
                     ('kimi/refresh-verification-' + versions['kimi'] + '.json', 'kimi-refresh-verification-' + versions['kimi'] + '.json'),
                     ('mistral/validation.json', 'mistral-vibe-validation-' + versions['mistral-vibe'] + '.json')]
     prov['verification_assets'] = [{'path': path, 'name': name, 'sha256': fsha(path)} for path, name in verification]
-    prov['user_agents'] = {**agents, 'original-skill': token}
+    prov['user_agents'] = {**agents, **{key: user_agent(cfg, key) for key in catalogs(cfg)}, 'original-skill': token}
     dump('PROVENANCE.json', prov)
     lines = [row['sha256'] + '  ' + row['name'] for row in prov['release_assets'] + prov['verification_assets']]
     emit('SHASUMS256.txt', ('\n'.join(lines) + '\n').encode())
@@ -512,7 +574,7 @@ def build(args):
 
 def list_outputs(args):
     cfg = read_config(args.config)
-    vendored = [directory + '/' + rename.get(name, name) for directory, rename in VENDORED.values() for name in SEVEN]
+    vendored = [directory + '/' + rename.get(name, name) for directory, rename in vendored_map(cfg).values() for name in SEVEN]
     print('\n'.join(sorted(outputs(cfg, previous_versions(cfg, args.git or args.repo)) + vendored)))
 
 
@@ -523,10 +585,18 @@ def reset(args):
         fail('reset works on an exported tree outside git and needs --git for the baseline')
     for relative in outputs(cfg, previous_versions(cfg, args.git)):
         (args.repo / relative).unlink()
-    for directory, rename in VENDORED.values():
+    for key, (directory, rename) in vendored_map(cfg).items():
         for name in SEVEN:
             relative = directory + '/' + rename.get(name, name)
-            (args.repo / relative).write_bytes(show(args.git, cfg['baseline'], relative))
+            try:
+                data = show(args.git, cfg['baseline'], relative)
+            except subprocess.CalledProcessError:
+                if key not in CATALOGS:
+                    raise
+                # Catalog copy new since the baseline: vendor writes it again.
+                (args.repo / relative).unlink()
+                continue
+            (args.repo / relative).write_bytes(data)
     print('RESET generated files removed, vendored files at ' + cfg['baseline'])
 
 
@@ -534,7 +604,7 @@ def assets(args):
     """Check PROVENANCE.json against a git ref and write that ref's release assets into a new directory."""
     source, ref = args.git or args.repo, args.ref
     prov = json.loads(show(source, ref, 'PROVENANCE.json'))
-    tracked = [path for path in git(source, 'ls-tree', '-r', '--name-only', ref, *DIRS).decode().split('\n') if path]
+    tracked = [path for path in git(source, 'ls-tree', '-r', '--name-only', ref, *DIRS, *CATALOG_ROOTS).decode().split('\n') if path]
     listed = [row['path'] for row in prov['files']]
     bad = [row['path'] for row in prov['files'] if sha(show(source, ref, row['path'])) != row['sha256']]
     inventory = sha(''.join(row['sha256'] + '  ' + row['path'] + '\n' for row in prov['files']).encode())
