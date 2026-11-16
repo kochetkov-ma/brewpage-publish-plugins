@@ -27,7 +27,7 @@ personal data to the `public` namespace.
 |---------|------|
 | HTML document, Markdown, plain text, code | `publish_html` (`format`: `html`, `markdown`, or omit to auto-detect) |
 | A file reachable by URL | `publish_file` |
-| A built static site (folder with `index.html`), or one HTML entry plus assets | `publish_site` |
+| A built static site (folder with `index.html`), or one HTML entry plus assets | `publish_html` with `files` instead of `content` |
 | Structured data | `publish_json` or `publish_kv` |
 | Current size and TTL limits | `get_limits` |
 
@@ -51,8 +51,8 @@ Pass the exact content, never a summary of it.
 ## After publishing
 
 Give the user the returned link and the `MANAGE LINK` (`manageUrl`; private: anyone
-who has it can edit or delete the page). Keep the owner token for `update_html`,
-`republish_site` and `delete_resource`, and show it when the user asks or when you
+who has it can edit or delete the page). Keep the owner token for `update_html`
+(a page or every file of a site), `set_publication` and `delete_resource`, and show it when the user asks or when you
 cannot keep it. Never post either publicly (public page, repo, shared channel).
 
 ## Pages that save data
@@ -60,7 +60,7 @@ cannot keep it. Never post either publicly (public page, repo, shared channel).
 A published HTML page or site can save what its visitors enter (game progress, form
 answers, guestbook messages, votes): Page data. Call `get_guide` before writing such
 a page, load `https://brewpage.app/js/state.js` in it and publish with `state` on
-`publish_html` or `publish_site` (`update_html` and `republish_site` change it).
+`publish_html` (`update_html` changes it).
 `get_page_data`, `set_page_data`, `configure_page_data` and `delete_page_data` read,
 write, configure and delete entries; they take the owner token, or the management
 link as `manageUrl`. The author also reads entries in the Data tab of the management
@@ -69,4 +69,4 @@ link.
 ## Fallback
 
 If the remote `brewpage_brewpage` server is unreachable, the user can enable the
-`brewpage-local` server (runs `npx -y brewpage-mcp`, needs Node.js 20+) in `/mcp`.
+`brewpage-local` server (runs `npx -y brewpage-mcp@2.0.0`, needs Node.js 20+) in `/mcp`.
