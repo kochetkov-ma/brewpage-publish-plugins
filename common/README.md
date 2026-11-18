@@ -5,7 +5,7 @@
 
 Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-publish-plugins#readme) for [BrewPage](https://brewpage.app).
 
-The 1.1.0 distribution preserves all eleven MIT-licensed files from [brewpage-publish at `9581676113c40c7516504dada2b581fb761b0fec`](https://github.com/kochetkov-ma/claude-brewcode/tree/9581676113c40c7516504dada2b581fb761b0fec/skills/brewpage-publish) (claude-brewcode v6.13.0), byte for byte.
+The 1.1.0 distribution preserves all eleven MIT-licensed files from [brewpage-publish at `dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c`](https://github.com/kochetkov-ma/claude-brewcode/tree/dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c/skills/brewpage-publish) (claude-brewcode v6.13.0), byte for byte.
 
 Use the `brewpage-publish` folder where a provider accepts a skill directory, or upload [brewpage-publish.zip](brewpage-publish.zip) where it accepts a ZIP. The ZIP opens directly to `SKILL.md`, `README.md`, `LICENSE`, `scripts/` and `references/`. The four recipes cover publishing, Page data, custom domains and ownership. [manifest.json](manifest.json) records source and artifact hashes.
 

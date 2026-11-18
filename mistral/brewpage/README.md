@@ -12,7 +12,7 @@ Vibe Code exposes the bundled skill as `/brewpage:brewpage-publish`. The MCP end
 
 ## Existing skill compatibility
 
-The eleven skill files under `skills/brewpage-publish/upstream/` come from [claude-brewcode v6.13.0 at `9581676113c40c7516504dada2b581fb761b0fec`](https://github.com/kochetkov-ma/claude-brewcode/tree/9581676113c40c7516504dada2b581fb761b0fec/skills/brewpage-publish). Their only change is the runner's User-Agent `brewpage-mistral-vibe/1.1.0 (+https://brewpage.app)`.
+The eleven skill files under `skills/brewpage-publish/upstream/` come from [claude-brewcode v6.13.0 at `dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c`](https://github.com/kochetkov-ma/claude-brewcode/tree/dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c/skills/brewpage-publish). Their only change is the runner's User-Agent `brewpage-mistral-vibe/1.1.0 (+https://brewpage.app)`.
 
 The [native adapter](skills/brewpage-publish/SKILL.md) prefers an exposed BrewPage MCP tool that supports the requested material and options, the selected owner and verified private result delivery. If MCP cannot support the request or its local bytes, the skill can select the authorized `run.py` launcher with the same owner before dispatch. An explicit MCP-only request stays pending without a compatible binding. Vibe's normal approvals apply. A refused write stays on its chosen route. An uncertain result must be reconciled before another write.
 

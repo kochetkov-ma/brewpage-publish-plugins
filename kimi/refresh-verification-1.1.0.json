@@ -1,10 +1,10 @@
 {
   "version": "1.1.0",
   "user_agent": "brewpage-kimi/1.1.0 (+https://brewpage.app)",
-  "upstream_commit": "9581676113c40c7516504dada2b581fb761b0fec",
+  "upstream_commit": "dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c",
   "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
   "artifact": "brewpage-kimi-code-1.1.0.zip",
-  "sha256": "b164e31006b1a4b312ec519fd2092d5c4e3f0e68b5dde13d5e51116896a3c0d1",
+  "sha256": "222d4802f4cb78a1bf9fb5b70415d4a02926b02809adf9053db6af24266ae4bc",
   "baseline_artifact": "brewpage-kimi-code-1.0.6.zip",
   "baseline_sha256": "0fdb3d70a53a3a77e8137f30398fd758b30fa56949671a8d4b508f776468cdc2",
   "changed_files": [

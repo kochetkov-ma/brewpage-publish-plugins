@@ -1,10 +1,10 @@
 {
   "version": "1.1.0",
   "user_agent": "brewpage-qwen/1.1.0 (+https://brewpage.app)",
-  "upstream_commit": "9581676113c40c7516504dada2b581fb761b0fec",
+  "upstream_commit": "dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c",
   "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
   "artifact": "brewpage-qwen-1.1.0.zip",
-  "sha256": "9371d19021e5f02aa840237313083157852414bd01bbc90803d82bdbe4463c79",
+  "sha256": "2498a5c2a11e400106212e26d7dc503994450da61126aa512355fe8458d71faf",
   "baseline_artifact": "brewpage-qwen-1.0.8.zip",
   "baseline_sha256": "94988503c29e125d702d5abfac6fbdeb98ebc352569688b4b2763fb2e23eefb5",
   "changed_files": [
@@ -38,5 +38,5 @@
   "limits": [
     "Candidate checks use extracted packages and synthetic transport. Fresh provider import, model execution and published MCP cutover need separate evidence."
   ],
-  "change": "Publishing skill synced to upstream 95816761 (claude-brewcode v6.13.0). The release adds four recipes for publishing, Page data, custom domains and ownership, and uses the canonical runner for protected receipt recovery and archive intake. Qwen and DeepSeek pin BrewPage MCP 3.0.0. Registry installation requires the coordinated MCP release.. User-Agent version moved to 1.1.0"
+  "change": "Publishing skill synced to upstream dd0bd63b (claude-brewcode v6.13.0). The release adds four recipes for publishing, Page data, custom domains and ownership, and uses the canonical runner for protected receipt recovery and archive intake. Qwen and DeepSeek pin BrewPage MCP 3.0.0. Registry installation requires the coordinated MCP release.. User-Agent version moved to 1.1.0"
 }

@@ -1,11 +1,11 @@
 {
   "upstream_repository": "https://github.com/kochetkov-ma/claude-brewcode",
-  "upstream_commit": "9581676113c40c7516504dada2b581fb761b0fec",
+  "upstream_commit": "dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c",
   "upstream_directory": "skills/brewpage-publish",
   "license": "MIT",
   "distribution_version": "1.1.0",
   "source_inventory_format": "UTF-8, sorted paths, one SHA256 + two spaces + path + LF per file",
-  "source_inventory_sha256": "1a5c4dbf598e766987be9de02028c90b215bc2fac15d300daa3fc634176b56d8",
+  "source_inventory_sha256": "e591fc8d8c558831d93f5b2d4b940d021f748327b5d2dce26fc9d422429d01b8",
   "files": [
     {
       "path": ".sourcecraft/skills/brewpage-publish/SKILL.md",
@@ -21,7 +21,7 @@
     },
     {
       "path": ".sourcecraft/skills/brewpage-publish/upstream/SKILL.md.source",
-      "sha256": "bba33eb31cabc675c9dd2b3fec09bec22e72d2b5e6676c800c48ae64c17364b5"
+      "sha256": "ae2b3ee55322fe04f54ec8cb4f7e36c3c0beb98c92fa631647ff1a21a250fb14"
     },
     {
       "path": ".sourcecraft/skills/brewpage-publish/upstream/references/custom-domain.md",
@@ -33,11 +33,11 @@
     },
     {
       "path": ".sourcecraft/skills/brewpage-publish/upstream/references/page-data.md",
-      "sha256": "4d23ef55318ebeacf307e6a392aa6e6cc45441019e1f8ced446cc240c7f0e470"
+      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
     },
     {
       "path": ".sourcecraft/skills/brewpage-publish/upstream/references/publishing.md",
-      "sha256": "baa71d619e8be82b18bd7f53a9500d4b5d8b381ee32d2579f9df2ba8a7175cad"
+      "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
     },
     {
       "path": ".sourcecraft/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
@@ -57,7 +57,7 @@
     },
     {
       "path": "common/README.md",
-      "sha256": "e8e4d6f2f62c852de22318a5dce57e4532da9c8976328d086c1c261a01443cdc"
+      "sha256": "1b04cb5a1a43f4620a425fcd6654ecb7eb0dc910a5a5a1b2554747de72730611"
     },
     {
       "path": "common/brewpage-publish/LICENSE",
@@ -69,7 +69,7 @@
     },
     {
       "path": "common/brewpage-publish/SKILL.md",
-      "sha256": "6958da8a24e3ef8598c771bb60190a0c231a7c60b5cbe620e6c186b1b83c85bc"
+      "sha256": "3ee6a06084d9f5ccd7a12cd51acd2486cb34fcf737664357aec8aa405545b581"
     },
     {
       "path": "common/brewpage-publish/references/custom-domain.md",
@@ -81,11 +81,11 @@
     },
     {
       "path": "common/brewpage-publish/references/page-data.md",
-      "sha256": "4d23ef55318ebeacf307e6a392aa6e6cc45441019e1f8ced446cc240c7f0e470"
+      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
     },
     {
       "path": "common/brewpage-publish/references/publishing.md",
-      "sha256": "baa71d619e8be82b18bd7f53a9500d4b5d8b381ee32d2579f9df2ba8a7175cad"
+      "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
     },
     {
       "path": "common/brewpage-publish/scripts/brewpage-lib.sh",
@@ -105,11 +105,11 @@
     },
     {
       "path": "common/brewpage-publish.zip",
-      "sha256": "5f7a6034d682d8ae49525fea6cbebc1633954b59a7cf4ba7850e3d16c25fc720"
+      "sha256": "b7f634a6958d759031b45eba5c0aad9ea4b9a15d646e8396a6cc11f9dde1449f"
     },
     {
       "path": "common/manifest.json",
-      "sha256": "d9f23d2c99f2f6038246301a8591ef0a20e7bef4657209bdba75c1b955be5b0d"
+      "sha256": "2786202e0dc2925a2924f2aa6f256b69293fc096bdeafb65d17202aee62ade52"
     },
     {
       "path": "common/mistral-work/LICENSE",
@@ -129,7 +129,7 @@
     },
     {
       "path": "common/mistral-work/upstream/SKILL.md",
-      "sha256": "42f8259648b0540c7cb264c17e1f97887736bd3e9f36ee284d0f0e10d9c123ff"
+      "sha256": "089915c8c58b825ff65df86d0b167a23e3f6ea1d6c521f0dd86cdb5b5f578240"
     },
     {
       "path": "common/mistral-work/upstream/references/custom-domain.md",
@@ -141,11 +141,11 @@
     },
     {
       "path": "common/mistral-work/upstream/references/page-data.md",
-      "sha256": "4d23ef55318ebeacf307e6a392aa6e6cc45441019e1f8ced446cc240c7f0e470"
+      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
     },
     {
       "path": "common/mistral-work/upstream/references/publishing.md",
-      "sha256": "baa71d619e8be82b18bd7f53a9500d4b5d8b381ee32d2579f9df2ba8a7175cad"
+      "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
     },
     {
       "path": "common/mistral-work/upstream/scripts/brewpage-lib.sh",
@@ -189,7 +189,7 @@
     },
     {
       "path": "common/mistral-work-brewpage-publish-v1.1.0.zip",
-      "sha256": "21a74275a64b16b34e8a9434881088e27ef063554c89130d4711a20f27d2babf"
+      "sha256": "f625f0faf2f61e621df1d42a4c230101c07a5f9ae529111d2458760ac0678255"
     },
     {
       "path": "common/mistral-work-brewpage-publish.zip",
@@ -205,7 +205,7 @@
     },
     {
       "path": "deepseek/README.md",
-      "sha256": "7b85c46028ec82f0be42d487e290a5641e69f5c4854173e3a7b8600df30e9005"
+      "sha256": "edb655acb24eb4c879998b393674555cb90fa7d79fedc68c07510f636faac74d"
     },
     {
       "path": "deepseek/cordis.patch.yml",
@@ -217,7 +217,7 @@
     },
     {
       "path": "deepseek/directory-manifest.json",
-      "sha256": "d81e3ab5e9edf332c01b62930f4cfd0686b70af043ccce071a829ce73bb8a9b8"
+      "sha256": "7cab8455a0a043397e868337bf3426fd4e2b27179087b9780c69e53dcd9826a0"
     },
     {
       "path": "deepseek/dsh-brewpage-1.0.0.tgz",
@@ -257,7 +257,7 @@
     },
     {
       "path": "deepseek/dsh-brewpage-1.1.0.tgz",
-      "sha256": "cbc7588c437d8fcf582a2e940c3ae69e97fc03d723cdab3bd17cc28b4a499558"
+      "sha256": "8c8b3c13247581f2eeb453f6b1c9e44d43db7809fa606e0d1ceb095efb1df860"
     },
     {
       "path": "deepseek/metadata-verification.json",
@@ -297,7 +297,7 @@
     },
     {
       "path": "deepseek/refresh-verification-1.1.0.json",
-      "sha256": "95a6f130980a8ab968b1c22ab6fce76b9cb9e2d8245c1f2069f526465d343474"
+      "sha256": "bd13306057d6ff570ebf23d49344ab30ac1e588f40dcee77fc061ca27ad21549"
     },
     {
       "path": "deepseek/skills/brewpage-publish/SKILL.md",
@@ -317,7 +317,7 @@
     },
     {
       "path": "deepseek/skills/brewpage-publish/upstream/SKILL.md",
-      "sha256": "70e978517e1ea54aec59912fa3e2a468bcf5c4f6dea55fd950c3feb2575d707d"
+      "sha256": "524674cae217e970f9fcca2046c5c4c875659ff4dc25a198e33acc03a54920a8"
     },
     {
       "path": "deepseek/skills/brewpage-publish/upstream/references/custom-domain.md",
@@ -329,11 +329,11 @@
     },
     {
       "path": "deepseek/skills/brewpage-publish/upstream/references/page-data.md",
-      "sha256": "4d23ef55318ebeacf307e6a392aa6e6cc45441019e1f8ced446cc240c7f0e470"
+      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
     },
     {
       "path": "deepseek/skills/brewpage-publish/upstream/references/publishing.md",
-      "sha256": "baa71d619e8be82b18bd7f53a9500d4b5d8b381ee32d2579f9df2ba8a7175cad"
+      "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
     },
     {
       "path": "deepseek/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
@@ -369,7 +369,7 @@
     },
     {
       "path": "kimi/README.md",
-      "sha256": "6df552e263c391169c52ac8100a78063f386fa56f7fe2847c622accf5397930c"
+      "sha256": "7f02182f0e4f75f1a6f685acf9d9fd1863f799998a0570b3cd045c7d57256530"
     },
     {
       "path": "kimi/brewpage-kimi-code-1.0.0.zip",
@@ -401,7 +401,7 @@
     },
     {
       "path": "kimi/brewpage-kimi-code-1.1.0.zip",
-      "sha256": "b164e31006b1a4b312ec519fd2092d5c4e3f0e68b5dde13d5e51116896a3c0d1"
+      "sha256": "222d4802f4cb78a1bf9fb5b70415d4a02926b02809adf9053db6af24266ae4bc"
     },
     {
       "path": "kimi/brewpage-publish/kimi.plugin.json",
@@ -417,7 +417,7 @@
     },
     {
       "path": "kimi/brewpage-publish/skills/brewpage-publish/SKILL.md",
-      "sha256": "9ae6f53905abfc78813e56700bca3287feaae484849733efc5c40c746f349d03"
+      "sha256": "792361334d6edf951bea4c227973f2415ad1c71cddec39532dc9cb760c5c1f83"
     },
     {
       "path": "kimi/brewpage-publish/skills/brewpage-publish/references/custom-domain.md",
@@ -429,11 +429,11 @@
     },
     {
       "path": "kimi/brewpage-publish/skills/brewpage-publish/references/page-data.md",
-      "sha256": "4d23ef55318ebeacf307e6a392aa6e6cc45441019e1f8ced446cc240c7f0e470"
+      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
     },
     {
       "path": "kimi/brewpage-publish/skills/brewpage-publish/references/publishing.md",
-      "sha256": "baa71d619e8be82b18bd7f53a9500d4b5d8b381ee32d2579f9df2ba8a7175cad"
+      "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
     },
     {
       "path": "kimi/brewpage-publish/skills/brewpage-publish/scripts/brewpage-lib.sh",
@@ -453,7 +453,7 @@
     },
     {
       "path": "kimi/directory-manifest.json",
-      "sha256": "c687498fd5510f07f9f263b4fbaeb84f4916a83568e8f7527a5c9edf700ad5c0"
+      "sha256": "6db78792a91ad5a1be819abe254b5704762dc5e5de7f90c207d91bd7f5dd4499"
     },
     {
       "path": "kimi/metadata-verification.json",
@@ -481,11 +481,11 @@
     },
     {
       "path": "kimi/refresh-verification-1.1.0.json",
-      "sha256": "cb87d9d6d97338c4be1e1fc440f3364e8993044d5ddf12afaa869eec3c1d84b1"
+      "sha256": "530830a9f6a559a2b1ae308562761e9acf4552e770bff128dc812380e63f0458"
     },
     {
       "path": "kimi/source-hashes.json",
-      "sha256": "a03edac37cbbef000b4490b717470a10ca6d24182ecf24ef233880bc826c8373"
+      "sha256": "740ab229772b6a1c5a72cd592769416e5d414adae70d46d9b06ab9b6eaa43f3d"
     },
     {
       "path": "kimi/verification.json",
@@ -501,7 +501,7 @@
     },
     {
       "path": "mistral/brewpage/README.md",
-      "sha256": "4e6bd1790a1377dbc8a4418a94613b743e3ab11b75223e96c52e8f791075dd5c"
+      "sha256": "16c8f6e9b80d267acc8ac56acbd06fc7b67b729af367d4ca7c9267ed9c376df0"
     },
     {
       "path": "mistral/brewpage/mcp.json",
@@ -529,7 +529,7 @@
     },
     {
       "path": "mistral/brewpage/skills/brewpage-publish/upstream/SKILL.md",
-      "sha256": "d3abd01be6c71b2f06e1fe382dc5668e358c61cb8f6de6fd30ddc1bfa2931a44"
+      "sha256": "f6e7b7c9c8fc8c4b1629567c5676e9540328ca01b929058d0aa17af93ca0a3fe"
     },
     {
       "path": "mistral/brewpage/skills/brewpage-publish/upstream/references/custom-domain.md",
@@ -541,11 +541,11 @@
     },
     {
       "path": "mistral/brewpage/skills/brewpage-publish/upstream/references/page-data.md",
-      "sha256": "4d23ef55318ebeacf307e6a392aa6e6cc45441019e1f8ced446cc240c7f0e470"
+      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
     },
     {
       "path": "mistral/brewpage/skills/brewpage-publish/upstream/references/publishing.md",
-      "sha256": "baa71d619e8be82b18bd7f53a9500d4b5d8b381ee32d2579f9df2ba8a7175cad"
+      "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
     },
     {
       "path": "mistral/brewpage/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
@@ -593,7 +593,7 @@
     },
     {
       "path": "mistral/brewpage-vibe-1.1.0.zip",
-      "sha256": "20758a2bf75849d900892ba9b1ce1c9863dca49e2eb8e1daed526ab4c0262d01"
+      "sha256": "352c85a7c99fef6782ad822122e1c44c4a0edff7a33a6411abc3474077fc52d2"
     },
     {
       "path": "mistral/manifest-1.0.0.json",
@@ -625,7 +625,7 @@
     },
     {
       "path": "mistral/manifest.json",
-      "sha256": "2eae57e33def119825f95e5b9ab74c1390f89af31513667e460543c52dabe5bf"
+      "sha256": "7b324cc0c6f04412fee0b0be82c7df81bd6010778f419660cd17b46fcaa946e9"
     },
     {
       "path": "mistral/validation-1.0.0.json",
@@ -657,7 +657,7 @@
     },
     {
       "path": "mistral/validation.json",
-      "sha256": "271d25bdb01ab7f67e3cddd0c4a782f4516eb617872e7bda3202a055ec025a85"
+      "sha256": "ddb398e7150ad72b9f2fa201b53e6b42ae8004fb0364d5c1bd2d433076f80571"
     },
     {
       "path": "mistral/verify-isolation.py",
@@ -669,7 +669,7 @@
     },
     {
       "path": "qwen/README.md",
-      "sha256": "8992fa14c34db35c5b201970718294df84cd076f65c088dbf623492fb83bde0b"
+      "sha256": "2ca7c8f958786fde1246918fd40c161d72c84ba96286da5e6447c361678e7450"
     },
     {
       "path": "qwen/brewpage-qwen-1.0.1.zip",
@@ -705,7 +705,7 @@
     },
     {
       "path": "qwen/brewpage-qwen-1.1.0.zip",
-      "sha256": "9371d19021e5f02aa840237313083157852414bd01bbc90803d82bdbe4463c79"
+      "sha256": "2498a5c2a11e400106212e26d7dc503994450da61126aa512355fe8458d71faf"
     },
     {
       "path": "qwen/manifest-1.0.1.json",
@@ -741,7 +741,7 @@
     },
     {
       "path": "qwen/manifest.json",
-      "sha256": "eac22ffdc0573a1c74145061228bf6943875804e742656ca5b6aaf273560ec06"
+      "sha256": "84e2456f5687c90e5ae87dfd0db6e92537ce2d84f02f2ef1d767e0e5a5edc1ec"
     },
     {
       "path": "qwen/mcp.json",
@@ -781,7 +781,7 @@
     },
     {
       "path": "qwen/refresh-verification-1.1.0.json",
-      "sha256": "dd19bb8d11071396f65ee7e6aee568375e67efa094a5b9e706ca1cd15105008f"
+      "sha256": "d3482d2917eede830c6d44f17841ee638c7946da4a9263c59f224e638cf474b1"
     },
     {
       "path": "qwen/skills/brewpage-publish/SKILL.md",
@@ -801,7 +801,7 @@
     },
     {
       "path": "qwen/skills/brewpage-publish/upstream/SKILL.md",
-      "sha256": "d1a1f703b4c84d4c46f90ccdcffed9268aede807a348bdabcae8b1168a58fd9d"
+      "sha256": "bd355f8fd7a7475b07a5e6e63bb34246bb48fe6dad5fb074e0f1d230c0dd890f"
     },
     {
       "path": "qwen/skills/brewpage-publish/upstream/references/custom-domain.md",
@@ -813,11 +813,11 @@
     },
     {
       "path": "qwen/skills/brewpage-publish/upstream/references/page-data.md",
-      "sha256": "4d23ef55318ebeacf307e6a392aa6e6cc45441019e1f8ced446cc240c7f0e470"
+      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
     },
     {
       "path": "qwen/skills/brewpage-publish/upstream/references/publishing.md",
-      "sha256": "baa71d619e8be82b18bd7f53a9500d4b5d8b381ee32d2579f9df2ba8a7175cad"
+      "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
     },
     {
       "path": "qwen/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
@@ -857,7 +857,7 @@
     },
     {
       "path": "skills/brewpage-publish/SKILL.md",
-      "sha256": "43427cc69b2823f461ac6b46d86d20a9603f339d91aa408d7eef1cb5acc9dce0"
+      "sha256": "af8d6cc8c9e2e6e9fdf99a79353034060b13d3de6cc73337dd3a755e132c035b"
     },
     {
       "path": "skills/brewpage-publish/references/custom-domain.md",
@@ -869,11 +869,11 @@
     },
     {
       "path": "skills/brewpage-publish/references/page-data.md",
-      "sha256": "4d23ef55318ebeacf307e6a392aa6e6cc45441019e1f8ced446cc240c7f0e470"
+      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
     },
     {
       "path": "skills/brewpage-publish/references/publishing.md",
-      "sha256": "baa71d619e8be82b18bd7f53a9500d4b5d8b381ee32d2579f9df2ba8a7175cad"
+      "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
     },
     {
       "path": "skills/brewpage-publish/scripts/brewpage-lib.sh",
@@ -893,7 +893,7 @@
     },
     {
       "path": "yandex/README.md",
-      "sha256": "edb89ca74379280c6ca47a1b79ccbb406f9d786203bdefc3f8bf9a7df96cf75f"
+      "sha256": "dc1388bf00ceec882820fa7a969ea47333b31d8686946bce07e0050220a3e0d1"
     },
     {
       "path": "yandex/brewpage-publish/SKILL.md",
@@ -909,7 +909,7 @@
     },
     {
       "path": "yandex/brewpage-publish/upstream/SKILL.md.source",
-      "sha256": "fb28fc50657df9cb05ac25477415cd266c6452501660a798cb8e7ae4d9ae91dc"
+      "sha256": "7ffbae6e97e9d47527eda44721cbdd29d40efb05225e434fbc2c3d0c6ffecdfc"
     },
     {
       "path": "yandex/brewpage-publish/upstream/references/custom-domain.md",
@@ -921,11 +921,11 @@
     },
     {
       "path": "yandex/brewpage-publish/upstream/references/page-data.md",
-      "sha256": "4d23ef55318ebeacf307e6a392aa6e6cc45441019e1f8ced446cc240c7f0e470"
+      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
     },
     {
       "path": "yandex/brewpage-publish/upstream/references/publishing.md",
-      "sha256": "baa71d619e8be82b18bd7f53a9500d4b5d8b381ee32d2579f9df2ba8a7175cad"
+      "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
     },
     {
       "path": "yandex/brewpage-publish/upstream/scripts/brewpage-lib.sh",
@@ -945,7 +945,7 @@
     },
     {
       "path": "yandex/manifest.json",
-      "sha256": "b350281f220c07c214d753d93034daeb57d40291beb612f1b2f6b2a4ebcfed96"
+      "sha256": "f3717b08e0d250527f0dfbe243c97a85a103f89bfec9db41237556fb9b3eb688"
     },
     {
       "path": "yandex/yandex-brewpage-publish-v1.0.1.zip",
@@ -973,57 +973,57 @@
     },
     {
       "path": "yandex/yandex-brewpage-publish-v1.1.0.zip",
-      "sha256": "41b8b2ba06b2806686b2e3797a49bb0d6ed0b66b1bb62cb7df73d215efc2c3fd"
+      "sha256": "70e9c7b32e8f6aa2e6cd5d071a662b102119f237cca8253d35839056c22fe564"
     }
   ],
   "release_assets": [
     {
       "path": "qwen/brewpage-qwen-1.1.0.zip",
       "name": "brewpage-qwen-1.1.0.zip",
-      "sha256": "9371d19021e5f02aa840237313083157852414bd01bbc90803d82bdbe4463c79",
-      "bytes": 65771,
+      "sha256": "2498a5c2a11e400106212e26d7dc503994450da61126aa512355fe8458d71faf",
+      "bytes": 66181,
       "archive_files": 18
     },
     {
       "path": "deepseek/dsh-brewpage-1.1.0.tgz",
       "name": "dsh-brewpage-1.1.0.tgz",
-      "sha256": "cbc7588c437d8fcf582a2e940c3ae69e97fc03d723cdab3bd17cc28b4a499558",
-      "bytes": 57582,
+      "sha256": "8c8b3c13247581f2eeb453f6b1c9e44d43db7809fa606e0d1ceb095efb1df860",
+      "bytes": 57947,
       "archive_files": 21
     },
     {
       "path": "mistral/brewpage-vibe-1.1.0.zip",
       "name": "brewpage-vibe-1.1.0.zip",
-      "sha256": "20758a2bf75849d900892ba9b1ce1c9863dca49e2eb8e1daed526ab4c0262d01",
-      "bytes": 60565,
+      "sha256": "352c85a7c99fef6782ad822122e1c44c4a0edff7a33a6411abc3474077fc52d2",
+      "bytes": 60974,
       "archive_files": 17
     },
     {
       "path": "kimi/brewpage-kimi-code-1.1.0.zip",
       "name": "brewpage-kimi-code-1.1.0.zip",
-      "sha256": "b164e31006b1a4b312ec519fd2092d5c4e3f0e68b5dde13d5e51116896a3c0d1",
-      "bytes": 54728,
+      "sha256": "222d4802f4cb78a1bf9fb5b70415d4a02926b02809adf9053db6af24266ae4bc",
+      "bytes": 55135,
       "archive_files": 12
     },
     {
       "path": "common/mistral-work-brewpage-publish-v1.1.0.zip",
       "name": "mistral-work-brewpage-publish-v1.1.0.zip",
-      "sha256": "21a74275a64b16b34e8a9434881088e27ef063554c89130d4711a20f27d2babf",
-      "bytes": 56162,
+      "sha256": "f625f0faf2f61e621df1d42a4c230101c07a5f9ae529111d2458760ac0678255",
+      "bytes": 56569,
       "archive_files": 13
     },
     {
       "path": "yandex/yandex-brewpage-publish-v1.1.0.zip",
       "name": "yandex-brewpage-publish-v1.1.0.zip",
-      "sha256": "41b8b2ba06b2806686b2e3797a49bb0d6ed0b66b1bb62cb7df73d215efc2c3fd",
-      "bytes": 55940,
+      "sha256": "70e9c7b32e8f6aa2e6cd5d071a662b102119f237cca8253d35839056c22fe564",
+      "bytes": 56347,
       "archive_files": 12
     },
     {
       "path": "common/brewpage-publish.zip",
       "name": "brewpage-publish.zip",
-      "sha256": "5f7a6034d682d8ae49525fea6cbebc1633954b59a7cf4ba7850e3d16c25fc720",
-      "bytes": 52969,
+      "sha256": "b7f634a6958d759031b45eba5c0aad9ea4b9a15d646e8396a6cc11f9dde1449f",
+      "bytes": 53376,
       "archive_files": 11
     }
   ],
@@ -1031,7 +1031,7 @@
     "Independent distribution; no official vendor-catalog admission claimed.",
     "Metadata and packaging validation do not prove fresh native installation, model execution or hosted-page rendering.",
     "Yandex adapter was imported into a personal catalog; no public marketplace submission or runtime publishing is claimed.",
-    "Original eleven-file skill is byte-identical to upstream 95816761; host packages deviate only in the User-Agent value."
+    "Original eleven-file skill is byte-identical to upstream dd0bd63b; host packages deviate only in the User-Agent value."
   ],
   "baseline_release": {
     "url": "https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.0.8",
@@ -1042,22 +1042,22 @@
     {
       "path": "qwen/refresh-verification-1.1.0.json",
       "name": "qwen-refresh-verification-1.1.0.json",
-      "sha256": "dd19bb8d11071396f65ee7e6aee568375e67efa094a5b9e706ca1cd15105008f"
+      "sha256": "d3482d2917eede830c6d44f17841ee638c7946da4a9263c59f224e638cf474b1"
     },
     {
       "path": "deepseek/refresh-verification-1.1.0.json",
       "name": "deepseek-refresh-verification-1.1.0.json",
-      "sha256": "95a6f130980a8ab968b1c22ab6fce76b9cb9e2d8245c1f2069f526465d343474"
+      "sha256": "bd13306057d6ff570ebf23d49344ab30ac1e588f40dcee77fc061ca27ad21549"
     },
     {
       "path": "kimi/refresh-verification-1.1.0.json",
       "name": "kimi-refresh-verification-1.1.0.json",
-      "sha256": "cb87d9d6d97338c4be1e1fc440f3364e8993044d5ddf12afaa869eec3c1d84b1"
+      "sha256": "530830a9f6a559a2b1ae308562761e9acf4552e770bff128dc812380e63f0458"
     },
     {
       "path": "mistral/validation.json",
       "name": "mistral-vibe-validation-1.1.0.json",
-      "sha256": "271d25bdb01ab7f67e3cddd0c4a782f4516eb617872e7bda3202a055ec025a85"
+      "sha256": "ddb398e7150ad72b9f2fa201b53e6b42ae8004fb0364d5c1bd2d433076f80571"
     }
   ],
   "user_agents": {
@@ -1082,7 +1082,7 @@
     },
     {
       "path": "SKILL.md",
-      "sha256": "6958da8a24e3ef8598c771bb60190a0c231a7c60b5cbe620e6c186b1b83c85bc"
+      "sha256": "3ee6a06084d9f5ccd7a12cd51acd2486cb34fcf737664357aec8aa405545b581"
     },
     {
       "path": "scripts/brewpage-lib.sh",
@@ -1110,11 +1110,11 @@
     },
     {
       "path": "references/page-data.md",
-      "sha256": "4d23ef55318ebeacf307e6a392aa6e6cc45441019e1f8ced446cc240c7f0e470"
+      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
     },
     {
       "path": "references/publishing.md",
-      "sha256": "baa71d619e8be82b18bd7f53a9500d4b5d8b381ee32d2579f9df2ba8a7175cad"
+      "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
     }
   ]
 }

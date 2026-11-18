@@ -5,7 +5,7 @@
 
 Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-publish-plugins#readme) for [BrewPage](https://brewpage.app).
 
-Version 1.1.0 packages the native `kimi.plugin.json` and eleven skill files from [claude-brewcode v6.13.0](https://github.com/kochetkov-ma/claude-brewcode/tree/9581676113c40c7516504dada2b581fb761b0fec/skills/brewpage-publish), including four recipes. The bundled files differ from that commit only in the User-Agent `brewpage-kimi/1.1.0 (+https://brewpage.app)`. Kimi controls the User-Agent for its connected MCP requests.
+Version 1.1.0 packages the native `kimi.plugin.json` and eleven skill files from [claude-brewcode v6.13.0](https://github.com/kochetkov-ma/claude-brewcode/tree/dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c/skills/brewpage-publish), including four recipes. The bundled files differ from that commit only in the User-Agent `brewpage-kimi/1.1.0 (+https://brewpage.app)`. Kimi controls the User-Agent for its connected MCP requests.
 
 ## Install
 

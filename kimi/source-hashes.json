@@ -1,13 +1,13 @@
 {
   "LICENSE": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84",
   "README.md": "58774e8565acf605a4622653b8e88557db8202348409faf6128371e13d71998f",
-  "SKILL.md": "9ae6f53905abfc78813e56700bca3287feaae484849733efc5c40c746f349d03",
+  "SKILL.md": "792361334d6edf951bea4c227973f2415ad1c71cddec39532dc9cb760c5c1f83",
   "scripts/brewpage-lib.sh": "2d0a03063bf64f31113c48327bb84a04fb00dc667182c582bb1945bb2d9a3dbb",
   "scripts/brewpage-run.sh": "fba93e30aafac42def69b3ecf4b467bc8c40c0a3cde1dd949cd9746bbe4edb57",
   "scripts/history.py": "e54addb5d2d21c525290633ea74b3154bab45bcdaf542802f84f194096a03b94",
   "scripts/publish.mjs": "93457e37a27632e75848b7238860086cfa50eee3066f97d111c7bbf80d8e8fe4",
   "references/custom-domain.md": "cac818abac9021f9b7d4583ccecda240dd4a71d9f74f4753c83fc2abdd80f0ef",
   "references/ownership.md": "489f1860ce7d765ddeeccef4a52d214dcf3446a1cfc9d6c14e85ba2b5b6f451b",
-  "references/page-data.md": "4d23ef55318ebeacf307e6a392aa6e6cc45441019e1f8ced446cc240c7f0e470",
-  "references/publishing.md": "baa71d619e8be82b18bd7f53a9500d4b5d8b381ee32d2579f9df2ba8a7175cad"
+  "references/page-data.md": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a",
+  "references/publishing.md": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
 }

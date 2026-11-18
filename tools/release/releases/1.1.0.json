@@ -1,7 +1,7 @@
 {
   "distribution_version": "1.1.0",
   "baseline": "v1.0.8",
-  "upstream_commit": "9581676113c40c7516504dada2b581fb761b0fec",
+  "upstream_commit": "dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c",
   "upstream_label": "claude-brewcode v6.13.0",
   "skill_layout": "recipes",
   "versions": {

@@ -4,7 +4,7 @@
   "package_version": "1.1.0",
   "source": {
     "repository": "https://github.com/kochetkov-ma/claude-brewcode",
-    "commit": "9581676113c40c7516504dada2b581fb761b0fec",
+    "commit": "dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c",
     "directory": "skills/brewpage-publish",
     "license": "MIT",
     "deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples"
@@ -12,7 +12,7 @@
   "artifact": {
     "folder": "brewpage-publish",
     "zip": "yandex-brewpage-publish-v1.1.0.zip",
-    "sha256": "41b8b2ba06b2806686b2e3797a49bb0d6ed0b66b1bb62cb7df73d215efc2c3fd",
+    "sha256": "70e9c7b32e8f6aa2e6cd5d071a662b102119f237cca8253d35839056c22fe564",
     "layout": "one top-level folder; one active SKILL.md; 12 files",
     "same_bytes_as_native_imported_archive": false
   },
@@ -41,7 +41,7 @@
     {
       "original_path": "SKILL.md",
       "archive_path": "brewpage-publish/upstream/SKILL.md.source",
-      "sha256": "fb28fc50657df9cb05ac25477415cd266c6452501660a798cb8e7ae4d9ae91dc"
+      "sha256": "7ffbae6e97e9d47527eda44721cbdd29d40efb05225e434fbc2c3d0c6ffecdfc"
     },
     {
       "original_path": "scripts/brewpage-lib.sh",
@@ -76,12 +76,12 @@
     {
       "original_path": "references/page-data.md",
       "archive_path": "brewpage-publish/upstream/references/page-data.md",
-      "sha256": "4d23ef55318ebeacf307e6a392aa6e6cc45441019e1f8ced446cc240c7f0e470"
+      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
     },
     {
       "original_path": "references/publishing.md",
       "archive_path": "brewpage-publish/upstream/references/publishing.md",
-      "sha256": "baa71d619e8be82b18bd7f53a9500d4b5d8b381ee32d2579f9df2ba8a7175cad"
+      "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
     }
   ],
   "validation": {
