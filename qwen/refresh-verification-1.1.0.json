@@ -1,0 +1,42 @@
+{
+  "version": "1.1.0",
+  "user_agent": "brewpage-qwen/1.1.0 (+https://brewpage.app)",
+  "upstream_commit": "9581676113c40c7516504dada2b581fb761b0fec",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "brewpage-qwen-1.1.0.zip",
+  "sha256": "9371d19021e5f02aa840237313083157852414bd01bbc90803d82bdbe4463c79",
+  "baseline_artifact": "brewpage-qwen-1.0.8.zip",
+  "baseline_sha256": "94988503c29e125d702d5abfac6fbdeb98ebc352569688b4b2763fb2e23eefb5",
+  "changed_files": [
+    "qwen/README.md",
+    "qwen/mcp.json",
+    "qwen/plugin.json",
+    "qwen/skills/brewpage-publish/SKILL.md",
+    "qwen/skills/brewpage-publish/scripts/brewpage-native.py",
+    "qwen/skills/brewpage-publish/upstream/README.md",
+    "qwen/skills/brewpage-publish/upstream/SKILL.md",
+    "qwen/skills/brewpage-publish/upstream/references/custom-domain.md",
+    "qwen/skills/brewpage-publish/upstream/references/ownership.md",
+    "qwen/skills/brewpage-publish/upstream/references/page-data.md",
+    "qwen/skills/brewpage-publish/upstream/references/publishing.md",
+    "qwen/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
+    "qwen/skills/brewpage-publish/upstream/scripts/brewpage-run.sh",
+    "qwen/skills/brewpage-publish/upstream/scripts/history.py",
+    "qwen/skills/brewpage-publish/upstream/scripts/publish.mjs",
+    "qwen/verify-isolation.py"
+  ],
+  "file_count": 18,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 11,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "verify-isolation.py": "pass; asserts upload -A == brewpage-qwen/1.1.0 (+https://brewpage.app), reader-safe receipt output, explicit private management delivery, protected recovery of unsaved owner proof, and refusal to upload reserved history and recovery files"
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "limits": [
+    "Candidate checks use extracted packages and synthetic transport. Fresh provider import, model execution and published MCP cutover need separate evidence."
+  ],
+  "change": "Publishing skill synced to upstream 95816761 (claude-brewcode v6.13.0). The release adds four recipes for publishing, Page data, custom domains and ownership, and uses the canonical runner for protected receipt recovery and archive intake. Qwen and DeepSeek pin BrewPage MCP 3.0.0. Registry installation requires the coordinated MCP release.. User-Agent version moved to 1.1.0"
+}

@@ -7,9 +7,9 @@ Publish HTML and Markdown pages, files and JSON documents from a Zap and get bac
 an HTTPS link. [BrewPage](https://brewpage.app) needs no signup or API key.
 Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-publish-plugins#readme).
 
-This is the source of the Zapier Platform CLI integration. It is not yet
-registered, pushed or listed in the Zapier App Directory; see
-[Publication](#publication).
+This is the source of the Zapier Platform CLI integration and includes a
+registered-app mapping. Hosted versions and the Zapier App Directory listing
+are not established by local validation; see [Publication](#publication).
 
 ## Actions
 
@@ -29,8 +29,8 @@ There are no triggers or searches.
   heading, and names the download. BrewPage stores it as the file name, so it
   needs at least 4 characters.
 - **Upload File** downloads the Zapier file without BrewPage headers or the
-  owner token, then posts it as multipart. An `.html` or `.md` file becomes a
-  page.
+  owner token, including BrewPage-hosted sources and redirect hops, then posts
+  it as multipart. An `.html` or `.md` file becomes a page.
 - Identical content may return the existing publication (`Reused Existing`
   is true) with its original expiry.
 
@@ -42,7 +42,9 @@ from an earlier publish, or mint one in a free profile at
 [account.brewpage.app](https://account.brewpage.app), to group publications
 under one owner. The connection test reads `GET /api/limits` and, for a token,
 `GET /api/publications?limit=1`; a revoked or expired token fails the test.
-The token is sent only to `brewpage.app` as `X-Owner-Token`.
+The token is sent as `X-Owner-Token` only to the integration's exact HTTPS API
+routes on `brewpage.app`, never to a file download or another port/subdomain.
+An unexpected API redirect fails the request; source-download redirects remain supported.
 
 The returned owner token updates or deletes a publication. It appears in Zap
 history; treat it as a secret and keep it out of shared steps.
@@ -89,22 +91,19 @@ and `zapier-platform validate` on every change to this folder.
 
 ## Publication
 
-Not done yet: these steps need the owner's Zapier account (Google sign-in as
-the BrewPage owner). Run them in this folder:
+Publishing and listing require the owner's Zapier account (Google sign-in as
+the BrewPage owner). Verify this folder's `.zapierapprc` mapping in that account
+before running these commands:
 
 ```sh
 npm ci --ignore-scripts
 npx zapier-platform login --sso
-npx zapier-platform register "BrewPage" \
-  --desc "BrewPage is a free hosting service that publishes HTML pages, Markdown, files and JSON as temporary HTTPS links." \
-  --url https://brewpage.app --audience global --role employee \
-  --category website-app-building --no-subscribe
 npx zapier-platform validate
 npx zapier-platform push
 ```
 
-`register` writes `.zapierapprc` (commit it). Then, in the
-[developer platform](https://developer.zapier.com):
+The existing mapping is already tracked; do not register a duplicate integration.
+Then, in the [developer platform](https://developer.zapier.com):
 
 1. Integration settings: fill the listing texts below, upload the logo, set
    role **Employee or contractor**, intended audience **Public**.

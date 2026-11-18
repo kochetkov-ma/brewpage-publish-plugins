@@ -1,0 +1,44 @@
+{
+  "version": "1.1.0",
+  "user_agent": "brewpage-deepseek/1.1.0 (+https://brewpage.app)",
+  "upstream_commit": "9581676113c40c7516504dada2b581fb761b0fec",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "dsh-brewpage-1.1.0.tgz",
+  "sha256": "cbc7588c437d8fcf582a2e940c3ae69e97fc03d723cdab3bd17cc28b4a499558",
+  "baseline_artifact": "dsh-brewpage-1.0.8.tgz",
+  "baseline_sha256": "1fad2565d16b813518ee414e1fb5a9db021fae174bbd0445812c004bfceb4739",
+  "changed_files": [
+    "README.md",
+    "cordis.patch.yml",
+    "package.json",
+    "skills/brewpage-publish/SKILL.md",
+    "skills/brewpage-publish/scripts/brewpage-native.py",
+    "skills/brewpage-publish/upstream/README.md",
+    "skills/brewpage-publish/upstream/SKILL.md",
+    "skills/brewpage-publish/upstream/references/custom-domain.md",
+    "skills/brewpage-publish/upstream/references/ownership.md",
+    "skills/brewpage-publish/upstream/references/page-data.md",
+    "skills/brewpage-publish/upstream/references/publishing.md",
+    "skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
+    "skills/brewpage-publish/upstream/scripts/brewpage-run.sh",
+    "skills/brewpage-publish/upstream/scripts/history.py",
+    "skills/brewpage-publish/upstream/scripts/publish.mjs",
+    "verify-isolation.py",
+    "verify-native.mjs"
+  ],
+  "file_count": 21,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 11,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "verify-isolation.py": "pass; asserts upload -A == brewpage-deepseek/1.1.0 (+https://brewpage.app), reader-safe receipt output, explicit private management delivery, protected recovery of unsaved owner proof, and refusal to upload reserved history and recovery files",
+    "verify-native.mjs": "The earlier 1.1.0 candidate passed local native skill-registry discovery with @deepseek-ai/dsh@0.2.1-rc.2 and Node 24.15.0. That assessment was not repeated for this rebuilt archive. Registry MCP startup needs the coordinated 3.0.0 release."
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "limits": [
+    "Candidate checks use extracted packages and synthetic transport. Fresh provider import, model execution and published MCP cutover need separate evidence."
+  ],
+  "change": "Publishing skill synced to upstream 95816761 (claude-brewcode v6.13.0). The release adds four recipes for publishing, Page data, custom domains and ownership, and uses the canonical runner for protected receipt recovery and archive intake. Qwen and DeepSeek pin BrewPage MCP 3.0.0. Registry installation requires the coordinated MCP release.. User-Agent version moved to 1.1.0"
+}

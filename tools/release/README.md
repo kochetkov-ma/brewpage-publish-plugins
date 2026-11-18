@@ -29,6 +29,7 @@ One release file per release, `releases/<distribution version>.json`:
 | `baseline` | Tag of the previous release; old manifests, archives and versions are read from it |
 | `upstream_commit` | Full commit hash in `kochetkov-ma/claude-brewcode`; source of `skills/brewpage-publish` |
 | `upstream_label` | Upstream version as written in receipts, e.g. `claude-brewcode v6.12.11` |
+| `skill_layout` | `recipes` packages the four canonical `references/` files plus the existing entry, guide, license and four helpers; `legacy` (the default for historical releases) packages the original seven files |
 | `versions` | New version of each host package; every one must differ from the baseline |
 | `catalog_versions` | Optional since 1.0.8: User-Agent version of the code-host catalog copies `gitverse` (`skills/brewpage-publish/`) and `sourcecraft` (`.sourcecraft/skills/brewpage-publish/upstream/`); when present, both folders are vendored, checked and listed in `PROVENANCE.json` |
 | `tools` | Exact Python, zlib, Node and npm versions; the scripts refuse to run with others |
@@ -43,9 +44,9 @@ Archive bytes depend on the toolchain (zlib output, `zipfile` headers, npm
 tarball layout), so `tools` pins it. 1.0.5 was built with Python 3.14.10,
 zlib 1.2.12, Node 24.15.0 and npm 11.12.1.
 
-The scripts read raw GitHub at `upstream_commit` (seven files) and write only
-local files. `--upstream <clone>` additionally compares those bytes with a
-local claude-brewcode clone.
+The scripts read the release's skill members from raw GitHub at
+`upstream_commit`. `--upstream <clone>` checks the exact local Git tree and
+compares the member bytes against it. Use this option for a `recipes` release.
 
 ## Release sequence
 
@@ -68,7 +69,7 @@ distribution version.
 4. Review `git status` and `git diff`, commit, then prove the commit rebuilds:
 
    ```bash
-   bash tools/release/check.sh tools/release/releases/X.json --ref HEAD
+   bash tools/release/check.sh tools/release/releases/X.json --ref HEAD --upstream ../claude-brewcode
    ```
 
 5. Push, then write the release assets into a new directory:
@@ -82,7 +83,7 @@ distribution version.
 `python3 tools/release/release.py outputs --config tools/release/releases/X.json`
 prints the exact list. In short:
 
-- the seven vendored files in each of the seven package folders, plus the two
+- the configured skill members in each of the seven package folders, plus the two
   code-host catalog folders when `catalog_versions` is set (upstream bytes;
   host packages differ only in the User-Agent value). The SourceCraft
   `SKILL.md` above its `upstream/` is hand-written; `build` checks its
@@ -101,8 +102,8 @@ prints the exact list. In short:
   snapshot of the release commit, written by `assets`
 
 Archive conventions: deflate, byte-sorted entry names, entry date 2026-01-01,
-executable bit from the file mode. The Qwen archive packs the files listed in
-the baseline `qwen/manifest.json`.
+executable bit from the file mode. Qwen, Mistral Vibe and DeepSeek retain their
+baseline host files and take the vendored skill members from the selected layout.
 
 ## Verify
 
@@ -146,7 +147,6 @@ scan, archive CRC and roundtrip, the isolation verifiers
 
 ## Limits
 
-The build covers the release shape of 1.0.5: all six host packages move to a
-new version in one release and take the same upstream commit. A release that
-moves only some packages, or changes which files a package ships, needs a
-change in `release.py` first; the scripts stop instead of guessing.
+All six host packages move to a new version in one release and take the same
+upstream commit. A release that changes host-owned archive members needs an
+explicit update to the member selection in `release.py`.

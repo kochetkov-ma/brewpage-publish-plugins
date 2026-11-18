@@ -2,11 +2,11 @@
   "$schema": "https://antigravity.google/schemas/v1/plugin.json",
   "name": "brewpage",
   "displayName": "BrewPage",
-  "version": "1.0.1",
-  "description": "Publish HTML, Markdown, files and static sites to BrewPage from your agent and get a shareable HTTPS link back. No account or API key.",
+  "version": "1.1.0",
+  "description": "Draft, publish and update BrewPage pages from Antigravity. Share the returned HTTPS link and optionally connect a BrewPage account through a compatible MCP client.",
   "logo": "assets/logo.svg",
   "suggestedPrompts": [
-    "Publish this report as a private BrewPage page and give me the link",
+    "Publish this report as an unlisted BrewPage page and give me the link",
     "Turn the README into a public BrewPage page that search engines can find",
     "Upload the dist/ folder as a BrewPage site for 7 days"
   ],

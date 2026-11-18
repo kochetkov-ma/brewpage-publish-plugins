@@ -6,6 +6,12 @@ import subprocess
 import sys
 
 
+TYPED_COMMANDS = {'preflight', 'publish', 'update'}
+COMMANDS = TYPED_COMMANDS | {'probe', 'limits', 'stage', 'cleanup', 'owner-store', 'owner-recovery', 'owner-pending', 'owner-reconcile', '--check-isolation'}
+FILE_OPTIONS = {'--path', '--password-file', '--owner-token-file', '--exclude-file', '--resolution-file'}
+SWITCHES = {'--anonymous', '--confirmed', '--external-only', '--no-save', '--private-output'}
+
+
 def private_directory(path, exact=False):
     try:
         path.mkdir(mode=0o700)
@@ -25,38 +31,48 @@ def private_directory(path, exact=False):
 def content_path(value):
     path = Path(value)
     if not path.is_absolute():
-        raise ValueError('content and password paths must be absolute')
+        raise ValueError('input and protected file paths must be absolute')
     for component in (*path.parts, *path.resolve().parts):
         component = component.casefold()
         if component == '.claude' or component.startswith('.claude-'):
             raise ValueError('Claude configuration and history paths are forbidden')
 
 
-def main():
-    arguments = sys.argv[1:]
-    if not arguments or arguments[0] not in ('probe', 'limits', 'stage', 'publish', 'cleanup', '--check-isolation'):
-        raise ValueError('expected probe, limits, stage, publish, cleanup or --check-isolation')
-    if arguments[0] == 'probe':
+def check_paths(arguments, state):
+    command = arguments[0]
+    if command == 'probe':
         if len(arguments) != 2:
             raise ValueError('probe requires one absolute path')
         content_path(arguments[1])
-    index = 2 if arguments[0] == 'publish' else 1
-    while index < len(arguments) and arguments[0] != 'probe':
-        argument = arguments[index]
-        if argument in ('--ns', '--ttl', '--entry', '--delivery-mode', '--password-file', '--text', '--run', '--path', '--review-sha256'):
-            if index + 1 >= len(arguments):
-                raise ValueError('missing path value')
-            if argument in ('--path', '--password-file') and arguments[index + 1]:
-                content_path(arguments[index + 1])
-            index += 2
-        else:
+        return
+    recovery = state / '.claude/brewpage-recovery.json'
+    index = 2 if command in TYPED_COMMANDS else 1
+    while index + 1 < len(arguments):
+        flag, value = arguments[index:index + 2]
+        if flag in SWITCHES:
             index += 1
+            continue
+        if flag in FILE_OPTIONS and value:
+            if command == 'owner-store' and flag == '--owner-token-file' and value == str(recovery):
+                if recovery.resolve(strict=True) != recovery:
+                    raise ValueError('native recovery receipt must be the fixed private file')
+            else:
+                content_path(value)
+        index += 2
+
+
+def main():
+    arguments = sys.argv[1:]
+    if not arguments or arguments[0] not in COMMANDS:
+        raise ValueError('unsupported BrewPage runner command')
     home = Path(os.environ.get('VIBE_HOME', str(Path.home() / '.vibe')))
     if not home.is_absolute():
         raise ValueError('VIBE_HOME must be absolute')
     content_path(str(home))
     private_directory(home)
+    home = home.resolve()
     state = home / 'brewpage-publish-state'
+    check_paths(arguments, state)
     private_directory(state, exact=True)
     temporary = state / 'tmp'
     private_directory(temporary, exact=True)
@@ -78,6 +94,9 @@ def main():
 if __name__ == '__main__':
     try:
         sys.exit(main())
-    except (OSError, ValueError) as error:
+    except ValueError as error:
         print('FAILED: ' + str(error), file=sys.stderr)
+        sys.exit(1)
+    except (OSError, RuntimeError):
+        print('FAILED: native publishing state or input path is unsafe', file=sys.stderr)
         sys.exit(1)

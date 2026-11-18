@@ -4,7 +4,7 @@
     "brewpage": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "brewpage-mcp@2.1.0"]
+      "args": ["-y", "brewpage-mcp@3.0.0"]
     }
   }
 }

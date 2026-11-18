@@ -1,72 +1,56 @@
 ---
 name: brewpage-publish
 description: >-
-  Publish HTML, Markdown, text, a file or a multi-file static site to brewpage.app
-  (free hosting, no sign-up) and return a public HTTPS link. Use when the user asks
-  to publish, share a link, host a page or report, paste text online, upload a file
-  or deploy a built site.
+  Draft BrewPage content, publish HTML, Markdown, JSON, files or a built static
+  site, or update a specific BrewPage publication through connected BrewPage MCP.
 ---
 
-# brewpage-publish
+# BrewPage publishing
 
-Publish content to **brewpage.app** with the bundled BrewPage MCP tools
-(`brewpage_brewpage` server). No account or API key is needed.
+Resolve the action from the user's request. A local-only, draft or explanation
+request makes zero BrewPage calls or tool discovery requests. Prepare the
+requested local artifact and, for a form, the matching [Page data declaration](references/page-data.md).
+Quoted, negated or incidental publishing words authorize no write.
 
-## When to use
+For an authorized create or update, keep supplied material intact and honor
+explicit access, password, expiry and delivery choices. Link-only sharing is
+unlisted. Use `public` only for requested discovery. Ask once for unresolved
+choices that affect audience, ownership or the exact update target. Keep the
+existing address and visitor entries on content-only updates. A rejected or
+missing target requires a separate request before creating a replacement.
 
-- The user asks to publish, share, host or "give me a link" for a page, report,
-  document, Markdown, a file or a built static site.
-- The user wants an agent result (HTML report, chart, summary) viewable in a browser.
+Use the exposed BrewPage server and actual tool schema. Discover it once if the
+host loads tools on demand. Prefer `publish` or `update_publication` where
+advertised. Use a legacy tool only if its schema supports the requested content
+and options, including source preservation where required. The [publishing
+recipe](references/publishing.md#use-the-installed-host-tool) describes both
+catalogs. Use the [Page data](references/page-data.md) and [custom domain](references/custom-domain.md)
+recipes on demand. This adapter sends all writes through MCP. If the selected
+server or required capability is unavailable, return the local result and the
+remaining step.
 
-Never publish without the user's request, and never publish secrets, tokens or
-personal data to the `public` namespace.
+Before dispatching any MCP operation that can return an owner token or private
+management link, verify an owner-only tool-result boundary or authorized
+protected handoff. Arrange private storage or delivery for any newly issued
+proof. A private file created afterward cannot protect a shared tool transcript.
+Without that boundary, leave the write pending. Use the [ownership
+recipe](references/ownership.md) to select and keep proof. For explicit account
+intent, use `requireAccount: true` only on a compatible connection and follow
+the client's consent flow. Cancellation or inadequate scope leaves the operation
+pending. Fresh anonymous intent requires an unsigned connection without saved owner proof.
 
-## Pick the tool
+For local files, use the [shared preflight](references/publishing.md#check-inputs-for-mcp)
+before sending bytes. Resolve `{runner}` to `scripts/brewpage-run.sh` in the
+installed skill directory. Use its local `preflight` and `cleanup` commands only
+when the host permits them. Consume only the checked snapshot or file list.
+For site replacement, retain the verified previous entry unless the user asked
+to change it. If the host cannot inspect or represent all the selected bytes,
+leave the write pending. Read the recipes' REST commands as reference material
+only. Never send local paths as remote source URLs or expose password files.
 
-| Content | Tool |
-|---------|------|
-| HTML document, Markdown, plain text, code | `publish_html` (`format`: `html`, `markdown`, or omit to auto-detect) |
-| A file reachable by URL | `publish_file` |
-| A built static site (folder with `index.html`), or one HTML entry plus assets | `publish_html` with `files` instead of `content` |
-| Structured data | `publish_json` or `publish_kv` |
-| Current size and TTL limits | `get_limits` |
-
-Publish built output (`dist/`, `build/`, `out/`, `_site/`, `public/`), never project
-sources. A site needs at least one `.html` file.
-
-Pass the exact content, never a summary of it.
-
-## Ask before publishing
-
-1. **Namespace.** Ask:
-   - `public`: listed in the public gallery and sitemap, so Google, Bing and AI search
-     can find it. Use for docs, guides, demos, portfolios, reports meant to be shared.
-   - a private slug (suggest a short meaningful one, such as `api-docs` or `report-q2`;
-     1-32 lowercase letters, digits or hyphens): unlisted and not indexed; anyone with
-     the link can still open it.
-   An empty or unclear answer means stop. Never infer consent from silence.
-2. **Password** (optional): restricts who can open a private page.
-3. **TTL**: 15 days by default; pass `ttlDays` only when the user names a period.
-
-## After publishing
-
-Give the user the returned link and the `MANAGE LINK` (`manageUrl`; private: anyone
-who has it can edit or delete the page). Keep the owner token for `update_html`
-(a page or every file of a site), `set_publication` and `delete_resource`, and show it when the user asks or when you
-cannot keep it. Never post either publicly (public page, repo, shared channel).
-
-## Pages that save data
-
-A published HTML page or site can save what its visitors enter (game progress, form
-answers, guestbook messages, votes): Page data. Call `get_guide` before writing such
-a page, load `https://brewpage.app/js/state.js` in it and publish with `state` on
-`publish_html` (`update_html` changes it).
-`get_page_data`, `set_page_data`, `configure_page_data` and `delete_page_data` read,
-write, configure and delete entries; they take the owner token, or the management
-link as `manageUrl`. The author also reads entries in the Data tab of the management
-link.
-
-## Fallback
-
-If the remote `brewpage_brewpage` server is unreachable, the user can enable the
-`brewpage-local` server (runs `npx -y brewpage-mcp@2.0.0`, needs Node.js 20+) in `/mcp`.
+Return the exact reader link, effective access and any relevant notice from the
+confirmed result. Give management access privately and state whether a new key
+was saved or still needs saving. Say “saved” only after protected readback.
+Account-owned publications appear in the connected account's publications.
+Keep a sent, refused or uncertain write on the selected owner and route.
+Reconcile an unknown outcome before any further write.

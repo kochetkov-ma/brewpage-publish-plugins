@@ -20,9 +20,10 @@ const part = (body) => {
 };
 
 const source = (path, headers) => {
+  const url = new URL(path, SOURCE);
   const seen = [];
-  h.nock(SOURCE)
-    .get(path)
+  h.nock(url.origin)
+    .get(url.pathname + url.search)
     .reply(function () {
       return [200, PDF, headers];
     })
@@ -165,6 +166,105 @@ test('GIVEN a file WHEN uploading THEN the source is fetched without credentials
         output: row.output,
       },
       `${row.name}: source gets no BrewPage headers, upload is exact`,
+    );
+  }
+});
+
+test('GIVEN an owned connection WHEN downloading a BrewPage source THEN only its subsequent API upload carries the token', async () => {
+  // GIVEN each source shares the API host, uses another BrewPage host, or redirects to an API-shaped path.
+  const rows = [
+    { name: 'publication', url: 'https://brewpage.app/my/source-report.pdf' },
+    { name: 'subdomain', url: 'https://download.brewpage.app/report.pdf' },
+    { name: 'non-default port', url: 'https://brewpage.app:8443/report.pdf' },
+    { name: 'API-shaped source', url: 'https://brewpage.app/api/limits' },
+    {
+      name: 'external redirect to API-shaped source',
+      url: `${SOURCE}/redirect.pdf`,
+      target: 'https://brewpage.app/api/limits',
+    },
+    {
+      name: 'same-origin redirect to external source',
+      url: 'https://brewpage.app/download/report.pdf',
+      target: `${SOURCE}/report.pdf`,
+    },
+  ];
+  const reply = {
+    id: 'Rb7Lm2Qx9Z',
+    namespace: 'my',
+    filename: 'report.pdf',
+    contentType: 'application/pdf',
+    sizeBytes: Buffer.byteLength(PDF),
+    link: 'https://brewpage.app/my/Rb7Lm2Qx9Z',
+    access: 'unlisted',
+    expiresAt: '2026-11-21T10:00:00Z',
+    ownerToken: h.TOKEN,
+  };
+  for (const row of rows) {
+    h.reset();
+    const redirectSeen = [];
+    const redirects = row.target ? [row.url] : [];
+    for (const redirected of redirects) {
+      const url = new URL(redirected);
+      h.nock(url.origin)
+        .get(url.pathname)
+        .reply(302, '', { Location: row.target })
+        .on('request', (req) => {
+          redirectSeen.push({
+            userAgent: req.headers.get('user-agent'),
+            ownerToken: req.headers.get('x-owner-token'),
+          });
+        });
+    }
+    const seen = source(row.target ?? row.url, {
+      'Content-Type': 'application/pdf',
+    });
+    const calls = h.intercept('POST', '/api/files', 201, reply);
+
+    // WHEN the real SDK downloads the source and uploads its exact bytes.
+    const output = await h.appTester(perform, {
+      authData: { ownerToken: h.TOKEN },
+      inputData: { file: row.url, filename: 'report.pdf' },
+    });
+
+    // THEN source and redirect hops stay anonymous while the intended upload retains its owner.
+    assert.deepEqual(
+      {
+        sources: [...redirectSeen, ...seen],
+        calls: calls.map((call) => ({ ...call, body: part(call.body) })),
+        output,
+      },
+      {
+        sources: Array.from({ length: redirects.length + 1 }, () => ({
+          userAgent: 'Zapier',
+          ownerToken: null,
+        })),
+        calls: [
+          {
+            path: '/api/files?ns=my',
+            userAgent: h.USER_AGENT,
+            ownerToken: h.TOKEN,
+            body: {
+              filename: 'report.pdf',
+              contentType: 'application/pdf',
+              data: PDF,
+            },
+          },
+        ],
+        output: {
+          id: reply.id,
+          url: reply.link,
+          filename: reply.filename,
+          content_type: reply.contentType,
+          visibility: 'private',
+          namespace: reply.namespace,
+          expires_at: reply.expiresAt,
+          size_bytes: reply.sizeBytes,
+          owner_token: h.TOKEN,
+          reused_existing: false,
+          notices: '',
+        },
+      },
+      `${row.name}: exact anonymous source hops and authenticated upload`,
     );
   }
 });

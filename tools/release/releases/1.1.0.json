@@ -1,0 +1,38 @@
+{
+  "distribution_version": "1.1.0",
+  "baseline": "v1.0.8",
+  "upstream_commit": "9581676113c40c7516504dada2b581fb761b0fec",
+  "upstream_label": "claude-brewcode v6.13.0",
+  "skill_layout": "recipes",
+  "versions": {
+    "qwen": "1.1.0",
+    "deepseek": "1.1.0",
+    "mistral-vibe": "1.1.0",
+    "kimi": "1.1.0",
+    "yandex": "1.1.0",
+    "mistral-work": "1.1.0"
+  },
+  "catalog_versions": {
+    "gitverse": "1.1.0",
+    "sourcecraft": "1.1.0"
+  },
+  "tools": {
+    "python": "3.14.10",
+    "zlib": "1.2.12",
+    "node": "24.15.0",
+    "npm": "11.12.1"
+  },
+  "notes": {
+    "change": "The release adds four recipes for publishing, Page data, custom domains and ownership, and uses the canonical runner for protected receipt recovery and archive intake. Qwen and DeepSeek pin BrewPage MCP 3.0.0. Registry installation requires the coordinated MCP release.",
+    "limit": "Candidate checks use extracted packages and synthetic transport. Fresh provider import, model execution and published MCP cutover need separate evidence.",
+    "isolation_asserts": "reader-safe receipt output, explicit private management delivery, protected recovery of unsaved owner proof, and refusal to upload reserved history and recovery files",
+    "deepseek_verify_native": "The earlier 1.1.0 candidate passed local native skill-registry discovery with @deepseek-ai/dsh@0.2.1-rc.2 and Node 24.15.0. That assessment was not repeated for this rebuilt archive. Registry MCP startup needs the coordinated 3.0.0 release.",
+    "mistral_work_adaptation": "The archive includes four new upstream recipes. The active instruction keeps publishing within the connected MCP tools and requires protected result delivery.",
+    "kimi_tests": {},
+    "kimi_note": "Kimi uses the connected BrewPage MCP tools. The host sets the MCP User-Agent.",
+    "kimi_limits": [
+      "Native Kimi import and execution of this candidate need separate evidence."
+    ],
+    "yandex_native_import": "pending native import of the 1.1.0 archive; v1.0.1 was imported into one personal catalog"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "version": "1.1.0",
+  "user_agent": "brewpage-kimi/1.1.0 (+https://brewpage.app)",
+  "upstream_commit": "9581676113c40c7516504dada2b581fb761b0fec",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "brewpage-kimi-code-1.1.0.zip",
+  "sha256": "b164e31006b1a4b312ec519fd2092d5c4e3f0e68b5dde13d5e51116896a3c0d1",
+  "baseline_artifact": "brewpage-kimi-code-1.0.6.zip",
+  "baseline_sha256": "0fdb3d70a53a3a77e8137f30398fd758b30fa56949671a8d4b508f776468cdc2",
+  "changed_files": [
+    "kimi.plugin.json",
+    "skills/brewpage-publish/README.md",
+    "skills/brewpage-publish/SKILL.md",
+    "skills/brewpage-publish/references/custom-domain.md",
+    "skills/brewpage-publish/references/ownership.md",
+    "skills/brewpage-publish/references/page-data.md",
+    "skills/brewpage-publish/references/publishing.md",
+    "skills/brewpage-publish/scripts/brewpage-lib.sh",
+    "skills/brewpage-publish/scripts/brewpage-run.sh",
+    "skills/brewpage-publish/scripts/history.py",
+    "skills/brewpage-publish/scripts/publish.mjs"
+  ],
+  "file_count": 12,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 11,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass"
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "note": "Kimi uses the connected BrewPage MCP tools. The host sets the MCP User-Agent.",
+  "limits": [
+    "Candidate checks use extracted packages and synthetic transport. Fresh provider import, model execution and published MCP cutover need separate evidence.",
+    "Native Kimi import and execution of this candidate need separate evidence."
+  ]
+}

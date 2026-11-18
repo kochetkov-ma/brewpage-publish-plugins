@@ -5,13 +5,13 @@
     "email": "info@brewpage.app"
   },
   "metadata": {
-    "description": "BrewPage publishing plugin: brewpage-publish skill and remote MCP server"
+    "description": "BrewPage agent plugin for local drafts, publishing and updates"
   },
   "plugins": [
     {
       "name": "brewpage",
       "source": "./agent-plugin",
-      "description": "Publish HTML, Markdown, files and multi-file static sites from an AI coding agent to BrewPage, a hosted service that returns an HTTPS link with no account or API key; via the brewpage-publish skill and the BrewPage remote MCP server."
+      "description": "Draft, publish and update HTML pages, Markdown, files and built sites from your agent with BrewPage. Share the returned HTTPS link. Publishing works without an account, and compatible MCP clients can connect a BrewPage account."
     }
   ]
 }

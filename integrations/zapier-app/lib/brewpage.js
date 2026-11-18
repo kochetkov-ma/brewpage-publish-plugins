@@ -7,6 +7,10 @@ const USER_AGENT = `brewpage-zapier/${version} (+https://brewpage.app)`;
 const PRIVATE_NAMESPACE = 'my';
 const PUBLIC_NAMESPACE = 'public';
 const TOKEN_PATTERN = /^[A-Za-z0-9]{32}$/;
+const API_PATHS = {
+  GET: ['/api/limits', '/api/publications'],
+  POST: ['/api/html', '/api/files', '/api/json'],
+};
 
 const isBrewPageUrl = (url) => {
   const { protocol, hostname } = new URL(url);
@@ -21,9 +25,22 @@ const ownerToken = (bundle) => {
   return typeof token === 'string' ? token.trim() : '';
 };
 
-// Token and User-Agent go only to brewpage.app, never to a file source URL.
+const isBrewPageApiRequest = (request) => {
+  const url = new URL(request.url);
+  const method = (request.method || 'GET').toUpperCase();
+  return (
+    !request.raw &&
+    url.origin === 'https://brewpage.app' &&
+    url.username === '' &&
+    url.password === '' &&
+    (API_PATHS[method] || []).includes(url.pathname)
+  );
+};
+
+// Raw file downloads retain Zapier's credential-free headers, including same-origin sources.
 const addBrewPageHeaders = (request, z, bundle) => {
-  if (!isBrewPageUrl(request.url)) return request;
+  if (!isBrewPageApiRequest(request)) return request;
+  request.redirect = 'error';
   request.headers = {
     ...request.headers,
     'user-agent': USER_AGENT,
@@ -56,7 +73,7 @@ const handleBrewPageErrors = (response, z) => {
   if (
     response.status < 400 ||
     response.skipThrowForStatus ||
-    !isBrewPageUrl(response.request.url)
+    !isBrewPageApiRequest(response.request)
   ) {
     return response;
   }

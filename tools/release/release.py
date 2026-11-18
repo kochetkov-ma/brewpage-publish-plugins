@@ -17,7 +17,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 DIRS = ('common', 'deepseek', 'kimi', 'mistral', 'qwen', 'yandex')
-SEVEN = ['LICENSE', 'README.md', 'SKILL.md', 'scripts/brewpage-lib.sh', 'scripts/brewpage-run.sh', 'scripts/history.py', 'scripts/publish.mjs']
+CORE_MEMBERS = ('LICENSE', 'README.md', 'SKILL.md', 'scripts/brewpage-lib.sh', 'scripts/brewpage-run.sh', 'scripts/history.py', 'scripts/publish.mjs')
+RECIPE_MEMBERS = ('references/custom-domain.md', 'references/ownership.md', 'references/page-data.md', 'references/publishing.md')
+SKILL_LAYOUTS = {'legacy': CORE_MEMBERS, 'recipes': CORE_MEMBERS + RECIPE_MEMBERS}
 DATE = (2026, 1, 1, 0, 0, 0)
 RAW = 'https://raw.githubusercontent.com/kochetkov-ma/claude-brewcode/'
 UPSTREAM_DIRECTORY = 'skills/brewpage-publish'
@@ -25,7 +27,7 @@ RELEASES = 'https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/ta
 DEVIATION = 'User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples'
 SYNTAX = 'bash -n, node --check, Python parse: pass'
 HOSTS = ('qwen', 'deepseek', 'mistral-vibe', 'kimi', 'yandex', 'mistral-work')
-# Package key -> (folder of the seven vendored files, renamed members).
+# Package key -> (vendored skill directory, renamed members).
 VENDORED = {
     'original-skill': ('common/brewpage-publish', {}),
     'mistral-work': ('common/mistral-work/upstream', {}),
@@ -61,7 +63,7 @@ def sha(data):
 
 
 def git(repo, *arguments):
-    return subprocess.run(['git', '-C', str(repo), *arguments], check=True, capture_output=True).stdout
+    return subprocess.run(['git', '--no-replace-objects', '-C', str(repo), *arguments], check=True, capture_output=True).stdout
 
 
 def show(repo, ref, path):
@@ -80,7 +82,13 @@ def read_config(path):
         fail('versions must list exactly: ' + ', '.join(HOSTS))
     if 'catalog_versions' in cfg and sorted(cfg['catalog_versions']) != sorted(CATALOGS):
         fail('catalog_versions must list exactly: ' + ', '.join(CATALOGS))
+    if cfg.get('skill_layout', 'legacy') not in SKILL_LAYOUTS:
+        fail('skill_layout must be legacy or recipes')
     return cfg
+
+
+def skill_members(cfg):
+    return SKILL_LAYOUTS[cfg.get('skill_layout', 'legacy')]
 
 
 def catalogs(cfg):
@@ -163,8 +171,20 @@ def outputs(cfg, previous):
 
 def upstream(cfg, local):
     commit = cfg['upstream_commit']
+    members = skill_members(cfg)
+    if cfg.get('skill_layout') == 'recipes' and not local:
+        fail('recipes layout needs --upstream to verify the pinned source tree')
+    if local:
+        if git(local, 'rev-parse', '--verify', commit + '^{commit}').decode().strip() != commit:
+            fail('upstream_commit does not identify a commit object')
+        prefix = UPSTREAM_DIRECTORY + '/'
+        tracked = git(local, 'ls-tree', '-rz', commit, '--', UPSTREAM_DIRECTORY).decode().split('\0')[:-1]
+        for entry in tracked:
+            if entry.split(' ', 1)[0] not in ('100644', '100755'):
+                fail('upstream skill member is not a regular file: ' + entry.partition('\t')[2])
+        check_members((entry.partition('\t')[2].removeprefix(prefix) for entry in tracked), members, 'upstream skill')
     files = {}
-    for name in SEVEN:
+    for name in members:
         request = urllib.request.Request(RAW + commit + '/' + UPSTREAM_DIRECTORY + '/' + name, headers={'User-Agent': 'vendor-check'})
         with urllib.request.urlopen(request, timeout=30) as response:
             files[name] = response.read()
@@ -185,11 +205,33 @@ def swapped(data, token, agent):
     return result
 
 
-def vendored_files(cfg, files, token):
+def vendored_paths(cfg):
     for key, (directory, rename) in vendored_map(cfg).items():
+        for name in skill_members(cfg):
+            yield key, name, directory + '/' + rename.get(name, name)
+
+
+def vendored_files(cfg, files, token):
+    for key, name, relative in vendored_paths(cfg):
         agent = None if key == 'original-skill' else user_agent(cfg, key)
-        for name in SEVEN:
-            yield key, name, directory + '/' + rename.get(name, name), swapped(files[name], token, agent)
+        yield key, name, relative, swapped(files[name], token, agent)
+
+
+def check_members(actual, expected, label):
+    actual, expected = list(actual), set(expected)
+    if len(actual) != len(set(actual)) or set(actual) != expected:
+        fail(label + ' file set changed: missing=' + repr(sorted(expected - set(actual)))
+             + ', extra=' + repr(sorted(set(actual) - expected)))
+
+
+def package_members(cfg, key, root, baseline):
+    directory, rename = VENDORED[key]
+    prefix = directory.removeprefix(root + '/') + '/'
+    previous = {name for name in baseline if name.startswith(prefix)}
+    current = {prefix + rename.get(name, name) for name in skill_members(cfg)}
+    if current == previous:
+        return baseline
+    return sorted((set(baseline) - previous) | current)
 
 
 def zip_bytes(entries, order=None):
@@ -207,12 +249,19 @@ def zip_bytes(entries, order=None):
 
 def zip_members(data):
     with zipfile.ZipFile(io.BytesIO(data)) as archive:
-        return {name: sha(archive.read(name)) for name in archive.namelist()}
+        names = archive.namelist()
+        if len(set(names)) != len(names):
+            fail('duplicate ZIP member')
+        return {name: sha(archive.read(name)) for name in names}
 
 
 def tar_members(data):
     with tarfile.open(fileobj=io.BytesIO(data), mode='r:gz') as archive:
-        return {member.name: sha(archive.extractfile(member).read()) for member in archive.getmembers() if member.isfile()}
+        members = archive.getmembers()
+        names = {member.name for member in members}
+        if len(names) != len(members) or any(not member.isfile() or not member.name.startswith('package/') for member in members):
+            fail('unexpected or duplicate npm tarball member')
+        return {member.name: sha(archive.extractfile(member).read()) for member in members}
 
 
 def changed(new, old, strip=''):
@@ -263,12 +312,18 @@ def vendor(args):
     check_tools(cfg)
     files, token = upstream(cfg, args.upstream)
     print('upstream User-Agent: ' + token)
-    for key, name, relative, data in vendored_files(cfg, files, token):
+    entries = list(vendored_files(cfg, files, token))
+    for key, name, relative, _ in entries:
         target = args.repo / relative
-        if key in CATALOGS:
-            target.parent.mkdir(parents=True, exist_ok=True)
-        elif not target.is_file():
+        if target.is_symlink() or any((args.repo / parent).is_symlink() for parent in target.relative_to(args.repo).parents):
+            fail('symlink in vendored file path: ' + relative)
+        if target.exists() and not target.is_file():
+            fail('vendored path is not a regular file: ' + relative)
+        if not target.is_file() and key not in CATALOGS and name not in RECIPE_MEMBERS:
             fail('vendored file is missing: ' + relative)
+    for key, name, relative, data in entries:
+        target = args.repo / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
         differs = not target.is_file() or target.read_bytes() != data
         if differs:
             target.write_bytes(data)
@@ -281,6 +336,9 @@ def build(args):
     cfg = read_config(args.config)
     repo, source, baseline = args.repo, args.git or args.repo, cfg['baseline']
     commit, versions, notes = cfg['upstream_commit'], cfg['versions'], cfg['notes']
+    recipe_layout = cfg.get('skill_layout') == 'recipes'
+    members = skill_members(cfg)
+    member_count = len(members)
     check_tools(cfg)
     previous = previous_versions(cfg, source)
     new, old_archives = archives(versions), archives(previous)
@@ -303,7 +361,10 @@ def build(args):
 
     def tree(root):
         base = repo / root
-        names = sorted(path.relative_to(base).as_posix() for path in base.rglob('*') if path.is_file())
+        paths = list(base.rglob('*'))
+        if base.is_symlink() or any(path.is_symlink() for path in paths):
+            fail('symlink under ' + root)
+        names = sorted(path.relative_to(base).as_posix() for path in paths if path.is_file())
         stray = [name for name in names if name.split('/')[-1].startswith('.') or 'node_modules' in name or '__pycache__' in name]
         if stray:
             fail('stray files under ' + root + ': ' + ', '.join(stray))
@@ -339,10 +400,12 @@ def build(args):
 
     # Source proof: every vendored copy equals raw GitHub at the immutable commit plus the User-Agent swap.
     files, token = upstream(cfg, args.upstream)
+    for key, (directory, rename) in vendored_map(cfg).items():
+        check_members(tree(directory), (rename.get(name, name) for name in members), key + ' vendored skill')
     for key, name, relative, data in vendored_files(cfg, files, token):
         if (repo / relative).read_bytes() != data:
             fail('vendored bytes differ from raw GitHub + User-Agent swap: ' + key + ' ' + name)
-    print('SOURCE 7 files x ' + str(len(vendored_map(cfg))) + ' packages equal raw GitHub ' + commit + ' (User-Agent swap only); upstream UA ' + token)
+    print(f'SOURCE {member_count} files x {len(vendored_map(cfg))} packages equal raw GitHub {commit} (User-Agent swap only); upstream UA {token}')
 
     for directory in dirs(cfg):
         for path in sorted((repo / directory).rglob('*')):
@@ -358,8 +421,9 @@ def build(args):
                 fail('credential pattern in ' + path.relative_to(repo).as_posix())
     print('SYNTAX ' + SYNTAX)
     print('SECRETS embedded credential pattern scan: pass')
+    isolation_options = ['--recipes'] if recipe_layout else []
     for package in ('qwen', 'deepseek'):
-        run(package + '/verify-isolation.py', [sys.executable, str(repo / package / 'verify-isolation.py')])
+        run(package + '/verify-isolation.py', [sys.executable, str(repo / package / 'verify-isolation.py'), *isolation_options])
         print('ISOLATION ' + package + '/verify-isolation.py: pass')
     with tempfile.TemporaryDirectory(prefix='vibe-home-') as vibe:
         home = Path(vibe) / 'vibe'
@@ -369,19 +433,30 @@ def build(args):
             fail('run.py --check-isolation left wrong permissions')
     print('MISTRAL run.py --check-isolation: pass (0700 state, 0600 history)')
 
-    qwen_files = [row['path'] for row in json.loads(head('qwen/manifest.json'))['files']]
-    if sorted(name for name in qwen_files if name.startswith('skills/')) != ['skills/' + name for name in tree('qwen/skills')]:
-        fail('qwen file set changed')
+    qwen_files = package_members(cfg, 'qwen', 'qwen', [row['path'] for row in json.loads(head('qwen/manifest.json'))['files']])
+    check_members((name for name in qwen_files if name.startswith('skills/')), ('skills/' + name for name in tree('qwen/skills')), 'qwen')
     build_zip(new['qwen'], 'qwen', qwen_files, 'qwen/')
     build_zip(new['kimi'], 'kimi/brewpage-publish', tree('kimi/brewpage-publish'), '')
     build_zip(new['mistral-vibe'], 'mistral/brewpage', tree('mistral/brewpage'), 'brewpage/')
     build_zip(new['original-skill'], 'common/brewpage-publish', tree('common/brewpage-publish'), '')
     build_zip(new['mistral-work'], 'common/mistral-work', tree('common/mistral-work'), '')
     build_zip(new['yandex'], 'yandex/brewpage-publish', tree('yandex/brewpage-publish'), 'brewpage-publish/')
+    vibe_tests = {'syntax': SYNTAX, 'run.py --check-isolation': 'pass in a temporary VIBE_HOME (0700 state, 0600 history)'}
+    if recipe_layout:
+        with tempfile.TemporaryDirectory(prefix='vibe-package-') as extracted:
+            with zipfile.ZipFile(repo / new['mistral-vibe']) as archive:
+                archive.extractall(extracted)
+            skill = Path(extracted) / 'brewpage/skills/brewpage-publish'
+            run('mistral/verify-isolation.py', [sys.executable, str(repo / 'mistral/verify-isolation.py'), '--skill', str(skill)])
+        vibe_tests['verify-isolation.py'] = 'pass on extracted archive: protected management output and owner recovery'
+        print('MISTRAL emitted archive receipt and recovery: pass')
     tgz = new['deepseek']
     if not (repo / tgz).is_file():
         fail(tgz + ' is missing: run npm pack --ignore-scripts in deepseek/ first')
     tgz_new = tar_members((repo / tgz).read_bytes())
+    tgz_previous = tar_members(head(old_archives['deepseek']))
+    deepseek_files = package_members(cfg, 'deepseek', 'deepseek', [name.removeprefix('package/') for name in tgz_previous])
+    check_members(tgz_new, ('package/' + name for name in deepseek_files), 'deepseek tarball')
     for name, digest in tgz_new.items():
         if digest != fsha('deepseek/' + name[len('package/'):]):
             fail('tarball member differs from tree: ' + name)
@@ -400,7 +475,7 @@ def build(args):
             'changed_files': changed(members, baseline_members, strip),
             'file_count': len(members),
             'archive_roundtrip': 'pass',
-            'synced_upstream_files': 7,
+            'synced_upstream_files': member_count,
             'tests': tests,
             'native_import_repeated': False,
             'mcp_execution_repeated': False,
@@ -418,17 +493,22 @@ def build(args):
     common = json.loads(head('common/manifest.json'))
     common['source']['commit'] = commit
     common['artifact']['sha256'] = fsha(new['original-skill'])
-    common['files'] = rows('common/brewpage-publish', [row['path'] for row in common['files']])
-    common['validation']['source_files_refetched_from_immutable_raw_github'] = 7
-    common['validation']['source_hashes_match_prior_verified_receipt'] = 7
-    common['validation']['zip_roundtrip_files'] = 7
+    common['files'] = rows('common/brewpage-publish', members)
+    common['validation']['source_files_refetched_from_immutable_raw_github'] = member_count
+    common['validation']['zip_roundtrip_files'] = member_count
+    if recipe_layout:
+        common['validation'].pop('source_hashes_match_prior_verified_receipt', None)
+        common['validation']['source_hashes_match_local_git_object'] = member_count
+        common['validation']['compatibility'] = 'Upstream skill metadata preserved; native compatibility requires native verification.'
+    else:
+        common['validation']['source_hashes_match_prior_verified_receipt'] = member_count
     work_body = body_of((repo / 'common/mistral-work/SKILL.md').read_text(encoding='utf-8'))
     work_body_old = sha(body_of(head('common/mistral-work/SKILL.md').decode()).encode())
     work_files = tree('common/mistral-work')
     work_validation = {
         'zip_crc': 'pass',
         'zip_roundtrip_files': len(work_files),
-        'upstream_source_hashes_match': 7,
+        'upstream_source_hashes_match': member_count,
         'portable_body_sha256': sha(work_body.encode()),
         'portable_body_chars': len(work_body),
     }
@@ -475,7 +555,7 @@ def build(args):
 
     # deepseek: receipt for the npm tarball and a hash per file of the folder.
     dump('deepseek/refresh-verification-' + versions['deepseek'] + '.json', {
-        **receipt('deepseek', tgz, old_archives['deepseek'], tgz_new, tar_members(head(old_archives['deepseek'])), 'package/',
+        **receipt('deepseek', tgz, old_archives['deepseek'], tgz_new, tgz_previous, 'package/',
                   {'syntax': SYNTAX, 'verify-isolation.py': isolation('deepseek'), 'verify-native.mjs': notes['deepseek_verify_native']}),
         'limits': [notes['limit']],
         'change': change('deepseek'),
@@ -491,13 +571,12 @@ def build(args):
     vibe_new = zip_members((repo / new['mistral-vibe']).read_bytes())
     dump('mistral/validation.json', {
         **receipt('mistral-vibe', new['mistral-vibe'], old_archives['mistral-vibe'], vibe_new, zip_members(head(old_archives['mistral-vibe'])), '',
-                  {'syntax': SYNTAX, 'run.py --check-isolation': 'pass in a temporary VIBE_HOME (0700 state, 0600 history)'}),
+                  vibe_tests),
         'limits': [notes['limit']],
         'change': change('mistral-vibe'),
     })
-    vibe_files = [row['path'] for row in old['files']]
-    if sorted(vibe_files) != tree('mistral/brewpage'):
-        fail('mistral file set changed')
+    vibe_files = package_members(cfg, 'mistral-vibe', 'mistral/brewpage', [row['path'] for row in old['files']])
+    check_members(tree('mistral/brewpage'), vibe_files, 'mistral vibe')
     manifest = dict(old)
     manifest['version'] = versions['mistral-vibe']
     manifest['upstream'] = {**old['upstream'], 'commit': commit}
@@ -509,7 +588,8 @@ def build(args):
 
     # kimi: source hashes, receipt, then a hash per file of the folder.
     kimi_new = zip_members((repo / new['kimi']).read_bytes())
-    dump('kimi/source-hashes.json', {name: fsha('kimi/brewpage-publish/skills/brewpage-publish/' + name) for name in json.loads(head('kimi/source-hashes.json'))})
+    kimi_members = members if recipe_layout else json.loads(head('kimi/source-hashes.json'))
+    dump('kimi/source-hashes.json', {name: fsha(VENDORED['kimi'][0] + '/' + name) for name in kimi_members})
     dump('kimi/refresh-verification-' + versions['kimi'] + '.json', {
         **receipt('kimi', new['kimi'], old_archives['kimi'], kimi_new, zip_members(head(old_archives['kimi'])), '', {'syntax': SYNTAX, **notes['kimi_tests']}),
         'note': notes['kimi_note'],
@@ -528,16 +608,21 @@ def build(args):
     manifest['source'] = {**old['source'], 'commit': commit}
     manifest['artifact'] = {**old['artifact'], 'zip': new['yandex'].split('/')[-1], 'sha256': fsha(new['yandex'])}
     manifest['active_manifest'] = {**old['active_manifest'], 'sha256': fsha('yandex/brewpage-publish/SKILL.md'), 'portable_body_sha256': sha(yandex_body.encode())}
-    manifest['upstream_files'] = [{**row, 'sha256': fsha('yandex/' + row['archive_path'])} for row in old['upstream_files']]
+    yandex_dir, yandex_renames = VENDORED['yandex']
+    manifest['upstream_files'] = []
+    for name in members:
+        path = yandex_dir + '/' + yandex_renames.get(name, name)
+        manifest['upstream_files'].append({'original_path': name, 'archive_path': path.removeprefix('yandex/'), 'sha256': fsha(path)})
     manifest['validation'] = {**old['validation'], 'native_import': notes['yandex_native_import']}
+    yandex_count = len(tree('yandex/brewpage-publish'))
+    if recipe_layout:
+        manifest['artifact']['layout'] = f'one top-level folder; one active SKILL.md; {yandex_count} files'
+        manifest['validation'].pop('native_mcp_discovery_tools', None)
+        manifest['validation'].update(archive_roundtrip_files=yandex_count, upstream_hashes_match=member_count)
     manifest['historical_artifacts'] = [{'zip': old['artifact']['zip'], 'sha256': old['artifact']['sha256'], 'source_commit': old['source']['commit'],
                                          'same_bytes_as_native_imported_archive': old['artifact']['same_bytes_as_native_imported_archive']}] + old['historical_artifacts']
     dump('yandex/manifest.json', manifest)
 
-    # Code-host catalogs: GitVerse reads the seven files as they are, SourceCraft its own SKILL.md.
-    for key, (directory, rename) in catalogs(cfg).items():
-        if tree(directory) != sorted(rename.get(name, name) for name in SEVEN):
-            fail(key + ' file set changed: ' + directory)
     if 'sourcecraft' in catalogs(cfg):
         if tree('.sourcecraft') != sorted(['skills/brewpage-publish/SKILL.md'] + ['skills/brewpage-publish/upstream/' + name for name in tree(CATALOGS['sourcecraft'][0])]):
             fail('stray files under .sourcecraft')
@@ -553,10 +638,13 @@ def build(args):
     prov['files'] = [{'path': path, 'sha256': fsha(path)} for path in paths]
     prov['source_inventory_sha256'] = sha(''.join(row['sha256'] + '  ' + row['path'] + '\n' for row in prov['files']).encode())
     assets = [(new['qwen'], len(qwen_new)), (tgz, len(tgz_new)), (new['mistral-vibe'], len(vibe_new)), (new['kimi'], len(kimi_new)),
-              (new['mistral-work'], len(work_files)), (new['yandex'], len(tree('yandex/brewpage-publish'))), (new['original-skill'], 7)]
+              (new['mistral-work'], len(work_files)), (new['yandex'], yandex_count), (new['original-skill'], member_count)]
     prov['release_assets'] = [{'path': path, 'name': path.split('/')[-1], 'sha256': fsha(path), 'bytes': (repo / path).stat().st_size, 'archive_files': count}
                               for path, count in assets]
-    prov['limits'] = prov['limits'][:3] + ['Original seven-file skill is byte-identical to upstream ' + commit[:8] + '; host packages deviate only in the User-Agent value.']
+    description = 'Original eleven-file skill' if recipe_layout else 'Original seven-file skill'
+    prov['limits'] = prov['limits'][:3] + [description + ' is byte-identical to upstream ' + commit[:8] + '; host packages deviate only in the User-Agent value.']
+    if recipe_layout:
+        prov['upstream_members'] = [{'path': name, 'sha256': sha(files[name])} for name in members]
     prov['baseline_release'] = {'url': RELEASES + baseline, 'source_archive_sha256': sha(snapshot(source, baseline)[1]), 'source_inventory_sha256': old_inventory}
     verification = [('qwen/' + qwen_receipt, 'qwen-' + qwen_receipt),
                     ('deepseek/refresh-verification-' + versions['deepseek'] + '.json', 'deepseek-refresh-verification-' + versions['deepseek'] + '.json'),
@@ -574,7 +662,7 @@ def build(args):
 
 def list_outputs(args):
     cfg = read_config(args.config)
-    vendored = [directory + '/' + rename.get(name, name) for directory, rename in vendored_map(cfg).values() for name in SEVEN]
+    vendored = [relative for _, _, relative in vendored_paths(cfg)]
     print('\n'.join(sorted(outputs(cfg, previous_versions(cfg, args.git or args.repo)) + vendored)))
 
 
@@ -585,18 +673,16 @@ def reset(args):
         fail('reset works on an exported tree outside git and needs --git for the baseline')
     for relative in outputs(cfg, previous_versions(cfg, args.git)):
         (args.repo / relative).unlink()
-    for key, (directory, rename) in vendored_map(cfg).items():
-        for name in SEVEN:
-            relative = directory + '/' + rename.get(name, name)
-            try:
-                data = show(args.git, cfg['baseline'], relative)
-            except subprocess.CalledProcessError:
-                if key not in CATALOGS:
-                    raise
-                # Catalog copy new since the baseline: vendor writes it again.
-                (args.repo / relative).unlink()
-                continue
-            (args.repo / relative).write_bytes(data)
+    baseline = cfg['baseline']
+    tracked = set(git(args.git, 'ls-tree', '-rz', '--name-only', baseline).decode().split('\0'))
+    for key, name, relative in vendored_paths(cfg):
+        target = args.repo / relative
+        if relative in tracked:
+            target.write_bytes(show(args.git, baseline, relative))
+        elif key in CATALOGS or name in RECIPE_MEMBERS:
+            target.unlink()
+        else:
+            fail('baseline is missing vendored file: ' + relative)
     print('RESET generated files removed, vendored files at ' + cfg['baseline'])
 
 
@@ -610,11 +696,22 @@ def assets(args):
     inventory = sha(''.join(row['sha256'] + '  ' + row['path'] + '\n' for row in prov['files']).encode())
     if bad or inventory != prov['source_inventory_sha256'] or listed != sorted(tracked, key=component):
         fail('PROVENANCE.json does not match ' + ref + ': ' + ', '.join(bad))
+    if 'upstream_members' in prov:
+        originals = prov['upstream_members']
+        check_members((row['path'] for row in originals), SKILL_LAYOUTS['recipes'], 'provenance upstream skill')
+        root = VENDORED['original-skill'][0]
+        hashes = {row['path']: row['sha256'] for row in prov['files']}
+        if any(hashes.get(root + '/' + row['path']) != row['sha256'] for row in originals):
+            fail('provenance upstream hashes differ from the original skill copy')
     args.out.mkdir(parents=True, exist_ok=False)
     for row in prov['release_assets'] + prov['verification_assets']:
         data = show(source, ref, row['path'])
         if sha(data) != row['sha256'] or ('bytes' in row and len(data) != row['bytes']):
             fail('asset row differs from the ref: ' + row['path'])
+        if 'archive_files' in row:
+            members = tar_members(data) if row['path'].endswith('.tgz') else zip_members(data)
+            if len(members) != row['archive_files']:
+                fail('asset member count differs from provenance: ' + row['path'])
         (args.out / row['name']).write_bytes(data)
     (args.out / 'PROVENANCE.json').write_bytes(show(source, ref, 'PROVENANCE.json'))
     (args.out / 'SHASUMS256.txt').write_bytes(show(source, ref, 'SHASUMS256.txt'))

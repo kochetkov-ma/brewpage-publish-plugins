@@ -5,14 +5,41 @@ import stat
 import sys
 
 
-def content_path(value):
+TYPED_COMMANDS = {'preflight', 'publish', 'update'}
+FILE_OPTIONS = {'--path', '--password-file', '--owner-token-file', '--exclude-file', '--resolution-file'}
+SWITCHES = {'--anonymous', '--confirmed', '--external-only', '--no-save', '--private-output'}
+
+
+def content_path(value, caller=None):
     path = Path(value)
-    absolute = Path(os.path.abspath(value))
+    absolute = Path(os.path.abspath((caller or Path.cwd()) / path))
     for component in (*path.parts, *absolute.parts, *absolute.resolve().parts):
         component = component.casefold()
         if component == '.claude' or component.startswith('.claude-'):
             raise ValueError('Claude configuration and history paths are forbidden')
     return str(absolute)
+
+
+def translate_paths(args, caller, state):
+    command = args[0] if args else ''
+    if command == 'probe':
+        if len(args) == 2:
+            args[1] = content_path(args[1], caller)
+        return
+    recovery = Path(state) / '.claude/brewpage-recovery.json'
+    index = 2 if command in TYPED_COMMANDS else 1
+    while index + 1 < len(args):
+        flag, value = args[index:index + 2]
+        if flag in SWITCHES:
+            index += 1
+            continue
+        if flag in FILE_OPTIONS and value:
+            if command == 'owner-store' and flag == '--owner-token-file' and value == str(recovery):
+                if recovery.resolve(strict=True) != recovery:
+                    raise ValueError('native recovery receipt must be the fixed private file')
+            else:
+                args[index + 1] = content_path(value, caller)
+        index += 2
 
 
 def private_root():
@@ -50,16 +77,10 @@ def private_root():
 
 def main():
     args = sys.argv[1:]
-    if args[:1] == ['probe'] and len(args) == 2:
-        args[1] = content_path(args[1])
-    index = 2 if args[:1] == ['publish'] else 1
-    while index < len(args) - 1:
-        arg = args[index]
-        if arg in ('--path', '--password-file') and args[index + 1]:
-            args[index + 1] = content_path(args[index + 1])
-        index += 1 if arg == '--confirmed' else 2
+    caller = Path.cwd()
     helper = Path(__file__).resolve().parent.parent / 'upstream/scripts/brewpage-run.sh'
     root, temporary = private_root()
+    translate_paths(args, caller, root)
     env = {key: os.environ[key] for key in ('PATH', 'HOME', 'LANG', 'LC_ALL') if key in os.environ}
     env.update(CLAUDE_PROJECT_DIR=root, PWD=root, TMPDIR=temporary,
                GIT_CONFIG_NOSYSTEM='1', GIT_CONFIG_GLOBAL='/dev/null',
@@ -69,6 +90,6 @@ def main():
 
 try:
     main()
-except (OSError, ValueError):
+except (OSError, RuntimeError, ValueError):
     sys.stderr.write('FAILED: native publishing state or input path is unsafe\n')
     sys.exit(1)

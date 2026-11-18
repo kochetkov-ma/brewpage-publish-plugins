@@ -1,55 +1,46 @@
 # BrewPage plugin for Google Antigravity
 
-Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-publish-plugins#readme).
+Draft BrewPage content locally, publish supplied or newly authored material, or
+update a specific owned publication. Share the HTTPS reader link BrewPage returns.
+You can publish without an account. A compatible MCP client can connect an
+account when requested.
 
-Publish HTML, Markdown, files and static sites from Antigravity (App, CLI or IDE
-extensions) to [brewpage.app](https://brewpage.app) and get an HTTPS link back.
-No account or API key. Publications are temporary: 15 days by default.
+| Part | What it does |
+|------|--------------|
+| `plugin.json` | Antigravity plugin manifest |
+| `mcp_config.json` | Enabled BrewPage HTTPS MCP at `https://brewpage.app/mcp` and disabled optional local stdio |
+| `skills/brewpage-publish/` | MCP publishing workflow, shared recipes and local file preflight |
 
-BrewPage is a hosted, closed-source service. This plugin is MIT-licensed.
+## Install and use
 
-## What is inside
-
-| Part | Path | What it does |
-|------|------|--------------|
-| Manifest | `plugin.json` | Antigravity plugin manifest (`https://antigravity.google/schemas/v1/plugin.json`) |
-| MCP servers | `mcp_config.json` | `brewpage`: the remote server `https://brewpage.app/mcp` (Streamable HTTP, no sign-in), enabled. `brewpage-local`: `npx -y brewpage-mcp@2.0.0` over stdio, disabled; turn it on in `/mcp` if your network blocks the remote server (needs Node.js 20+) |
-| Skill | `skills/brewpage-publish/SKILL.md` | Tells the agent when to publish, which tool to call and what to ask first (namespace, password, TTL) |
-| Logo | `assets/logo.svg` | BrewPage mark |
-
-Tools appear as `brewpage_brewpage`, one per job (`publish_html` for a page or a whole
-site, `publish_file`, `publish_json`, `publish_kv`, `update_html`, `get_page`,
-`set_publication`, `delete_resource`, `get_limits`, `search_gallery` and more). A page or site can also save what its
-visitors enter (Page data): the agent publishes it with `state` and reads the entries
-with `get_page_data`; you read them in the Data tab of the management link.
-
-## Install
+Validate and install the 1.1.0 candidate from a local checkout using the
+[Antigravity plugin CLI](https://antigravity.google/docs/build-plugins).
 
 ```
-agy plugin install https://github.com/kochetkov-ma/brewpage-publish-plugins/tree/main/integrations/antigravity-plugin
+agy plugin validate --strict ./integrations/antigravity-plugin
+agy plugin install ./integrations/antigravity-plugin
 agy plugin list
 ```
 
-From a local clone: `agy plugin install ./integrations/antigravity-plugin`.
+Ask “Publish this report as an unlisted BrewPage page and give me the link,”
+or invoke `/brewpage-publish`. A local draft makes no BrewPage calls. The skill
+uses the BrewPage tools actually available in the session. Built sites and local
+files need the shared preflight in a host that allows the installed helper to
+read the selected input and temporary snapshot. [Skill and recipes](skills/brewpage-publish/SKILL.md)
 
-Then ask, for example, "Publish this report as a private BrewPage page and give me
-the link", or run `/brewpage-publish`.
+`brewpage-local` may be enabled before a write when it supports the selected
+owner and request. It runs `npx -y brewpage-mcp@3.0.0` with Node.js 20 or newer.
+That pin requires MCP 3.0.0 to be published to the npm registry. The process
+still needs access to BrewPage's HTTPS service. A sent or uncertain write
+remains on its selected route for reconciliation.
 
-## Privacy
+Anyone with an unlisted link can open it unless password protection applies.
+A new anonymous owner key and private management link require a verified
+owner-only tool result or authorized protected handoff before publishing.
+The skill confirms storage after protected readback. [Ownership and receipts](skills/brewpage-publish/references/ownership.md)
 
-- Namespace `public` is listed in the gallery and sitemap and can be indexed by
-  search engines. Any other namespace is private: unlisted, not indexed, open to
-  anyone with the link; add a password to restrict it.
-- Each publish returns a management link and an owner token. The agent gives you
-  the management link; it is private: anyone who has it can edit or delete the page.
-  The owner token updates or deletes the publication through the tools.
-- [Privacy policy](https://brewpage.app/privacy), [terms](https://brewpage.app/terms).
+The shared local checker and recipes come from the reviewed BrewPage skill.
+[Source and file digests](PROVENANCE.json)
 
-## Validation
-
-`agy plugin validate --strict` with Antigravity CLI 1.5.3 passes with 0 errors and
-0 warnings.
-
-## Support and license
-
-Questions: [info@brewpage.app](mailto:info@brewpage.app). MIT; see [LICENSE](LICENSE).
+Support: [info@brewpage.app](mailto:info@brewpage.app). This plugin is [MIT-licensed](LICENSE).
+[Privacy policy](https://brewpage.app/privacy) · [Terms](https://brewpage.app/terms)

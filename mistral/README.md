@@ -7,7 +7,11 @@ Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-p
 
 Host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file with BrewPage.
 
-See the [bundled installation and compatibility guide](brewpage/README.md). Distribute `brewpage-vibe-1.0.6.zip`; `manifest.json` contains its SHA-256 and file inventory, and `validation.json` records the 1.0.6 checks and their limits. `manifest-1.0.5.json` and `validation-1.0.5.json` preserve 1.0.5, `manifest-1.0.4.json` and `validation-1.0.4.json` preserve 1.0.4, `manifest-1.0.3.json` and `validation-1.0.3.json` preserve 1.0.3, `manifest-1.0.2.json` and `validation-1.0.2.json` preserve 1.0.2, `manifest-1.0.1.json` and `validation-1.0.1.json` preserve 1.0.1. The unchanged `brewpage-vibe-1.0.0.zip`, `manifest-1.0.0.json` and `validation-1.0.0.json` preserve the earlier artifact and native verification.
+Use [brewpage-vibe-1.1.0.zip](brewpage-vibe-1.1.0.zip) and follow the [bundled installation and compatibility guide](brewpage/README.md). The adapter prefers a compatible BrewPage MCP tool and can select its private local runner before sending a write. [manifest.json](manifest.json) records the SHA-256 and seventeen-file inventory. [validation.json](validation.json) records the 1.1.0 archive and launcher checks. Fresh native loading and publishing remain unverified.
+
+## Historical packages
+
+Versions 1.0.0 through 1.0.6 retain their original ZIPs and matching versioned `manifest-*.json` and `validation-*.json` files. The [1.0.0 receipt](validation-1.0.0.json) records the earlier native verification.
 
 ## Related
 

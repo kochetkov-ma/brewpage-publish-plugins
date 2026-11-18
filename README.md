@@ -7,32 +7,33 @@
 
 Publish HTML pages, Markdown, files and static sites from AI agents and
 automation tools to [BrewPage](https://brewpage.app) and get an HTTPS link back.
-No signup or API key. Publications are temporary: 15 days by default, 30 at most
-(90 with a free profile).
+No signup or API key. You set how long your publication stays online.
 
 ## Integrations
 
-AI-agent packages are assets of the latest release,
-[v1.0.8](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.0.8);
-check them against [SHASUMS256.txt](SHASUMS256.txt).
-The agent plugin in `agent-plugin/` installs from this repository, which is also its Claude Code and Cursor marketplace.
+This tree contains the 1.1.0 release candidate and its [asset checksums](SHASUMS256.txt).
+Download the [published 1.0.8 release](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.0.8)
+from GitHub. The 1.1.0 Qwen and DeepSeek packages require the coordinated BrewPage MCP
+3.0.0 registry release for their default installation commands.
+The Agent Plugin and Antigravity candidates share four recipes for publishing,
+Page data, custom domains and ownership. Use a local checkout to try either plugin.
 
 | Host | Folder | Install or use | Guide |
 | --- | --- | --- | --- |
-| Claude Code, Grok Build, Cursor, GitHub Copilot | `agent-plugin/` | Claude Code: `/plugin marketplace add kochetkov-ma/brewpage-publish-plugins`, then `/plugin install brewpage@brewpage` | [README](agent-plugin/README.md) |
-| Google Antigravity | `integrations/antigravity-plugin/` | `agy plugin install https://github.com/kochetkov-ma/brewpage-publish-plugins/tree/main/integrations/antigravity-plugin` | [README](integrations/antigravity-plugin/README.md) |
-| Qwen Code | `qwen/` | `qwen extensions install /absolute/path/to/qwen` from `brewpage-qwen-1.0.8.zip` | [README](qwen/README.md) |
-| DeepSeek Harness | `deepseek/` | `dsh plugin --profile brewpage add ./dsh-brewpage-1.0.8.tgz` | [README](deepseek/README.md) |
-| Mistral Vibe Code | `mistral/` | Extract `brewpage-vibe-1.0.6.zip` into `.vibe/plugins/`, then `/reload-plugins` | [README](mistral/README.md) |
-| Kimi Code | `kimi/` | Extract `brewpage-kimi-code-1.0.6.zip`, then `/plugins install /absolute/path/to/brewpage-publish` | [README](kimi/README.md) |
-| Yandex AI Studio | `yandex/` | Import `yandex-brewpage-publish-v1.0.6.zip` in Agent Core > Skills | [README](yandex/README.md) |
-| Mistral Work | `common/` | Use `mistral-work-brewpage-publish-v1.0.6.zip` | [SKILL.md](common/mistral-work/SKILL.md) |
+| Claude Code, Grok Build, Cursor, GitHub Copilot | `agent-plugin/` | In Claude Code, register the local checkout as a marketplace and run `/plugin install brewpage@brewpage`. The skill prefers compatible MCP and can select protected REST before writing. | [README](agent-plugin/README.md) |
+| Google Antigravity | `integrations/antigravity-plugin/` | From the checkout, run `agy plugin install ./integrations/antigravity-plugin`. Writes use connected MCP. The optional local MCP needs the coordinated 3.0.0 registry release. | [README](integrations/antigravity-plugin/README.md) |
+| Qwen Code | `qwen/` | `qwen extensions install /absolute/path/to/qwen` from `brewpage-qwen-1.1.0.zip` | [README](qwen/README.md) |
+| DeepSeek Harness | `deepseek/` | `dsh plugin --profile brewpage add ./dsh-brewpage-1.1.0.tgz` | [README](deepseek/README.md) |
+| Mistral Vibe Code | `mistral/` | Extract `brewpage-vibe-1.1.0.zip` into `.vibe/plugins/`, then `/reload-plugins` | [README](mistral/README.md) |
+| Kimi Code | `kimi/` | Extract `brewpage-kimi-code-1.1.0.zip`, then `/plugins install /absolute/path/to/brewpage-publish` | [README](kimi/README.md) |
+| Yandex AI Studio | `yandex/` | Import `yandex-brewpage-publish-v1.1.0.zip` in Agent Core > Skills | [README](yandex/README.md) |
+| Mistral Work | `common/` | Use `mistral-work-brewpage-publish-v1.1.0.zip` | [SKILL.md](common/mistral-work/SKILL.md) |
 | GitVerse skills, `npx skills` agents | `skills/brewpage-publish/` | `npx skills add https://github.com/kochetkov-ma/brewpage-publish-plugins.git --skill brewpage-publish` | [Code-host catalogs](#code-host-catalogs) |
 | SourceCraft Code Assistant | `.sourcecraft/skills/brewpage-publish/` | Import in `.sourcecraft/ai.yaml`, then `/brewpage-publish` in the chat | [Code-host catalogs](#code-host-catalogs) |
 | Any skill directory or ZIP | `common/` | Use the `brewpage-publish/` folder or `brewpage-publish.zip` (original Claude skill) | [README](common/README.md) |
 | n8n (self-hosted) | [n8n-nodes-brewpage](https://github.com/kochetkov-ma/n8n-nodes-brewpage) (own repository) | Settings > Community nodes > install `n8n-nodes-brewpage` | [README](https://github.com/kochetkov-ma/n8n-nodes-brewpage#readme) |
 | n8n workflow template | `integrations/n8n-templates/` | Import `brewpage-release-digest.json` as a workflow; no community node or credentials | [README](integrations/n8n-templates/README.md) |
-| AnythingLLM | `integrations/anythingllm-skill/` | Copy into `plugins/agent-skills/brewpage-publish/`; Community Hub listing pending | [README](integrations/anythingllm-skill/README.md) |
+| AnythingLLM | `integrations/anythingllm-skill/` | Skill 1.1.0 targets authenticated interactive chats with saved private replies on AnythingLLM 1.20.0. Native installation and Community Hub listing remain pending. | [README](integrations/anythingllm-skill/README.md) |
 | Zapier | `integrations/zapier-app/` | Source of the Zapier integration; App Directory listing pending | [README](integrations/zapier-app/README.md) |
 
 Every package states its pinned host versions, verification records and limits
@@ -50,17 +51,17 @@ look for it. Both folders are generated by the release tooling from the same
 upstream commit as `common/brewpage-publish/`; they differ only in the
 User-Agent value.
 
-- `skills/brewpage-publish/`: the seven original files with User-Agent
-  `brewpage-gitverse/1.0.0 (+https://brewpage.app)`, the layout of the
+- `skills/brewpage-publish/`: the eleven canonical files with User-Agent
+  `brewpage-gitverse/1.1.0 (+https://brewpage.app)`, the layout of the
   [GitVerse skills catalog](https://gitverse.ru/marketplace/skills) and of
-  `npx skills`. The instructions are the Claude Code workflow: they run
-  `scripts/brewpage-run.sh` and need Bash, curl, jq and Python 3.
+  `npx skills`. The skill uses a compatible connected tool and can run
+  `scripts/brewpage-run.sh` with Bash, curl, jq and Python 3 when the host permits HTTPS fallback.
 - `.sourcecraft/skills/brewpage-publish/SKILL.md`: a SourceCraft AI skill
-  (inputs `path`, `visibility`, `ttl`) that publishes one file or a built site
-  folder with curl and sends User-Agent
-  `brewpage-sourcecraft/1.0.0 (+https://brewpage.app)`. The original files
-  under `upstream/` are provenance only (`SKILL.md.source`, so the folder holds
-  one active `SKILL.md`).
+  (inputs `path`, `visibility`, `ttl`) that prefers compatible BrewPage MCP with
+  the selected owner and verified private result delivery. When permitted, it can select
+  protected REST with the same owner before writing. The bundled REST runner sends
+  `brewpage-sourcecraft/1.1.0 (+https://brewpage.app)` as its User-Agent. The `upstream/`
+  directory contains the runner, recipes and `SKILL.md.source`. The host loads one active `SKILL.md`.
 
 SourceCraft imports a public skill by repository and path in
 `.sourcecraft/ai.yaml`:

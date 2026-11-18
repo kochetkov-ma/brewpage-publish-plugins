@@ -5,17 +5,25 @@
 
 Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-publish-plugins#readme) for [BrewPage](https://brewpage.app).
 
-This package preserves all seven MIT-licensed source files from [brewpage-publish at `5da825f1d535d9658f0de0893529c6ce06a613a5`](https://github.com/kochetkov-ma/claude-brewcode/tree/5da825f1d535d9658f0de0893529c6ce06a613a5/skills/brewpage-publish) (claude-brewcode v6.12.12), byte for byte.
+The 1.1.0 distribution preserves all eleven MIT-licensed files from [brewpage-publish at `9581676113c40c7516504dada2b581fb761b0fec`](https://github.com/kochetkov-ma/claude-brewcode/tree/9581676113c40c7516504dada2b581fb761b0fec/skills/brewpage-publish) (claude-brewcode v6.13.0), byte for byte.
 
-Use the `brewpage-publish` folder where a provider accepts a skill directory, or upload `brewpage-publish.zip` where it accepts a ZIP. The ZIP opens directly to `SKILL.md`, `README.md`, `LICENSE` and `scripts/`. `manifest.json` records source and artifact hashes.
+Use the `brewpage-publish` folder where a provider accepts a skill directory, or upload [brewpage-publish.zip](brewpage-publish.zip) where it accepts a ZIP. The ZIP opens directly to `SKILL.md`, `README.md`, `LICENSE`, `scripts/` and `references/`. The four recipes cover publishing, Page data, custom domains and ownership. [manifest.json](manifest.json) records source and artifact hashes.
 
-The historical `yandex-brewpage-publish.zip` preserves the seven original Claude-oriented files in one top-level folder. Use the [portable Yandex adapter](../yandex/README.md) for a connected-MCP workflow: its eight-file archive was imported into a personal AI Studio catalog. Import and tool discovery do not prove model execution or public marketplace acceptance.
+The generic skill prefers a compatible BrewPage MCP tool with the selected owner and protected delivery of any private result. It can use authorized REST with the same owner if required and selected before writing. An MCP-only request stays pending if the connected tool cannot perform it. Drafts stay local. If a write outcome is uncertain, check the selected owner's receipt or inventory before another write. The [bundled guide](brewpage-publish/README.md) describes the routes and recovery steps.
 
-For Mistral Work, use `mistral-work-brewpage-publish-v1.0.6.zip`: `upstream/` holds that commit with User-Agent `brewpage-mistral-work/1.0.6 (+https://brewpage.app)`; v1.0.5 and v1.0.6 change only the version and the portable instruction body is unchanged. v1.0.3 changed one paragraph of that body, the result rule: the agent gives you the reader URL and the management link. v1.0.5, v1.0.4, v1.0.3, v1.0.2 and v1.0.1 are retained. Its root `SKILL.md` describes HTML hosting, static sites and AI artifact publishing, followed by Markdown, documents, reports and any files. The root MIT license and the seven original files under `upstream/` are preserved. The older `mistral-work-brewpage-publish.zip` remains unchanged. The active instructions retain explicit visibility/password choices, preview, TTL and archive consent; native import and execution remain separate checks.
+## Mistral Work
 
-The existing skill requires explicit namespace and password choices before publishing. No account or API key is required. After publishing the agent gives you the page link and the management link; the management link is private: anyone who has it can edit or delete the page. The original Claude workflow keeps the owner token in private local history and shows it when you ask. Portable Work adapters keep the owner token only in evidenced private supported storage and hand it to you otherwise. Neither is posted publicly (public page, repo, shared channel); never paste a password into chat.
+Use [mistral-work-brewpage-publish-v1.1.0.zip](mistral-work-brewpage-publish-v1.1.0.zip). The thirteen files include a root `LICENSE`, the active [SKILL.md](mistral-work/SKILL.md) and eleven files under `upstream/` with the bundled User-Agent `brewpage-mistral-work/1.1.0 (+https://brewpage.app)`. The active skill uses connected BrewPage MCP only and leaves unsupported operations pending. It keeps explicit visibility and password choices, preview, TTL and archive review.
 
-Packaging checks cover immutable source hashes, seven-file ZIP roundtrip, shell/Node/Python syntax and embedded credential patterns. No publication was made during packaging. Existing Claude Code metadata and command placeholders remain unchanged; each provider must verify its own skill discovery and execution support.
+The skill returns the reader link and delivers any private management link or owner key through a verified owner-only channel. Anyone with the management link can edit or delete the publication. Arrange private storage or protected delivery before a write that can issue a key. The skill confirms storage through private readback.
+
+Packaging verified immutable source hashes, the eleven-file generic and thirteen-file Work ZIP roundtrips, shell, Node.js and Python syntax, and embedded credential patterns. Fresh native Work import and publishing remain unverified.
+
+## Historical packages
+
+Work releases 1.0.1 through 1.0.6 and the original `mistral-work-brewpage-publish.zip` remain available. Work 1.0.3 changed the result rule to return the reader and management links. Work 1.0.5 and 1.0.6 kept the preceding portable instruction body and changed the version.
+
+The historical `yandex-brewpage-publish.zip` preserves seven Claude-oriented files in one top-level folder. For connected MCP, use the [current Yandex adapter](../yandex/README.md). A previous eight-file Yandex adapter was imported into a personal AI Studio catalog.
 
 ## Related
 
