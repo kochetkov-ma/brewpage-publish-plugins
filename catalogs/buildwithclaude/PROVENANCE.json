@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "version": "1.1.2",
+  "catalog": "BuildWithClaude",
+  "base": {
+    "repository": "https://github.com/kochetkov-ma/brewpage-publish-plugins",
+    "tag": "brewpage-agent-plugin-v1.1.1",
+    "commit": "585373a578d70135a86f967270e1da4e3caf8df2",
+    "directory": "agent-plugin"
+  },
+  "upstream": {
+    "repository": "https://github.com/kochetkov-ma/claude-brewcode",
+    "commit": "07058f5a48b07ac81e46bb83d86e836487707a22",
+    "directory": "openclaw/brewpage-publish",
+    "memberManifestSha256": "f22aa682cf23a4ed763592eba35daf9f6909498c58bdae3d0c8ea2992529e8e0"
+  },
+  "userAgent": "brewpage-agent-plugin/1.1.2 (+https://brewpage.app)",
+  "hostEntry": "skills/brewpage-publish/SKILL.md",
+  "hostPolicy": "User confirmation of visibility, password and expiry before each new upload. MCP preferred; authorized REST available.",
+  "files": [
+    {
+      "path": ".claude-plugin/plugin.json",
+      "mode": "0644",
+      "sha256": "29400ad45b29e608c8ac9a90c6a0c54a6e5cc948ad1782e79286194322d279d0"
+    },
+    {
+      "path": ".mcp.json",
+      "mode": "0644",
+      "sha256": "f51873b0069094ecdc9627efc6662bac8aa3628c1a6238d0a9d19d0964526338"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "0644",
+      "sha256": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84"
+    },
+    {
+      "path": "README.md",
+      "mode": "0644",
+      "sha256": "4462e08fa807ff73f01db4f6c1994f84a7160214c853bb972eb761de8b087c9e"
+    },
+    {
+      "path": "assets/icon.svg",
+      "mode": "0644",
+      "sha256": "e9e8ac20ddc155d71fb569abe94d0bd9ea5cc964b7635bbdff8203b5a5a3e5d7"
+    },
+    {
+      "path": "skills/brewpage-publish/LICENSE",
+      "mode": "0644",
+      "sha256": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84"
+    },
+    {
+      "path": "skills/brewpage-publish/README.md",
+      "mode": "0644",
+      "sha256": "caa0870f07e1fb6de83b5e407aea7c4da6f3dcb4db9488d75bc39060e201c103"
+    },
+    {
+      "path": "skills/brewpage-publish/SKILL.md",
+      "mode": "0644",
+      "sha256": "9451f8f7c61201ba6279144863dfd53c52e2b9bfe68cfc51320d007bf969502b"
+    },
+    {
+      "path": "skills/brewpage-publish/references/custom-domain.md",
+      "mode": "0644",
+      "sha256": "cac818abac9021f9b7d4583ccecda240dd4a71d9f74f4753c83fc2abdd80f0ef"
+    },
+    {
+      "path": "skills/brewpage-publish/references/ownership.md",
+      "mode": "0644",
+      "sha256": "489f1860ce7d765ddeeccef4a52d214dcf3446a1cfc9d6c14e85ba2b5b6f451b"
+    },
+    {
+      "path": "skills/brewpage-publish/references/page-data.md",
+      "mode": "0644",
+      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
+    },
+    {
+      "path": "skills/brewpage-publish/references/publishing.md",
+      "mode": "0644",
+      "sha256": "e86b99ed28e7108a1bfb7b7b502315308033326cd792f3f46b7a2579444f697a"
+    },
+    {
+      "path": "skills/brewpage-publish/scripts/brewpage-lib.sh",
+      "mode": "0644",
+      "sha256": "e3b730ce8e6f3623974400c04a28e3fb7355788971c7c4ecca7ab0bdeaea5e5b"
+    },
+    {
+      "path": "skills/brewpage-publish/scripts/brewpage-run.sh",
+      "mode": "0755",
+      "sha256": "8f9c93403105ed0fdeef0773806440580b618e4187c31217240480be6820d470"
+    },
+    {
+      "path": "skills/brewpage-publish/scripts/history.py",
+      "mode": "0644",
+      "sha256": "e54addb5d2d21c525290633ea74b3154bab45bcdaf542802f84f194096a03b94"
+    },
+    {
+      "path": "skills/brewpage-publish/scripts/publish.mjs",
+      "mode": "0755",
+      "sha256": "16ce9d394f0cdd04e91bccbccdd761b83b589cab1b5ea9aaebd37226d7abaf3f"
+    }
+  ]
+}

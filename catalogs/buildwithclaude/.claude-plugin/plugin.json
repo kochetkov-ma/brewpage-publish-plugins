@@ -1,0 +1,27 @@
+{
+  "name": "brewpage",
+  "displayName": "BrewPage",
+  "version": "1.1.2",
+  "description": "Draft, publish and update HTML, Markdown, files and sites with BrewPage. Published content expires. Anyone with the link can open it unless password protection is enabled.",
+  "author": {
+    "name": "Maksim Kochetkov",
+    "email": "info@brewpage.app",
+    "url": "https://brewpage.app"
+  },
+  "homepage": "https://brewpage.app",
+  "repository": "https://github.com/kochetkov-ma/brewpage-publish-plugins",
+  "license": "MIT",
+  "keywords": [
+    "brewpage",
+    "publishing",
+    "html-hosting",
+    "markdown",
+    "static-site",
+    "file-sharing",
+    "ai-artifacts",
+    "mcp"
+  ],
+  "icon": "./assets/icon.svg",
+  "privacyPolicyUrl": "https://brewpage.app/privacy",
+  "termsOfServiceUrl": "https://brewpage.app/terms"
+}
