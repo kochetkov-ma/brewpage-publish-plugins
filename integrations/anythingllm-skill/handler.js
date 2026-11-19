@@ -3,10 +3,13 @@ const PRIVATE_REPLY_REQUIRED = "Nothing was published. BrewPage needs an authent
 const UNKNOWN_OUTCOME = "BrewPage publication outcome is unconfirmed. Do not retry or switch transport; reconcile this request before another write.";
 
 function privateReplyHost(skill) {
-  const host = skill.super;
+  const host = skill?.super;
+  const hubId = skill?.config?.hubId;
   const invocation = host?.handlerProps?.invocation;
-  return skill.config?.hubId === "brewpage-publish" &&
-    host?.functions?.get?.("brewpage-publish") === skill &&
+  // Hub imports replace hubId; the host registers this handler under that installed identity.
+  return typeof hubId === "string" && hubId !== "" && skill.name === hubId &&
+    skill.config.imported === true && skill.handler === runtime.handler && skill.publish === runtime.publish &&
+    host?.functions instanceof Map && host.functions.get(hubId) === skill &&
     Number.isSafeInteger(invocation?.user_id) && invocation.user_id > 0 &&
     Number.isSafeInteger(invocation?.workspace_id) && invocation.workspace_id > 0 &&
     invocation.workspace?.id === invocation.workspace_id && invocation.closed === false &&
@@ -46,7 +49,7 @@ class PublishRefusal extends Error {
   constructor(status) { super(`BrewPage refused publication (HTTP ${status}). No automatic retry was made.`); }
 }
 
-module.exports.runtime = {
+const runtime = {
   handler: async function ({ content, format, visibility, ttl_days }) {
     try {
       if (!content || typeof content !== "string") return "Nothing to publish: content is empty.";
@@ -75,7 +78,7 @@ module.exports.runtime = {
     const res = await fetch(qs ? `${API}?${qs}` : API, {
       method: "POST",
       redirect: "error",
-      headers: { "Content-Type": "application/json", "User-Agent": "anythingllm-brewpage-skill/1.1.0" },
+      headers: { "Content-Type": "application/json", "User-Agent": "anythingllm-brewpage-skill/1.1.1" },
       body: JSON.stringify({ content, format: fmt }),
     });
     if (!res.ok) {
@@ -85,3 +88,4 @@ module.exports.runtime = {
     return await res.json();
   },
 };
+module.exports.runtime = runtime;

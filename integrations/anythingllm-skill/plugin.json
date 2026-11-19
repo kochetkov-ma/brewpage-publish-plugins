@@ -4,7 +4,7 @@
   "hubId": "brewpage-publish",
   "name": "Publish to BrewPage",
   "schema": "skill-1.0.0",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Publishes HTML or Markdown to BrewPage and returns the reader link plus private management credentials directly to a saved, authenticated AnythingLLM conversation. No BrewPage account or API key needed. Unlisted by default; public only when requested. Unsupported conversation contexts stop before publishing.",
   "author": "@kochetkov-ma",
   "author_url": "https://github.com/kochetkov-ma/brewpage-publish-plugins/tree/main/integrations/anythingllm-skill",

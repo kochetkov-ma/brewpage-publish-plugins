@@ -18,7 +18,7 @@ const PRIVATE_LINES = [
   "Save this private reply to manage or remove the page. Never share the management link or owner token publicly.",
 ];
 
-function invocation() {
+function invocation(hubId = config.hubId) {
   const logs = [];
   const notices = [];
   const host = {
@@ -28,13 +28,14 @@ function invocation() {
     skipHandleExecution: false,
     functions: new Map(),
   };
-  const skill = { ...runtime, config, super: host, introspect: value => notices.push(value), logger: value => logs.push(value) };
-  host.functions.set(config.hubId, skill);
+  const skill = { ...runtime, name: hubId, config: { ...config, hubId }, super: host,
+    introspect: value => notices.push(value), logger: value => logs.push(value) };
+  host.functions.set(hubId, skill);
   return { skill, host, logs, notices };
 }
 
-test("publishing requires the registered private host context and returns its complete owner receipt directly", async t => {
-  // GIVEN a real-shaped registered invocation and every unsupported context variant.
+test("direct and Hub imports publish only through their own registered private invocation", async t => {
+  // GIVEN direct and Hub registrations and unsupported invocation or identity variants.
   const requests = [];
   t.mock.method(globalThis, "fetch", async (url, options) => {
     requests.push({ url, ...options });
@@ -49,27 +50,43 @@ test("publishing requires the registered private host context and returns its co
     ["no interactive channel", f => { f.host.socket = null; }],
     ["unknown result path", f => { delete f.host.skipHandleExecution; }],
     ["unregistered copy", f => { f.host.functions.set(config.hubId, {}); }],
+    ["different registration name", f => { f.skill.name = "another-tool"; }],
+    ["different manifest identity", f => { f.skill.config.hubId = "another-tool"; }],
+    ["missing manifest identity", f => { delete f.skill.config.hubId; }],
+    ["not imported", f => { f.skill.config.imported = false; }],
+    ["different handler", f => { f.skill.handler = () => ""; }],
+    ["different publish function", f => { f.skill.publish = () => PAGE; }],
+    ["imitation registry", f => { f.host.functions = { get: () => f.skill }; }],
   ];
-  // WHEN unsupported calls precede one supported publication.
+  // WHEN the registered handler is called across each context.
   const denied = [];
   for (const [label, alter] of refused) {
     const f = invocation();
     alter(f);
-    denied.push({ label, result: await f.skill.handler(INPUT), writes: requests.length, logs: f.logs, notices: f.notices });
+    denied.push({ label, result: await runtime.handler.call(f.skill, INPUT), writes: requests.length,
+      direct: f.host.skipHandleExecution === true, logs: f.logs, notices: f.notices });
   }
-  const f = invocation();
-  const result = await f.skill.handler(INPUT);
-  // THEN every unsupported call makes zero requests and the supported reply retains both owner capabilities.
-  assert.deepEqual(denied, refused.map(([label]) => ({ label, result: PRIVATE_REQUIRED, writes: 0, logs: [], notices: [] })), "unsupported contexts stop before HTTP");
-  assert.deepEqual({ result, direct: f.host.skipHandleExecution, notices: f.notices, logs: f.logs, requests }, {
+  const published = [];
+  for (const hubId of [config.hubId, "SampleHubIdentity123"]) {
+    const f = invocation(hubId);
+    const before = requests.length;
+    const result = await f.skill.handler(INPUT);
+    published.push({ hubId, result, direct: f.host.skipHandleExecution, notices: f.notices, logs: f.logs,
+      requests: requests.slice(before) });
+  }
+  // THEN refusals make no request and either registered identity yields the same direct receipt.
+  assert.deepEqual(denied, refused.map(([label]) => ({ label, result: PRIVATE_REQUIRED, writes: 0,
+    direct: false, logs: [], notices: [] })), "unsupported contexts stop before HTTP");
+  assert.deepEqual(published, [config.hubId, "SampleHubIdentity123"].map(hubId => ({
+    hubId,
     result: [`Published: ${PAGE.link} (expires ${PAGE.expiresAt}). Share this link as is.`, ...PRIVATE_LINES].join("\n"),
     direct: true,
     notices: ["Publishing to BrewPage..."],
     logs: [],
     requests: [{ url: "https://brewpage.app/api/html?ttl=15", method: "POST", redirect: "error", headers: {
-      "Content-Type": "application/json", "User-Agent": "anythingllm-brewpage-skill/1.1.0",
+      "Content-Type": "application/json", "User-Agent": "anythingllm-brewpage-skill/1.1.1",
     }, body: JSON.stringify({ content: INPUT.content, format: "html" }) }],
-  }, "one private create has the exact HTTP input and direct final receipt");
+  })), "each valid identity makes one exact request and keeps the complete direct receipt");
 });
 
 test("failures expose only safe outcomes and preserve recoverable fields without replaying publication", async t => {
