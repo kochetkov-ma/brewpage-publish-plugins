@@ -11,17 +11,16 @@ No signup or API key. You set how long your publication stays online.
 
 ## Integrations
 
-This tree contains the 1.1.0 release candidate and its [asset checksums](SHASUMS256.txt).
-Download the [published 1.0.8 release](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.0.8)
-from GitHub. The 1.1.0 Qwen and DeepSeek packages require the coordinated BrewPage MCP
-3.0.0 registry release for their default installation commands.
-The Agent Plugin and Antigravity candidates share four recipes for publishing,
-Page data, custom domains and ownership. Use a local checkout to try either plugin.
+Download the [1.1.0 host packages](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.1.0)
+and verify them against the [asset checksums](SHASUMS256.txt). Qwen and DeepSeek
+use `brewpage-mcp@3.0.0` in their default setup.
+The Agent Plugin and Antigravity packages share recipes for publishing, Page data,
+custom domains and ownership. Both can be installed from a local checkout.
 
 | Host | Folder | Install or use | Guide |
 | --- | --- | --- | --- |
 | Claude Code, Grok Build, Cursor, GitHub Copilot | `agent-plugin/` | In Claude Code, register the local checkout as a marketplace and run `/plugin install brewpage@brewpage`. The skill prefers compatible MCP and can select protected REST before writing. | [README](agent-plugin/README.md) |
-| Google Antigravity | `integrations/antigravity-plugin/` | From the checkout, run `agy plugin install ./integrations/antigravity-plugin`. Writes use connected MCP. The optional local MCP needs the coordinated 3.0.0 registry release. | [README](integrations/antigravity-plugin/README.md) |
+| Google Antigravity | `integrations/antigravity-plugin/` | From the checkout, run `agy plugin install ./integrations/antigravity-plugin`. Writes use connected MCP. The optional local setup uses `brewpage-mcp@3.0.0`. | [README](integrations/antigravity-plugin/README.md) |
 | Qwen Code | `qwen/` | `qwen extensions install /absolute/path/to/qwen` from `brewpage-qwen-1.1.0.zip` | [README](qwen/README.md) |
 | DeepSeek Harness | `deepseek/` | `dsh plugin --profile brewpage add ./dsh-brewpage-1.1.0.tgz` | [README](deepseek/README.md) |
 | Mistral Vibe Code | `mistral/` | Extract `brewpage-vibe-1.1.0.zip` into `.vibe/plugins/`, then `/reload-plugins` | [README](mistral/README.md) |
