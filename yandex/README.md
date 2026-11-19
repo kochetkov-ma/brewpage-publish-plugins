@@ -5,15 +5,15 @@
 
 Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-publish-plugins#readme) for [BrewPage](https://brewpage.app).
 
-Import [yandex-brewpage-publish-v1.1.0.zip](yandex-brewpage-publish-v1.1.0.zip) through Agent Core → Skills → Create skill. Its twelve files share one top-level `brewpage-publish/` folder and one active [SKILL.md](brewpage-publish/SKILL.md). The Russian description covers HTML hosting, static sites, AI artifacts, Markdown, documents, reports, JSON and files shared by link.
+Import [yandex-brewpage-publish-v1.1.1.zip](yandex-brewpage-publish-v1.1.1.zip) through Agent Core → Skills → Create skill. Its twelve files share one top-level `brewpage-publish/` folder and one active [SKILL.md](brewpage-publish/SKILL.md). The Russian description covers HTML hosting, static sites, AI artifacts, Markdown, documents, reports, JSON and files shared by link.
 
 For anonymous publishing, connect `https://brewpage.app/mcp` using Streamable HTTP. The skill uses the connected BrewPage MCP tools and their schemas exclusively. It leaves unavailable operations pending and retains explicit visibility and password choices, preview, TTL, archive review and failure handling.
 
 A write that can issue a private management link or owner key requires verified owner-only delivery or a protected handoff. Before creating a new publication that can issue a key, the skill arranges private storage or owner-only delivery. It returns the reader link, expiry and relevant notices after success. Anyone with the private management link can edit or delete the page. The skill confirms saved proof through private readback and reconciles an uncertain result before another write.
 
-The eleven MIT-licensed upstream files, including four recipes, come from [claude-brewcode v6.13.0 at `dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c`](https://github.com/kochetkov-ma/claude-brewcode/tree/dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c/skills/brewpage-publish). The package renames the original manifest to `upstream/SKILL.md.source` and substitutes the bundled User-Agent `brewpage-yandex/1.1.0 (+https://brewpage.app)`. [manifest.json](manifest.json) maps the imported names and hashes.
+The eleven MIT-licensed upstream files, including four recipes, come from [claude-brewcode v6.13.1 at `07058f5a48b07ac81e46bb83d86e836487707a22`](https://github.com/kochetkov-ma/claude-brewcode/tree/07058f5a48b07ac81e46bb83d86e836487707a22/skills/brewpage-publish). The package renames the original manifest to `upstream/SKILL.md.source` and substitutes the bundled User-Agent `brewpage-yandex/1.1.1 (+https://brewpage.app)`. [manifest.json](manifest.json) maps the imported names and hashes.
 
-The 1.1.0 verification covers archive integrity, the twelve-file roundtrip, one active manifest and eleven upstream file hashes. Fresh native import, model-driven publishing and marketplace acceptance remain unverified. See Yandex's [skill documentation](https://aistudio.yandex.ru/ru/docs/ai-studio/concepts/agents/skills) and [pricing](https://aistudio.yandex.ru/ru/docs/ai-studio/pricing) for service and model costs.
+The 1.1.1 verification covers archive integrity, the twelve-file roundtrip, one active manifest and eleven upstream file hashes. Fresh native import, model-driven publishing and marketplace acceptance remain unverified. See Yandex's [skill documentation](https://aistudio.yandex.ru/ru/docs/ai-studio/concepts/agents/skills) and [pricing](https://aistudio.yandex.ru/ru/docs/ai-studio/pricing) for service and model costs.
 
 ## Historical packages and checks
 

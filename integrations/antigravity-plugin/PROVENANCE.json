@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "upstream": {
     "repository": "https://github.com/kochetkov-ma/claude-brewcode",
-    "commit": "dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c",
+    "commit": "07058f5a48b07ac81e46bb83d86e836487707a22",
     "directory": "openclaw/brewpage-publish",
-    "memberManifestSha256": "b1887dff908504ac291450c8142a99f2c4ee0c7dbe4f04852c2e59ed3adcd0ae"
+    "memberManifestSha256": "f22aa682cf23a4ed763592eba35daf9f6909498c58bdae3d0c8ea2992529e8e0"
   },
-  "userAgent": "brewpage-antigravity/1.1.0 (+https://brewpage.app)",
+  "userAgent": "brewpage-antigravity/1.1.1 (+https://brewpage.app)",
   "hostEntry": "skills/brewpage-publish/SKILL.md",
   "hostPolicy": "MCP writes; authorized local preflight and cleanup",
   "vendoredFiles": [
@@ -45,7 +45,7 @@
       "path": "skills/brewpage-publish/scripts/brewpage-lib.sh",
       "mode": "0644",
       "upstreamSha256": "631508cfc3dd272c0a8ef4cca85ed3b05fb6477dbdf8db60600425b974ff7225",
-      "sha256": "158f716d063a7df34c5c557b77e56ec6e64a55318cd2da9c8f0223efdda833ef"
+      "sha256": "6340c5ed00b3befabc5d4ebd25c64f078b44942fcdaff07b1a63c12b25f6cba2"
     },
     {
       "path": "skills/brewpage-publish/scripts/brewpage-run.sh",
@@ -62,8 +62,8 @@
     {
       "path": "skills/brewpage-publish/scripts/publish.mjs",
       "mode": "0755",
-      "upstreamSha256": "93457e37a27632e75848b7238860086cfa50eee3066f97d111c7bbf80d8e8fe4",
-      "sha256": "93457e37a27632e75848b7238860086cfa50eee3066f97d111c7bbf80d8e8fe4"
+      "upstreamSha256": "16ce9d394f0cdd04e91bccbccdd761b83b589cab1b5ea9aaebd37226d7abaf3f",
+      "sha256": "16ce9d394f0cdd04e91bccbccdd761b83b589cab1b5ea9aaebd37226d7abaf3f"
     }
   ]
 }

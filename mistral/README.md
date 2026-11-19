@@ -7,7 +7,7 @@ Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-p
 
 Host HTML pages and static sites, publish AI artifacts, and share Markdown, documents, reports or any file with BrewPage.
 
-Use [brewpage-vibe-1.1.0.zip](brewpage-vibe-1.1.0.zip) and follow the [bundled installation and compatibility guide](brewpage/README.md). The adapter prefers a compatible BrewPage MCP tool and can select its private local runner before sending a write. [manifest.json](manifest.json) records the SHA-256 and seventeen-file inventory. [validation.json](validation.json) records the 1.1.0 archive and launcher checks. Fresh native loading and publishing remain unverified.
+Use [brewpage-vibe-1.1.1.zip](brewpage-vibe-1.1.1.zip) and follow the [bundled installation and compatibility guide](brewpage/README.md). The adapter prefers a compatible BrewPage MCP tool and can select its private local runner before sending a write. [manifest.json](manifest.json) records the SHA-256 and seventeen-file inventory. [validation.json](validation.json) records the 1.1.1 archive and launcher checks. Fresh native loading and publishing remain unverified.
 
 ## Historical packages
 

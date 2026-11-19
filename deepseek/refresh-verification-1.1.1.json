@@ -1,0 +1,34 @@
+{
+  "version": "1.1.1",
+  "user_agent": "brewpage-deepseek/1.1.1 (+https://brewpage.app)",
+  "upstream_commit": "07058f5a48b07ac81e46bb83d86e836487707a22",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "dsh-brewpage-1.1.1.tgz",
+  "sha256": "4236dbff2b95bb9dc2e1067980dfda9b305604ea34365f9d86446ec39a5f6fe6",
+  "baseline_artifact": "dsh-brewpage-1.1.0.tgz",
+  "baseline_sha256": "8c8b3c13247581f2eeb453f6b1c9e44d43db7809fa606e0d1ceb095efb1df860",
+  "changed_files": [
+    "README.md",
+    "package.json",
+    "skills/brewpage-publish/upstream/README.md",
+    "skills/brewpage-publish/upstream/SKILL.md",
+    "skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
+    "skills/brewpage-publish/upstream/scripts/publish.mjs",
+    "verify-native.mjs"
+  ],
+  "file_count": 21,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 11,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "verify-isolation.py": "pass; asserts upload -A == brewpage-deepseek/1.1.1 (+https://brewpage.app), reader-safe receipt output, explicit private management delivery, protected recovery of unsaved owner proof, and refusal to upload reserved history and recovery files",
+    "verify-native.mjs": "Pass for the exact 1.1.1 tarball in an isolated offline install with Harness 0.2.1-rc.2 and Node 24.15.0. All 21 members matched, and native discovery verified the skill body and both invocation policies."
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "limits": [
+    "Local checks cover the packaged bytes and synthetic transport. Provider import, model-driven publishing and catalog acceptance are separate."
+  ],
+  "change": "Publishing skill synced to upstream 07058f5a (claude-brewcode v6.13.1). Site packing and archive checks use fixed ZIP settings and paths relative to the calling workspace. User-Agent version moved to 1.1.1"
+}

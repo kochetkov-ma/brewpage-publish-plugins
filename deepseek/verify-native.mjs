@@ -46,7 +46,8 @@ try {
   assert.deepEqual(skills.map(s => [s.name, s.provider, s.invocation]), [
     ['brewpage-publish', 'brewpage-bundled', { modelInvocable: true, userInvocable: true }],
   ], 'native registry must expose exactly the packaged publishing skill');
-  const contract = { '1.1.0': verifyRecipes }[version] ?? verifyHistorical;
+  const [major, minor] = version.split('.').map(Number);
+  const contract = major > 1 || (major === 1 && minor >= 1) ? verifyRecipes : verifyHistorical;
   await contract(skill.content, source);
   process.stdout.write('PASS native skill discovery, invocation policy and body loading\n');
 } finally {

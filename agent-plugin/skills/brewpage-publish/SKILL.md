@@ -55,7 +55,7 @@ For the bundled runner, substitute this installed path for `{runner}` in the pub
 {baseDir}/scripts/brewpage-run.sh
 ```
 
-The runner uses `brewpage-agent-plugin/1.1.0 (+https://brewpage.app)` for direct REST requests.
+The runner uses `brewpage-agent-plugin/1.1.1 (+https://brewpage.app)` for direct REST requests.
 
 ## Return the actual result
 

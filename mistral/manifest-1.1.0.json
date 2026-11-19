@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "name": "brewpage",
+  "version": "1.1.0",
+  "format": "agent_plugins_1_0",
+  "upstream": {
+    "repository": "https://github.com/kochetkov-ma/claude-brewcode",
+    "commit": "dd0bd63bc983fcb6c1c36f9ea3603eb014b9c97c",
+    "directory": "skills/brewpage-publish",
+    "license": "MIT"
+  },
+  "upstream_directory": "skills/brewpage-publish/upstream",
+  "artifact": {
+    "zip": "brewpage-vibe-1.1.0.zip",
+    "layout": "brewpage/plugin.json",
+    "sha256": "352c85a7c99fef6782ad822122e1c44c4a0edff7a33a6411abc3474077fc52d2",
+    "file_count": 17
+  },
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha256": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84"
+    },
+    {
+      "path": "README.md",
+      "sha256": "16c8f6e9b80d267acc8ac56acbd06fc7b67b729af367d4ca7c9267ed9c376df0"
+    },
+    {
+      "path": "mcp.json",
+      "sha256": "7515f402509328be3664dfc125b60755bb472d0022575b6796d509fd3fd66357"
+    },
+    {
+      "path": "plugin.json",
+      "sha256": "9fd2834df8f58d97c195c53cf9cbad514420a44f2a638e82eaa7c9ece1872f80"
+    },
+    {
+      "path": "skills/brewpage-publish/SKILL.md",
+      "sha256": "754d5550ef7ea2ad9c07d28046e30e4281b5e6fe8fca81ae4b8e8ac56410760d"
+    },
+    {
+      "path": "skills/brewpage-publish/run.py",
+      "sha256": "778ebc34bad64ef83e53315d46a988ac9a749711b1d3c9a804263619bd35441d"
+    },
+    {
+      "path": "skills/brewpage-publish/upstream/LICENSE",
+      "sha256": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84"
+    },
+    {
+      "path": "skills/brewpage-publish/upstream/README.md",
+      "sha256": "145190ffe6b7287225d751d6fe5ed591c588e9a845aeb9d0dc44a5224776450b"
+    },
+    {
+      "path": "skills/brewpage-publish/upstream/SKILL.md",
+      "sha256": "f6e7b7c9c8fc8c4b1629567c5676e9540328ca01b929058d0aa17af93ca0a3fe"
+    },
+    {
+      "path": "skills/brewpage-publish/upstream/references/custom-domain.md",
+      "sha256": "cac818abac9021f9b7d4583ccecda240dd4a71d9f74f4753c83fc2abdd80f0ef"
+    },
+    {
+      "path": "skills/brewpage-publish/upstream/references/ownership.md",
+      "sha256": "489f1860ce7d765ddeeccef4a52d214dcf3446a1cfc9d6c14e85ba2b5b6f451b"
+    },
+    {
+      "path": "skills/brewpage-publish/upstream/references/page-data.md",
+      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
+    },
+    {
+      "path": "skills/brewpage-publish/upstream/references/publishing.md",
+      "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
+    },
+    {
+      "path": "skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
+      "sha256": "1c313485b9059ed3d91f5a7d2535dc9cf72a3134cc01987ffc99a9f631677e2a"
+    },
+    {
+      "path": "skills/brewpage-publish/upstream/scripts/brewpage-run.sh",
+      "sha256": "fba93e30aafac42def69b3ecf4b467bc8c40c0a3cde1dd949cd9746bbe4edb57"
+    },
+    {
+      "path": "skills/brewpage-publish/upstream/scripts/history.py",
+      "sha256": "e54addb5d2d21c525290633ea74b3154bab45bcdaf542802f84f194096a03b94"
+    },
+    {
+      "path": "skills/brewpage-publish/upstream/scripts/publish.mjs",
+      "sha256": "93457e37a27632e75848b7238860086cfa50eee3066f97d111c7bbf80d8e8fe4"
+    }
+  ],
+  "validation": "validation.json",
+  "historical_artifacts": [
+    {
+      "zip": "brewpage-vibe-1.0.6.zip",
+      "sha256": "304367887a989f1ba8c8f074db3ae49d89bb544cb6975edf9f95cffa4296bc73",
+      "manifest": "manifest-1.0.6.json",
+      "validation": "validation-1.0.6.json"
+    },
+    {
+      "zip": "brewpage-vibe-1.0.5.zip",
+      "sha256": "edd5216d29b44a4a5f252044b47663f75ecbf8adb098d926dc2e95bcafd9c387",
+      "manifest": "manifest-1.0.5.json",
+      "validation": "validation-1.0.5.json"
+    },
+    {
+      "zip": "brewpage-vibe-1.0.4.zip",
+      "sha256": "af728f8649b32574350f135eb4971e31ddf92acb24bff1d9f574f0f1a10be773",
+      "manifest": "manifest-1.0.4.json",
+      "validation": "validation-1.0.4.json"
+    },
+    {
+      "zip": "brewpage-vibe-1.0.3.zip",
+      "sha256": "25aab02b0577d5d3c596450b01b420c3eb2de2e3abd080b331624d65024d7215",
+      "manifest": "manifest-1.0.3.json",
+      "validation": "validation-1.0.3.json"
+    },
+    {
+      "zip": "brewpage-vibe-1.0.2.zip",
+      "sha256": "4421ab3d11ccfcac725cbd11fd34bafbe4460fb8c859fbadf33cf3e1438261dd",
+      "manifest": "manifest-1.0.2.json",
+      "validation": "validation-1.0.2.json"
+    },
+    {
+      "zip": "brewpage-vibe-1.0.1.zip",
+      "sha256": "2ccc90627138ae4e9bc7d5f1833ce32f6ab66c02db56650459ec4bc9eaa85a97",
+      "manifest": "manifest-1.0.1.json",
+      "validation": "validation-1.0.1.json"
+    },
+    {
+      "zip": "brewpage-vibe-1.0.0.zip",
+      "sha256": "be1cff31d326f99118094d6196f4e5c16cf6f38cf113913abcb1e6b2d25fe375",
+      "status": "unchanged original bytes"
+    }
+  ],
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples"
+}
