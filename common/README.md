@@ -5,7 +5,7 @@
 
 Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-publish-plugins#readme) for [BrewPage](https://brewpage.app).
 
-The 1.1.1 distribution preserves all eleven MIT-licensed files from [brewpage-publish at `07058f5a48b07ac81e46bb83d86e836487707a22`](https://github.com/kochetkov-ma/claude-brewcode/tree/07058f5a48b07ac81e46bb83d86e836487707a22/skills/brewpage-publish) (claude-brewcode v6.13.1), byte for byte.
+The 1.1.2 distribution preserves all eleven MIT-licensed files from [brewpage-publish at `94e3d609e3308be34c0696276a20331fb65c26f4`](https://github.com/kochetkov-ma/claude-brewcode/tree/94e3d609e3308be34c0696276a20331fb65c26f4/skills/brewpage-publish) (claude-brewcode v6.13.2), byte for byte.
 
 Use the `brewpage-publish` folder where a provider accepts a skill directory, or upload [brewpage-publish.zip](brewpage-publish.zip) where it accepts a ZIP. The ZIP opens directly to `SKILL.md`, `README.md`, `LICENSE`, `scripts/` and `references/`. The four recipes cover publishing, Page data, custom domains and ownership. [manifest.json](manifest.json) records source and artifact hashes.
 
@@ -13,7 +13,7 @@ The generic skill prefers a compatible BrewPage MCP tool with the selected owner
 
 ## Mistral Work
 
-Use [mistral-work-brewpage-publish-v1.1.1.zip](mistral-work-brewpage-publish-v1.1.1.zip). The thirteen files include a root `LICENSE`, the active [SKILL.md](mistral-work/SKILL.md) and eleven files under `upstream/` with the bundled User-Agent `brewpage-mistral-work/1.1.1 (+https://brewpage.app)`. The active skill uses connected BrewPage MCP only and leaves unsupported operations pending. It keeps explicit visibility and password choices, preview, TTL and archive review.
+Use [mistral-work-brewpage-publish-v1.1.2.zip](mistral-work-brewpage-publish-v1.1.2.zip). The thirteen files include a root `LICENSE`, the active [SKILL.md](mistral-work/SKILL.md) and eleven files under `upstream/` with the bundled User-Agent `brewpage-mistral-work/1.1.2 (+https://brewpage.app)`. The active skill uses connected BrewPage MCP only and leaves unsupported operations pending. It keeps explicit visibility and password choices, preview, TTL and archive review.
 
 The skill returns the reader link and delivers any private management link or owner key through a verified owner-only channel. Anyone with the management link can edit or delete the publication. Arrange private storage or protected delivery before a write that can issue a key. The skill confirms storage through private readback.
 

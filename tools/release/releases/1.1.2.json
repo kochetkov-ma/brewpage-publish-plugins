@@ -1,0 +1,38 @@
+{
+  "distribution_version": "1.1.2",
+  "baseline": "v1.1.1",
+  "upstream_commit": "94e3d609e3308be34c0696276a20331fb65c26f4",
+  "upstream_label": "claude-brewcode v6.13.2",
+  "skill_layout": "recipes",
+  "versions": {
+    "qwen": "1.1.2",
+    "deepseek": "1.1.2",
+    "mistral-vibe": "1.1.2",
+    "kimi": "1.1.2",
+    "yandex": "1.1.2",
+    "mistral-work": "1.1.2"
+  },
+  "catalog_versions": {
+    "gitverse": "1.1.2",
+    "sourcecraft": "1.1.2"
+  },
+  "tools": {
+    "python": "3.14.10",
+    "zlib": "1.2.12",
+    "node": "24.15.0",
+    "npm": "11.12.1"
+  },
+  "notes": {
+    "change": "The helper passes only named Git variables, and the copied page password has a page-specific name",
+    "limit": "Local checks cover the packaged bytes and synthetic transport. Provider import, model-driven publishing and catalog acceptance are separate.",
+    "isolation_asserts": "reader-safe receipt output, explicit private management delivery, protected recovery of unsaved owner proof, and refusal to upload reserved history and recovery files",
+    "deepseek_verify_native": "Pass for the exact 1.1.2 tarball in an isolated offline install with Harness 0.2.1-rc.2 and Node 24.15.0. All 21 members matched, and native discovery verified the skill body and both invocation policies.",
+    "mistral_work_adaptation": "The active instruction keeps publishing within compatible connected tools and requires private result delivery.",
+    "kimi_tests": {},
+    "kimi_note": "Kimi uses the connected BrewPage MCP tools. The host sets the MCP User-Agent.",
+    "kimi_limits": [
+      "Native Kimi import and execution of 1.1.2 need separate evidence."
+    ],
+    "yandex_native_import": "pending native import of the 1.1.2 archive; prior provider evidence applies to its recorded version"
+  }
+}

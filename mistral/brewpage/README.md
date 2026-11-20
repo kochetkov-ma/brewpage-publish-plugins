@@ -2,17 +2,17 @@
 
 An Agent Plugins 1.0 package containing the MIT-licensed BrewPage publishing skill and a connection to the remote BrewPage MCP server.
 
-Version 1.1.1 bundles the publishing workflow and four recipes for publishing, Page data, custom domains and ownership.
+Version 1.1.2 bundles the publishing workflow and four recipes for publishing, Page data, custom domains and ownership.
 
 ## Install
 
-Review the files, then extract `brewpage-vibe-1.1.1.zip` into your project's `.vibe/plugins/` directory. The resulting manifest must be `.vibe/plugins/brewpage/plugin.json`. Trust that project in Vibe Code, then start a session or run `/reload-plugins`. Open `/plugins` to inspect BrewPage and `/mcp` to inspect its remote server.
+Review the files, then extract `brewpage-vibe-1.1.2.zip` into your project's `.vibe/plugins/` directory. The resulting manifest must be `.vibe/plugins/brewpage/plugin.json`. Trust that project in Vibe Code, then start a session or run `/reload-plugins`. Open `/plugins` to inspect BrewPage and `/mcp` to inspect its remote server.
 
 Vibe Code exposes the bundled skill as `/brewpage:brewpage-publish`. The MCP endpoint is `https://brewpage.app/mcp` over Streamable HTTP. Anonymous publishing needs no BrewPage account or API key. Normal Vibe approval rules apply to MCP tools.
 
 ## Existing skill compatibility
 
-The eleven skill files under `skills/brewpage-publish/upstream/` come from [claude-brewcode v6.13.1 at `07058f5a48b07ac81e46bb83d86e836487707a22`](https://github.com/kochetkov-ma/claude-brewcode/tree/07058f5a48b07ac81e46bb83d86e836487707a22/skills/brewpage-publish). Their only change is the runner's User-Agent `brewpage-mistral-vibe/1.1.1 (+https://brewpage.app)`.
+The eleven skill files under `skills/brewpage-publish/upstream/` come from [claude-brewcode v6.13.2 at `94e3d609e3308be34c0696276a20331fb65c26f4`](https://github.com/kochetkov-ma/claude-brewcode/tree/94e3d609e3308be34c0696276a20331fb65c26f4/skills/brewpage-publish). Their only change is the runner's User-Agent `brewpage-mistral-vibe/1.1.2 (+https://brewpage.app)`.
 
 The [native adapter](skills/brewpage-publish/SKILL.md) prefers an exposed BrewPage MCP tool that supports the requested material and options, the selected owner and verified private result delivery. If MCP cannot support the request or its local bytes, the skill can select the authorized `run.py` launcher with the same owner before dispatch. An explicit MCP-only request stays pending without a compatible binding. Vibe's normal approvals apply. A refused write stays on its chosen route. An uncertain result must be reconciled before another write.
 
@@ -22,7 +22,7 @@ The skill returns the reader link and relevant notices. It delivers a management
 
 ## License and verification
 
-The package and bundled skill use MIT. See [LICENSE](LICENSE). The distribution's `manifest.json` and `validation.json` record the seventeen-file archive roundtrip, syntax and isolated launcher checks, including protected owner recovery. Fresh native loading, tool discovery and model-driven publishing remain unverified for 1.1.1.
+The package and bundled skill use MIT. See [LICENSE](LICENSE). The distribution's `manifest.json` and `validation.json` record the seventeen-file archive roundtrip, syntax and isolated launcher checks, including protected owner recovery. Fresh native loading, tool discovery and model-driven publishing remain unverified for 1.1.2.
 
 The package follows [Mistral's plugin documentation](https://docs.mistral.ai/vibe/code/cli/plugins). Plugin support is experimental. This CLI package is separate from any connector configured in Le Chat.
 

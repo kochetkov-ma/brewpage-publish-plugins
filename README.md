@@ -11,7 +11,7 @@ No signup or API key. You set how long your publication stays online.
 
 ## Integrations
 
-Download the [1.1.1 host packages](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.1.1)
+Download the [1.1.2 host packages](https://github.com/kochetkov-ma/brewpage-publish-plugins/releases/tag/v1.1.2)
 and verify them against the [asset checksums](SHASUMS256.txt). Qwen and DeepSeek
 use `brewpage-mcp@3.0.0` in their default setup.
 The Agent Plugin and Antigravity packages share recipes for publishing, Page data,
@@ -21,12 +21,12 @@ custom domains and ownership. Both can be installed from a local checkout.
 | --- | --- | --- | --- |
 | Claude Code, Grok Build, Cursor, GitHub Copilot | `agent-plugin/` | In Claude Code, register the local checkout as a marketplace and run `/plugin install brewpage@brewpage`. The skill prefers compatible MCP and can select protected REST before writing. | [README](agent-plugin/README.md) |
 | Google Antigravity | `integrations/antigravity-plugin/` | From the checkout, run `agy plugin install ./integrations/antigravity-plugin`. Writes use connected MCP. The optional local setup uses `brewpage-mcp@3.0.0`. | [README](integrations/antigravity-plugin/README.md) |
-| Qwen Code | `qwen/` | `qwen extensions install /absolute/path/to/qwen` from `brewpage-qwen-1.1.1.zip` | [README](qwen/README.md) |
-| DeepSeek Harness | `deepseek/` | `dsh plugin --profile brewpage add ./dsh-brewpage-1.1.1.tgz` | [README](deepseek/README.md) |
-| Mistral Vibe Code | `mistral/` | Extract `brewpage-vibe-1.1.1.zip` into `.vibe/plugins/`, then `/reload-plugins` | [README](mistral/README.md) |
-| Kimi Code | `kimi/` | Extract `brewpage-kimi-code-1.1.1.zip`, then `/plugins install /absolute/path/to/brewpage-publish` | [README](kimi/README.md) |
-| Yandex AI Studio | `yandex/` | Import `yandex-brewpage-publish-v1.1.1.zip` in Agent Core > Skills | [README](yandex/README.md) |
-| Mistral Work | `common/` | Use `mistral-work-brewpage-publish-v1.1.1.zip` | [SKILL.md](common/mistral-work/SKILL.md) |
+| Qwen Code | `qwen/` | `qwen extensions install /absolute/path/to/qwen` from `brewpage-qwen-1.1.2.zip` | [README](qwen/README.md) |
+| DeepSeek Harness | `deepseek/` | `dsh plugin --profile brewpage add ./dsh-brewpage-1.1.2.tgz` | [README](deepseek/README.md) |
+| Mistral Vibe Code | `mistral/` | Extract `brewpage-vibe-1.1.2.zip` into `.vibe/plugins/`, then `/reload-plugins` | [README](mistral/README.md) |
+| Kimi Code | `kimi/` | Extract `brewpage-kimi-code-1.1.2.zip`, then `/plugins install /absolute/path/to/brewpage-publish` | [README](kimi/README.md) |
+| Yandex AI Studio | `yandex/` | Import `yandex-brewpage-publish-v1.1.2.zip` in Agent Core > Skills | [README](yandex/README.md) |
+| Mistral Work | `common/` | Use `mistral-work-brewpage-publish-v1.1.2.zip` | [SKILL.md](common/mistral-work/SKILL.md) |
 | GitVerse skills, `npx skills` agents | `skills/brewpage-publish/` | `npx skills add https://github.com/kochetkov-ma/brewpage-publish-plugins.git --skill brewpage-publish` | [Code-host catalogs](#code-host-catalogs) |
 | SourceCraft Code Assistant | `.sourcecraft/skills/brewpage-publish/` | Import in `.sourcecraft/ai.yaml`, then `/brewpage-publish` in the chat | [Code-host catalogs](#code-host-catalogs) |
 | Any skill directory or ZIP | `common/` | Use the `brewpage-publish/` folder or `brewpage-publish.zip` (original Claude skill) | [README](common/README.md) |
@@ -51,7 +51,7 @@ upstream commit as `common/brewpage-publish/`; they differ only in the
 User-Agent value.
 
 - `skills/brewpage-publish/`: the eleven canonical files with User-Agent
-  `brewpage-gitverse/1.1.1 (+https://brewpage.app)`, the layout of the
+  `brewpage-gitverse/1.1.2 (+https://brewpage.app)`, the layout of the
   [GitVerse skills catalog](https://gitverse.ru/marketplace/skills) and of
   `npx skills`. The skill uses a compatible connected tool and can run
   `scripts/brewpage-run.sh` with Bash, curl, jq and Python 3 when the host permits HTTPS fallback.
@@ -59,7 +59,7 @@ User-Agent value.
   (inputs `path`, `visibility`, `ttl`) that prefers compatible BrewPage MCP with
   the selected owner and verified private result delivery. When permitted, it can select
   protected REST with the same owner before writing. The bundled REST runner sends
-  `brewpage-sourcecraft/1.1.1 (+https://brewpage.app)` as its User-Agent. The `upstream/`
+  `brewpage-sourcecraft/1.1.2 (+https://brewpage.app)` as its User-Agent. The `upstream/`
   directory contains the runner, recipes and `SKILL.md.source`. The host loads one active `SKILL.md`.
 
 SourceCraft imports a public skill by repository and path in

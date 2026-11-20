@@ -13,7 +13,7 @@ account when requested.
 
 ## Install and use
 
-Validate and install the 1.1.1 candidate from a local checkout using the
+Validate and install the 1.1.2 candidate from a local checkout using the
 [Antigravity plugin CLI](https://antigravity.google/docs/build-plugins).
 
 ```

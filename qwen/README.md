@@ -5,17 +5,17 @@
 
 Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-publish-plugins#readme) for [BrewPage](https://brewpage.app).
 
-The 1.1.1 release packages the BrewPage publishing skill for Qwen Code’s extension loader and pins `brewpage-mcp@3.0.0`. The default installation uses the published MCP package.
+The 1.1.2 release packages the BrewPage publishing skill for Qwen Code’s extension loader and pins `brewpage-mcp@3.0.0`. The default installation uses the published MCP package.
 
 In the published history, version `1.0.8` moved the pinned MCP server to `2.1.0`, whose guide tool also explains the ready page templates. The publishing skill stays at upstream `5da825f1`; the User-Agent is `brewpage-qwen/1.0.8 (+https://brewpage.app)`. Version `1.0.7` moved the pinned MCP server to `2.0.0`: one tool per job (`publish_html` publishes a page or a whole site, `get_page` reads, `set_publication` changes the settings), and the older tool names still answer. Version `1.0.6` synced the publishing skill to upstream `5da825f1` (claude-brewcode v6.12.12), which explains page data: published pages can save what visitors enter, and the author turns it on and reads the entries in the management link's Data tab. It moved the pinned MCP server to `1.19.0`, which added the page data tools. Version `1.0.5` synced the skill to upstream `48255159` (claude-brewcode v6.12.11): after publishing the agent gives you the page link and the management link; the management link is private: anyone who has it can edit or delete the page. The owner token stays in the native history file and is shown when you ask or when it cannot be saved. `.html` and Markdown files publish as pages. Version `1.0.4` added links back to this collection and BrewPage in this guide. Version `1.0.3` synced the publishing skill to upstream `809e0fa2`, so every brewpage.app request sends a User-Agent. `verify-isolation.py` asserts that header on the mocked upload. Launcher bytes are unchanged. Version 1.0.2 updated the pinned MCP server to 1.15.1. Distribute `brewpage-qwen-1.0.8.zip`; `manifest.json` records its inventory and SHA-256. Prior archives and verification receipts remain historical evidence. Manifest keywords do not prove vendor-catalog indexing.
 
-The eleven upstream files under `skills/brewpage-publish/upstream/` come from the MIT-licensed [source commit](https://github.com/kochetkov-ma/claude-brewcode/tree/07058f5a48b07ac81e46bb83d86e836487707a22/skills/brewpage-publish) with User-Agent `brewpage-qwen/1.1.1 (+https://brewpage.app)`. The host uses a compatible BrewPage MCP operation when the selected authority and private result channel are verified. Its isolated runner handles permitted HTTPS fallback and local file intake.
+The eleven upstream files under `skills/brewpage-publish/upstream/` come from the MIT-licensed [source commit](https://github.com/kochetkov-ma/claude-brewcode/tree/94e3d609e3308be34c0696276a20331fb65c26f4/skills/brewpage-publish) with User-Agent `brewpage-qwen/1.1.2 (+https://brewpage.app)`. The host uses a compatible BrewPage MCP operation when the selected authority and private result channel are verified. Its isolated runner handles permitted HTTPS fallback and local file intake.
 
 The adapter resolves input and password-file paths before changing directory, removes inherited Claude variables, and forces history into `~/.qwen/brewpage-publish/.claude/brewpage-history.md` (file 600, private state directory 700). The nested filename belongs solely to this adapter's native state. It never imports a project's or another runtime's Claude history or credentials. Never invoke the upstream helper directly.
 
 The helper receives only PATH, HOME and locale variables plus adapter-owned root, private temporary storage and isolated Git settings. Shell startup/options, exported functions and inherited Git context are excluded. Probe, content and password paths containing `.claude` or `.claude-*` components are refused before helper reads, including alternate case and neutral aliases resolving there.
 
-Run `python3 verify-isolation.py --recipes` in the 1.1.1 package to check archive consent, path handling, isolated storage and private recovery with synthetic transport.
+Run `python3 verify-isolation.py --recipes` in the 1.1.2 package to check archive consent, path handling, isolated storage and private recovery with synthetic transport.
 
 ## Install
 
@@ -27,7 +27,7 @@ qwen extensions list
 qwen mcp list
 ```
 
-Review and accept Qwen's installation prompt. It must list both the `brewpage-publish` skill and `brewpage` MCP server. The extension list must report `Origin: AgentPlugins`, `brewpage (1.1.1)`, and both capabilities. After public distribution, use the same command on the downloaded and extracted package.
+Review and accept Qwen's installation prompt. It must list both the `brewpage-publish` skill and `brewpage` MCP server. The extension list must report `Origin: AgentPlugins`, `brewpage (1.1.2)`, and both capabilities. After public distribution, use the same command on the downloaded and extracted package.
 
 Start Qwen Code, complete its own supported login, and ask it to load `brewpage-publish`. Publishing needs Bash, curl, jq, Python 3 with `fcntl`, and Git inside repositories; sites also need Node, zip and unzip. Use macOS, Linux or WSL. Answer namespace and password choices explicitly. No BrewPage signup or API key is needed.
 

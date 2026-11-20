@@ -1,0 +1,32 @@
+{
+  "version": "1.1.2",
+  "user_agent": "brewpage-qwen/1.1.2 (+https://brewpage.app)",
+  "upstream_commit": "94e3d609e3308be34c0696276a20331fb65c26f4",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "brewpage-qwen-1.1.2.zip",
+  "sha256": "eb350b98418056d70a7bc20336a02582f03f1ab2ebd20c47b51457fd8fff1e19",
+  "baseline_artifact": "brewpage-qwen-1.1.1.zip",
+  "baseline_sha256": "2f8e851f5b34553fa90f901889a9c63e58d440305ef280c7ff9ea5bd11d933d6",
+  "changed_files": [
+    "qwen/README.md",
+    "qwen/plugin.json",
+    "qwen/skills/brewpage-publish/upstream/README.md",
+    "qwen/skills/brewpage-publish/upstream/SKILL.md",
+    "qwen/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
+    "qwen/skills/brewpage-publish/upstream/scripts/history.py"
+  ],
+  "file_count": 18,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 11,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "verify-isolation.py": "pass; asserts upload -A == brewpage-qwen/1.1.2 (+https://brewpage.app), reader-safe receipt output, explicit private management delivery, protected recovery of unsaved owner proof, and refusal to upload reserved history and recovery files"
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "limits": [
+    "Local checks cover the packaged bytes and synthetic transport. Provider import, model-driven publishing and catalog acceptance are separate."
+  ],
+  "change": "Publishing skill synced to upstream 94e3d609 (claude-brewcode v6.13.2). The helper passes only named Git variables, and the copied page password has a page-specific name. User-Agent version moved to 1.1.2"
+}
