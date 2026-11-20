@@ -3,8 +3,9 @@
 Rebuilds everything a release of the six host packages (`qwen/`, `deepseek/`,
 `mistral/`, `kimi/`, `yandex/`, `common/`) derives from the hand-written files:
 the vendored publishing skill, the archives, the manifests and receipts,
-`PROVENANCE.json` and `SHASUMS256.txt`. `agent-plugin/` and `integrations/`
-are released separately and are not covered.
+`PROVENANCE.json` and `SHASUMS256.txt`. The add-on packages `agent-plugin/`,
+`integrations/antigravity-plugin/` and `catalogs/buildwithclaude/` have their own
+tags and use `addons.py` ([Add-on packages](#add-on-packages)).
 
 Release 1.0.5 is the reference: `check.sh` rebuilds it from tag `v1.0.4` plus
 upstream commit `48255159` and gets the committed tree and the published
@@ -18,6 +19,7 @@ release assets byte for byte.
 | `release.py` | `vendor`, `build`, `outputs`, `assets` (and `reset`, used by `check.sh`) |
 | `generate.sh` | `vendor`, `npm pack` in `deepseek/`, `build`; writes into the checkout |
 | `check.sh` | Rebuilds a committed release in a temp dir and compares; the checkout is only read |
+| `addons.py` | Add-on packages: `refresh`, `catalog`, `zip`, `check` |
 
 ## Inputs
 
@@ -144,6 +146,38 @@ scan, archive CRC and roundtrip, the isolation verifiers
   (`mistral-work-brewpage-publish-v<v>.zip`).
 - The ClawHub listing of the original skill is published from
   `kochetkov-ma/claude-brewcode`, not from this repository.
+
+## Add-on packages
+
+`agent-plugin/` and `integrations/antigravity-plugin/` vendor the eleven files of
+claude-brewcode `openclaw/brewpage-publish` with their own User-Agent;
+`catalogs/buildwithclaude/` is `agent-plugin/` plus its own skill edits. Each
+`PROVENANCE.json` records the upstream commit, the member manifest (SHA-256 of
+`mode<TAB>sha256<TAB>name` lines) and every file digest. Run from a clean `main`;
+`V` is the agent-plugin version, `C` the catalog version, `SHA` the full
+upstream commit.
+
+1. Edit the version carriers by hand: `version` in `agent-plugin/plugin.json`,
+   `agent-plugin/.claude-plugin/plugin.json`, `agent-plugin/.cursor-plugin/plugin.json`
+   and `integrations/antigravity-plugin/plugin.json`, and the versions in both READMEs.
+2. `python3 tools/release/addons.py refresh --upstream ../claude-brewcode --commit SHA --version V`
+   rewrites the vendored files and both `PROVENANCE.json`. It refuses when a
+   vendored file differs from its recorded upstream.
+3. Commit, push and tag `brewpage-agent-plugin-vV` (lightweight, like the host tags).
+4. Edit `version` in `catalogs/buildwithclaude/.claude-plugin/plugin.json` and its
+   README, then `python3 tools/release/addons.py catalog --base-ref brewpage-agent-plugin-vV --version C`.
+   It three-way merges the catalog skill edits onto that tag, keeps a new upstream
+   insertion next to an unchanged catalog line, and stops on any other overlap.
+   Commit, push and tag `brewpage-buildwithclaude-plugin-vC`.
+5. `python3 tools/release/addons.py zip --ref <tag> --package agent-plugin|buildwithclaude --out DIR`
+   writes the release archive; upload it with `gh release create <tag>`.
+   Antigravity installs from the checkout and has no archive.
+
+`python3 tools/release/addons.py check --upstream ../claude-brewcode` rebuilds the
+published archives of agent-plugin 1.1.1 and 1.1.2 and BuildWithClaude 1.1.2 and
+1.1.3 and compares their SHA-256. It then replays the 1.1.2 refresh and the 1.1.3
+catalog rebase from their parent commits. Every package file must come out byte
+for byte, with the same mode.
 
 ## Limits
 
