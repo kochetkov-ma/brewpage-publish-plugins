@@ -53,7 +53,7 @@ history; treat it as a secret and keep it out of shared steps.
 
 BrewPage is temporary hosting, not permanent storage.
 
-- Lifetime: 1 to 30 days, default 15; up to 90 with a profile owner token.
+- Lifetime: default 15 days; up to 30 days without an account, up to 90 with a free profile (its owner token).
   Without a profile the API clamps 31-90 to 30 and says so in Notices. Content
   is deleted for good at expiry.
 - Size: page 5 MB; file 5 MB (video 20 MB); JSON document 1 MB; request 25 MB.

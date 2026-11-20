@@ -24,7 +24,7 @@ const ttl = {
   type: 'integer',
   required: false,
   helpText:
-    'Days until the publication is deleted for good: 1 to 30, default 15. Up to 90 with an owner token from a free profile.',
+    'Days until the publication is deleted for good, default 15: up to 30 days without an account, up to 90 with a free profile (its owner token).',
 };
 
 module.exports = { visibility, ttl };
