@@ -6,7 +6,7 @@ Before every new upload, the skill asks you to confirm visibility, password prot
 
 ## Install and run
 
-After [BuildWithClaude](https://buildwithclaude.com/) lists version 1.1.2, install it from Claude Code.
+After [BuildWithClaude](https://buildwithclaude.com/) lists version 1.1.3, install it from Claude Code.
 
 ```text
 /plugin install brewpage --marketplace davepoon/buildwithclaude
