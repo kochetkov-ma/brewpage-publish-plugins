@@ -1,0 +1,33 @@
+{
+  "version": "1.1.2",
+  "user_agent": "brewpage-mistral-vibe/1.1.2 (+https://brewpage.app)",
+  "upstream_commit": "94e3d609e3308be34c0696276a20331fb65c26f4",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "brewpage-vibe-1.1.2.zip",
+  "sha256": "f267df3fd8de45de72925c042739d24592ead0e49973aed9abc32079ac8c3566",
+  "baseline_artifact": "brewpage-vibe-1.1.1.zip",
+  "baseline_sha256": "aba52a97f7d3d0873b33109fd0f6185cf619add7ffd5fe0291652e7612810679",
+  "changed_files": [
+    "brewpage/README.md",
+    "brewpage/plugin.json",
+    "brewpage/skills/brewpage-publish/upstream/README.md",
+    "brewpage/skills/brewpage-publish/upstream/SKILL.md",
+    "brewpage/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
+    "brewpage/skills/brewpage-publish/upstream/scripts/history.py"
+  ],
+  "file_count": 17,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 11,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "run.py --check-isolation": "pass in a temporary VIBE_HOME (0700 state, 0600 history)",
+    "verify-isolation.py": "pass on extracted archive: protected management output and owner recovery"
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "limits": [
+    "Local checks cover the packaged bytes and synthetic transport. Provider import, model-driven publishing and catalog acceptance are separate."
+  ],
+  "change": "Publishing skill synced to upstream 94e3d609 (claude-brewcode v6.13.2). The helper passes only named Git variables, and the copied page password has a page-specific name. User-Agent version moved to 1.1.2"
+}

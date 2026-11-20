@@ -5,11 +5,11 @@
 
 Part of [BrewPage publishing plugins](https://github.com/kochetkov-ma/brewpage-publish-plugins#readme) for [BrewPage](https://brewpage.app).
 
-Version 1.1.2 packages the native `kimi.plugin.json` and eleven skill files from [claude-brewcode v6.13.2](https://github.com/kochetkov-ma/claude-brewcode/tree/94e3d609e3308be34c0696276a20331fb65c26f4/skills/brewpage-publish), including four recipes. The bundled files differ from that commit only in the User-Agent `brewpage-kimi/1.1.2 (+https://brewpage.app)`. Kimi controls the User-Agent for its connected MCP requests.
+Version 1.1.3 packages the native `kimi.plugin.json` and eleven skill files from [claude-brewcode v6.13.4](https://github.com/kochetkov-ma/claude-brewcode/tree/2e867753fa7678781808212564ca8e7f80dfb608/skills/brewpage-publish), including four recipes. The bundled files differ from that commit only in the User-Agent `brewpage-kimi/1.1.3 (+https://brewpage.app)`. Kimi controls the User-Agent for its connected MCP requests.
 
 ## Install
 
-Extract [brewpage-kimi-code-1.1.2.zip](brewpage-kimi-code-1.1.2.zip) into a directory named `brewpage-publish`, then install that directory in Kimi Code.
+Extract [brewpage-kimi-code-1.1.3.zip](brewpage-kimi-code-1.1.3.zip) into a directory named `brewpage-publish`, then install that directory in Kimi Code.
 
 ```text
 /plugins install /absolute/path/to/brewpage-publish
@@ -25,7 +25,7 @@ Before a write that can return a private management link or owner key, the skill
 
 ## Verification
 
-[The 1.1.2 receipt](refresh-verification-1.1.2.json) records the twelve-file archive roundtrip, eleven synced upstream files and syntax checks. Fresh native import, model-driven publishing and private delivery on Kimi remain unverified for this version.
+[The 1.1.3 receipt](refresh-verification-1.1.3.json) records the twelve-file archive roundtrip, eleven synced upstream files and syntax checks. Fresh native import, model-driven publishing and private delivery on Kimi remain unverified for this version.
 
 ## Historical packages and checks
 

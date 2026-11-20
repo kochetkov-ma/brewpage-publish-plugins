@@ -3,7 +3,7 @@
   "name": "brewpage-publish",
   "source": {
     "repository": "https://github.com/kochetkov-ma/claude-brewcode",
-    "commit": "94e3d609e3308be34c0696276a20331fb65c26f4",
+    "commit": "2e867753fa7678781808212564ca8e7f80dfb608",
     "directory": "skills/brewpage-publish",
     "license": "MIT"
   },
@@ -11,7 +11,7 @@
     "folder": "brewpage-publish",
     "zip": "brewpage-publish.zip",
     "zip_layout": "SKILL.md at archive root",
-    "sha256": "e6d9cfa8501e15835af1a13a12bbd615c8d0501ceaf32ac3f9394ac73b6ddfd8"
+    "sha256": "392aec02b787e816bfa725c6afc77c28fe5dd7f2674866919dcdfef07292d22a"
   },
   "files": [
     {
@@ -20,15 +20,15 @@
     },
     {
       "path": "README.md",
-      "sha256": "f94d364f8435bd1cf3c14cb50a2cc33e20481c121fe756543da243b786cc3051"
+      "sha256": "d384361752e37810ee28993b0b027b5d2467477381b8ad32f49249aa56b58b8b"
     },
     {
       "path": "SKILL.md",
-      "sha256": "8a23df3922240f5683911c32bb469151b1c1bda44ee75ca0aeaf9b93e1f3131a"
+      "sha256": "86a0607a9e12feb4eec729cf002087c2aa6ba0c0f26b5f1707d08d7f1c2858aa"
     },
     {
       "path": "scripts/brewpage-lib.sh",
-      "sha256": "a54cdef7e1da2fd274b1bdee6fc9d0b712191984af29ac4ebc577739fe1a20fe"
+      "sha256": "a5c144660479b8d361109a8383dc740c5d3ed25f3ddca14399ea2de37cae6662"
     },
     {
       "path": "scripts/brewpage-run.sh",
@@ -726,6 +726,82 @@
       },
       "source_commit": "94e3d609e3308be34c0696276a20331fb65c26f4",
       "user_agent": "brewpage-mistral-work/1.1.2 (+https://brewpage.app)",
+      "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples"
+    },
+    {
+      "provider": "Mistral Work",
+      "version": "1.1.3",
+      "folder": "mistral-work",
+      "zip": "mistral-work-brewpage-publish-v1.1.3.zip",
+      "zip_layout": "SKILL.md at archive root; unchanged source files under upstream/",
+      "sha256": "02b2b2b9425780ff16114ca9d8aa0c8032a0ed849d5736cf833a1dcd46c6e11a",
+      "adaptation": "The active instruction keeps publishing within compatible connected tools and requires private result delivery.",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "bd8e68d005b0f59f29d5b46db614b7dd520217b1862643caebfa016ecadf0c51"
+        },
+        {
+          "path": "upstream/LICENSE",
+          "sha256": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84"
+        },
+        {
+          "path": "upstream/README.md",
+          "sha256": "f2264a599dd4db3a2e63d407bb2aa35ed14ed38ed9ee87072d9a58b396539b3e"
+        },
+        {
+          "path": "upstream/SKILL.md",
+          "sha256": "5a383dcfa9cfe2c0759b7a9a705615f310e6c5f2ab9ef41e579c720276f8bbb7"
+        },
+        {
+          "path": "upstream/references/custom-domain.md",
+          "sha256": "cac818abac9021f9b7d4583ccecda240dd4a71d9f74f4753c83fc2abdd80f0ef"
+        },
+        {
+          "path": "upstream/references/ownership.md",
+          "sha256": "489f1860ce7d765ddeeccef4a52d214dcf3446a1cfc9d6c14e85ba2b5b6f451b"
+        },
+        {
+          "path": "upstream/references/page-data.md",
+          "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
+        },
+        {
+          "path": "upstream/references/publishing.md",
+          "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
+        },
+        {
+          "path": "upstream/scripts/brewpage-lib.sh",
+          "sha256": "2f3f05bd3cf6139ccff57fc7a7516e6d74754c00a1c3a206463c761571357105"
+        },
+        {
+          "path": "upstream/scripts/brewpage-run.sh",
+          "sha256": "fba93e30aafac42def69b3ecf4b467bc8c40c0a3cde1dd949cd9746bbe4edb57"
+        },
+        {
+          "path": "upstream/scripts/history.py",
+          "sha256": "fad17d23de92e836b48dfef98c239e73d355948a5a80a3bdeb1da5d878847148"
+        },
+        {
+          "path": "upstream/scripts/publish.mjs",
+          "sha256": "16ce9d394f0cdd04e91bccbccdd761b83b589cab1b5ea9aaebd37226d7abaf3f"
+        }
+      ],
+      "validation": {
+        "zip_crc": "pass",
+        "zip_roundtrip_files": 13,
+        "upstream_source_hashes_match": 11,
+        "portable_body_sha256": "d6f6efd78461b24b1ea8929c6bdfeadc72170848539b51bc762bce0a9c23d14c",
+        "portable_body_chars": 4651,
+        "native_saved_instruction_body_is_separate_surface": true,
+        "native_import": "not repeated",
+        "runtime_publish": "not run"
+      },
+      "source_commit": "2e867753fa7678781808212564ca8e7f80dfb608",
+      "user_agent": "brewpage-mistral-work/1.1.3 (+https://brewpage.app)",
       "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples"
     }
   ]
