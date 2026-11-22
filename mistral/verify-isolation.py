@@ -31,7 +31,7 @@ def verify(skill):
             'link': 'https://brewpage.app/public/fixtureid1', 'ownerToken': 'V' * 32,
             'manageUrl': 'https://brewpage.app/manage/vibe-fixture#k=fixture-key',
             'ownerLink': 'https://brewpage.app/api/files/public/fixtureid1',
-            'namespace': 'public', 'type': 'file', 'id': 'fixtureid1',
+            'namespace': 'public', 'type': 'file', 'id': 'fixtureid1', 'result': {'action': 'created'},
         }
         curl = commands / 'curl'
         curl.write_text(f'''#!{sys.executable}
@@ -42,8 +42,7 @@ Path({str(observed)!r}).write_text(json.dumps(sys.argv[1:]))
 if Path({str(sabotage)!r}).exists():
     Path({str(history)!r}).unlink()
     Path({str(history)!r}).symlink_to({str(foreign)!r})
-print({json.dumps(response)!r})
-print('BP_HTTP_STATUS:201')
+sys.stdout.write({json.dumps(response)!r} + ('\\nBP_HTTP_STATUS:201' if '-w' in sys.argv[1:] else ''))
 ''')
         curl.chmod(0o700)
         env = {'PATH': str(commands) + os.pathsep + os.environ['PATH'], 'HOME': str(home), 'VIBE_HOME': str(home),
@@ -66,11 +65,12 @@ print('BP_HTTP_STATUS:201')
         assert history.read_text().count(response['ownerToken']) == 1, 'private history must contain one saved owner capability'
         assert startup_marker.exists() is False, 'the inherited shell startup file must be absent from the helper environment'
 
-        # THEN explicit private delivery and protected recovery preserve the exact receipt.
+        # THEN explicit private delivery names the protected store, and the proof stays in files.
         private = run(*command, '--private-output')
-        private_output = (reader + 'MANAGE: ' + response['manageUrl'] + '\nOWNER TOKEN SAVED\n'
-                          + 'OWNER RECEIPT FILE: ' + str(history) + ' (0600)\n')
-        assert (private.returncode, private.stdout) == (0, private_output), 'owner-only output must carry the returned management link'
+        private_output = reader + 'OWNER TOKEN SAVED\n' + 'OWNER RECEIPT FILE: ' + str(history) + ' (0600)\n'
+        assert (private.returncode, private.stdout) == (0, private_output), 'owner-only output must name the verified store'
+        assert response['manageUrl'] not in private.stdout + private.stderr and response['ownerToken'] not in private.stdout + private.stderr, 'owner-only output must keep proof in the store'
+        assert history.read_text().count(response['manageUrl']) >= 1, 'the private store must keep the management link for the owner'
         sabotage.touch()
         unsaved = run(*command)
         expected = 'NOTICE: publication confirmed; owner history could not be saved securely\nOWNER RECOVERY SAVED\n' + reader
@@ -79,10 +79,30 @@ print('BP_HTTP_STATUS:201')
         assert stat.S_IMODE(recovery.stat().st_mode) == 0o600, 'the recovery file must have mode 0600'
         readback = run('owner-recovery', '--private-output')
         assert readback.returncode == 0, 'owner recovery must be reachable through the installed launcher'
-        receipt = json.loads(readback.stdout)
+        assert json.loads(readback.stdout) == {'ownerApi': response['ownerLink'], 'readerUrl': response['link']}, 'owner recovery must report only the exact target and reader link'
+        assert response['ownerToken'] not in readback.stdout and response['manageUrl'] not in readback.stdout, 'owner recovery must keep proof in the file'
+        receipt = json.loads(recovery.read_text())
         selected = {'readerUrl': response['link'], 'manageUrl': response['manageUrl'],
                     'ownerToken': response['ownerToken'], 'ownerApi': response['ownerLink']}
-        assert {key: receipt[key] for key in selected} == selected, 'protected readback must match the actual publication and proof'
+        assert {key: receipt[key] for key in selected} == selected, 'the protected recovery file must match the actual publication and proof'
+        sabotage.unlink()
+
+        # GIVEN declined history WHEN an owner-only receipt directory is chosen THEN proof lands only in its protected file.
+        refused = run(*command, '--no-save')
+        assert refused.returncode == 1 and 'requires an absolute --receipt-dir' in refused.stdout + refused.stderr, 'declined history needs a protected receipt directory'
+        receipts = root / 'receipts'
+        receipts.mkdir(mode=0o700)
+        for forbidden in (str(workspace / '.claude'), 'receipts'):
+            rejected = run(*command, '--no-save', '--receipt-dir', forbidden)
+            assert rejected.returncode == 1 and not (forbidden == 'receipts' and (workspace / 'receipts').exists()), 'Claude or relative receipt directories must be refused'
+        observed.unlink()
+        declined = run(*command, '--no-save', '--receipt-dir', str(receipts))
+        assert (declined.returncode, declined.stdout) == (0, 'OWNER RECOVERY SAVED\n' + reader), 'declined history must confirm protected recovery and the reader result'
+        assert response['ownerToken'] not in declined.stdout + declined.stderr and response['manageUrl'] not in declined.stdout + declined.stderr, 'declined history must keep proof out of output'
+        declined_file = receipts / 'brewpage-recovery.json'
+        assert stat.S_IMODE(declined_file.stat().st_mode) == 0o600, 'the declined-history receipt must have mode 0600'
+        stored = json.loads(declined_file.read_text())
+        assert {key: stored[key] for key in selected} == selected, 'the declined-history receipt must hold the exact proof'
         assert foreign.read_bytes() == b'SYNTHETIC_FOREIGN_OWNER', 'foreign Claude history must remain byte-identical'
 
 

@@ -32,7 +32,7 @@ def verify(recipes):
             response.update(link='https://brewpage.app/public/fixtureid1', ownerToken='S' * 32, manageUrl=manage,
                             id='fixtureid1', namespace='public', type='file',
                             ownerLink='https://brewpage.app/api/files/public/fixtureid1',
-                            visibilityNotice='listed in the public gallery')
+                            visibilityNotice='listed in the public gallery', result={'action': 'created'})
             published = 'OK ' + response['link'] + '\nOWNER TOKEN SAVED\n' + visibility
         history = home / runtime / 'brewpage-publish/.claude/brewpage-history.md'
         unsafe = root / 'history-unsafe'
@@ -40,7 +40,7 @@ def verify(recipes):
         marker = root / 'curl-called'
         observed = root / 'curl-environment.json'
         arguments = root / 'curl-arguments.json'
-        shim.write_text('#!/usr/bin/env python3\nimport json, os\nfrom pathlib import Path\nPath(' + repr(str(marker)) + ').touch()\nPath(' + repr(str(observed)) + ').write_text(json.dumps(dict(os.environ)))\nimport sys\nPath(' + repr(str(arguments)) + ').write_text(json.dumps(sys.argv[1:]))\nif Path(' + repr(str(unsafe)) + ').exists():\n    Path(' + repr(str(history)) + ').unlink()\n    Path(' + repr(str(history)) + ').symlink_to(' + repr(str(original)) + ')\nprint(' + repr(json.dumps(response)) + ')\n')
+        shim.write_text('#!/usr/bin/env python3\nimport json, os\nfrom pathlib import Path\nPath(' + repr(str(marker)) + ').touch()\nPath(' + repr(str(observed)) + ').write_text(json.dumps(dict(os.environ)))\nimport sys\nPath(' + repr(str(arguments)) + ').write_text(json.dumps(sys.argv[1:]))\nif Path(' + repr(str(unsafe)) + ').exists():\n    Path(' + repr(str(history)) + ').unlink()\n    Path(' + repr(str(history)) + ').symlink_to(' + repr(str(original)) + ')\nsys.stdout.write(' + repr(json.dumps(response)) + ' + ("\\nBP_HTTP_STATUS:201" if "-w" in sys.argv[1:] else ""))\n')
         shim.chmod(0o700)
         env = dict(os.environ, HOME=str(home), CLAUDE_PROJECT_DIR=str(project), CLAUDE_CONFIG_DIR=str(project / '.claude'),
                    PATH=str(commands) + os.pathsep + os.environ['PATH'])
@@ -62,6 +62,25 @@ def verify(recipes):
         assert review.returncode == 2, 'sensitive archive must still require explicit confirmation'
         assert 'REVIEW_SHA256:' in review.stdout, 'archive approval must remain bound to exact bytes'
         assert not (root / 'curl-called').exists(), 'archive review must precede any mocked upload'
+        if recipes:
+            # GIVEN declined history WHEN no receipt directory is chosen THEN nothing is sent.
+            refused = run('publish', 'file', '--ns', 'public', '--password-file', '', '--path', 'input.txt', '--no-save', *authority)
+            assert refused.returncode == 1 and 'requires an absolute --receipt-dir' in refused.stdout + refused.stderr, 'declined history needs a protected receipt directory'
+            assert not marker.exists(), 'a refused declined-history create must not reach transport'
+            # WHEN an owner-only receipt directory is chosen THEN the proof lands only in its protected file.
+            receipts = root / 'receipts'
+            receipts.mkdir(mode=0o700)
+            declined = run('publish', 'file', '--ns', 'public', '--password-file', '', '--path', 'input.txt',
+                           '--no-save', '--receipt-dir', str(receipts), *authority)
+            assert (declined.returncode, declined.stdout) == (0, 'OWNER RECOVERY SAVED\nOK ' + response['link'] + '\n' + visibility), 'declined history must confirm protected recovery and the reader result'
+            assert response['ownerToken'] not in declined.stdout + declined.stderr and manage not in declined.stdout + declined.stderr, 'declined history must keep proof out of output'
+            declined_file = receipts / 'brewpage-recovery.json'
+            assert stat.S_IMODE(declined_file.stat().st_mode) == 0o600, 'the declined-history receipt must have mode 600'
+            stored = json.loads(declined_file.read_text())
+            assert [stored[key] for key in ('readerUrl', 'manageUrl', 'ownerToken', 'ownerApi')] == [response['link'], manage, response['ownerToken'], response['ownerLink']], 'the declined-history receipt must hold the exact proof'
+            assert not history.exists() or response['ownerToken'] not in history.read_text(), 'declined history must not save the owner key'
+            assert hashlib.sha256(original.read_bytes()).hexdigest() == before, 'declined history must leave Claude history unchanged'
+            marker.unlink()
 
         # WHEN native publishing receives only a mocked response without network traffic.
         result = run('publish', 'file', '--ns', 'public', '--password-file', 'password.txt', '--path', 'input.txt', *authority)
@@ -130,6 +149,7 @@ def verify(recipes):
             ('mixed-case profile content', ['publish', 'file', '--ns', 'public', '--password-file', '', '--path', '.ClAuDe-PrOfIlE/history.txt']),
             ('mixed-case profile password', ['publish', 'file', '--ns', 'public', '--password-file', '.ClAuDe-PrOfIlE/history.txt', '--path', 'input.txt']),
             ('mixed-case profile probe', ['probe', '.ClAuDe-PrOfIlE/history.txt']),
+            ('Claude receipt directory', ['publish', 'file', '--ns', 'public', '--password-file', '', '--path', 'input.txt', '--no-save', '--receipt-dir', '.claude']),
         ]
         marker.unlink()
         native_before = hashlib.sha256(history.read_bytes()).hexdigest()
@@ -143,13 +163,15 @@ def verify(recipes):
             assert stat.S_IMODE(history.stat().st_mode) == 0o600, name + ': native history must remain mode 600'
             assert stat.S_IMODE(history.parent.parent.stat().st_mode) == 0o700, name + ': native state must remain mode 700'
         if recipes:
-            # GIVEN an owner-only channel WHEN private output is selected THEN it carries the management link.
+            # GIVEN an owner-only channel WHEN private output is selected THEN it names the store, never the proof.
             private = run('publish', 'file', '--ns', 'public', '--password-file', '', '--path', 'input.txt',
                           '--private-output', *authority)
-            expected = ('OK ' + response['link'] + '\nMANAGE: ' + manage + '\nOWNER TOKEN SAVED\n'
+            expected = ('OK ' + response['link'] + '\nOWNER TOKEN SAVED\n'
                         + 'OWNER RECEIPT FILE: ' + str(history) + ' (0600)\n' + visibility)
             assert (private.returncode, private.stdout) == (0, expected), 'explicit private delivery must identify the verified store'
             assert response['ownerToken'] not in private.stdout + private.stderr, 'a saved token must remain in the private store'
+            assert manage not in private.stdout + private.stderr, 'the management link must remain in the private store'
+            assert history.read_text().count(manage) >= 1, 'the private store must keep the management link for the owner'
         # WHEN history becomes unsafe during the upload THEN recover the proof through the selected receipt path.
         unsafe.touch()
         unsaved = run('publish', 'file', '--ns', 'public', '--password-file', '', '--path', 'input.txt', *authority)
@@ -164,10 +186,12 @@ def verify(recipes):
             assert stat.S_IMODE(recovery.stat().st_mode) == 0o600, 'recovery must be protected on disk'
             private = run('owner-recovery', '--private-output')
             assert private.returncode == 0, 'the isolated launcher must support explicit private recovery'
-            receipt = json.loads(private.stdout)
+            assert json.loads(private.stdout) == {'ownerApi': response['ownerLink'], 'readerUrl': response['link']}, 'private recovery must report only the exact target and reader link'
+            assert response['ownerToken'] not in private.stdout + private.stderr and manage not in private.stdout + private.stderr, 'private recovery must keep proof in the file'
+            receipt = json.loads(recovery.read_text())
             keys = ('readerUrl', 'manageUrl', 'ownerToken', 'ownerApi')
             expected_receipt = dict(zip(keys, (response['link'], manage, response['ownerToken'], response['ownerLink'])))
-            assert {key: receipt[key] for key in keys} == expected_receipt, 'private recovery must return the exact proof and publication'
+            assert {key: receipt[key] for key in keys} == expected_receipt, 'the protected recovery file must hold the exact proof and publication'
         else:
             assert unsaved.stdout == 'FAILED: published but owner token could not be saved securely\nURL: https://example.invalid/native-fixture\nMANAGE: ' + manage + '\nOWNER TOKEN: SYNTHETIC_NATIVE_OWNER_ONLY\n', 'a live page must hand over its link, management link and token when history cannot keep them'
         assert hashlib.sha256(original.read_bytes()).hexdigest() == before, 'unsafe history target must remain unchanged'
@@ -179,7 +203,7 @@ def verify(recipes):
         assert rejected.returncode == 1, 'native history symlink must be refused before upload'
         assert not (root / 'curl-called').exists(), 'unsafe history must prevent upload'
         assert hashlib.sha256(original.read_bytes()).hexdigest() == before, 'symlink target must remain unchanged'
-        print('PASS native isolation, BASH_ENV/SHELLOPTS/Git scrub, 14 forbidden path cases including alternate case, archive consent, relative paths, permissions, symlink refusal, management link output, unsaved-token handover; mocked curl only')
+        print('PASS native isolation, BASH_ENV/SHELLOPTS/Git scrub, 15 forbidden path cases including alternate case, archive consent, relative paths, permissions, symlink refusal, private receipt delivery, declined-history receipt directory, unsaved-token handover; mocked curl only')
 
 
 if __name__ == '__main__':

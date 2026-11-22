@@ -8,7 +8,7 @@ import sys
 
 TYPED_COMMANDS = {'preflight', 'publish', 'update'}
 COMMANDS = TYPED_COMMANDS | {'probe', 'limits', 'stage', 'cleanup', 'owner-store', 'owner-recovery', 'owner-pending', 'owner-reconcile', '--check-isolation'}
-FILE_OPTIONS = {'--path', '--password-file', '--owner-token-file', '--exclude-file', '--resolution-file'}
+FILE_OPTIONS = {'--path', '--password-file', '--owner-token-file', '--exclude-file', '--resolution-file', '--receipt-dir'}
 SWITCHES = {'--anonymous', '--confirmed', '--external-only', '--no-save', '--private-output'}
 
 

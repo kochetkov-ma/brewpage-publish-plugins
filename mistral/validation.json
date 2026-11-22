@@ -1,18 +1,26 @@
 {
-  "version": "1.1.3",
-  "user_agent": "brewpage-mistral-vibe/1.1.3 (+https://brewpage.app)",
-  "upstream_commit": "2e867753fa7678781808212564ca8e7f80dfb608",
+  "version": "1.1.4",
+  "user_agent": "brewpage-mistral-vibe/1.1.4 (+https://brewpage.app)",
+  "upstream_commit": "2a51a61fbe1fe2344543fa2f89318edb6b9803d9",
   "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
-  "artifact": "brewpage-vibe-1.1.3.zip",
-  "sha256": "b0395da666f94ef89c423e5a6e8465f9d6a8a1989dc9e581a1c39619a1227e7e",
-  "baseline_artifact": "brewpage-vibe-1.1.2.zip",
-  "baseline_sha256": "f267df3fd8de45de72925c042739d24592ead0e49973aed9abc32079ac8c3566",
+  "artifact": "brewpage-vibe-1.1.4.zip",
+  "sha256": "68783a2b98117ada8abca21d1da1470d2a268eb9297c9d1cde1619362f93a696",
+  "baseline_artifact": "brewpage-vibe-1.1.3.zip",
+  "baseline_sha256": "b0395da666f94ef89c423e5a6e8465f9d6a8a1989dc9e581a1c39619a1227e7e",
   "changed_files": [
     "brewpage/README.md",
     "brewpage/plugin.json",
+    "brewpage/skills/brewpage-publish/SKILL.md",
+    "brewpage/skills/brewpage-publish/run.py",
     "brewpage/skills/brewpage-publish/upstream/README.md",
     "brewpage/skills/brewpage-publish/upstream/SKILL.md",
-    "brewpage/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh"
+    "brewpage/skills/brewpage-publish/upstream/references/ownership.md",
+    "brewpage/skills/brewpage-publish/upstream/references/page-data.md",
+    "brewpage/skills/brewpage-publish/upstream/references/publishing.md",
+    "brewpage/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
+    "brewpage/skills/brewpage-publish/upstream/scripts/brewpage-run.sh",
+    "brewpage/skills/brewpage-publish/upstream/scripts/history.py",
+    "brewpage/skills/brewpage-publish/upstream/scripts/publish.mjs"
   ],
   "file_count": 17,
   "archive_roundtrip": "pass",
@@ -28,5 +36,5 @@
   "limits": [
     "Local checks cover the packaged bytes and synthetic transport. Provider import, model-driven publishing and catalog acceptance are separate."
   ],
-  "change": "Publishing skill synced to upstream 2e867753 (claude-brewcode v6.13.4). The skill entry discloses that the runner adds its private receipt file names to the workspace .gitignore. User-Agent version moved to 1.1.3"
+  "change": "Publishing skill synced to upstream 2a51a61f (claude-brewcode v6.13.7). The Page data recipe says the owner's visitor label is not unique and the page saves a self-declared name in each entry; the runner keeps owner receipts private and accepts --receipt-dir when workspace history is declined. User-Agent version moved to 1.1.4"
 }

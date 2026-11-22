@@ -1,13 +1,13 @@
 {
   "LICENSE": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84",
-  "README.md": "8a7006a43b4a2063d288503dc341a743cfb1ea6db25a91908d35672ab75128a7",
-  "SKILL.md": "7939bcdeb409713760e9a1d6a3f10748112c00050be73099007e0ed0d02a06d9",
-  "scripts/brewpage-lib.sh": "76f98e7191551740a84a48671dbc833bd3e89b14b0656d3e06c295cb11d4a4d2",
-  "scripts/brewpage-run.sh": "fba93e30aafac42def69b3ecf4b467bc8c40c0a3cde1dd949cd9746bbe4edb57",
-  "scripts/history.py": "fad17d23de92e836b48dfef98c239e73d355948a5a80a3bdeb1da5d878847148",
-  "scripts/publish.mjs": "16ce9d394f0cdd04e91bccbccdd761b83b589cab1b5ea9aaebd37226d7abaf3f",
+  "README.md": "9d8e801817b194ead03fa36553292294200f63af23380ea207b47bdc61e3fadb",
+  "SKILL.md": "485299eae0a4597451d9abb5de30a9d1f782d19610047975f7c04d198a0dac63",
+  "scripts/brewpage-lib.sh": "398d42f24c1fcd0f6d2b046b0a483365a1d5021db76ac18619b87c20ecbf3c8a",
+  "scripts/brewpage-run.sh": "8e502e7c948965d4c9661859be29f8aafc6c49353d266c49a7eae50775db4780",
+  "scripts/history.py": "3ea0d6c014a4b83bd1cc29c16c407f3a3b68ebd253b6e2a1ed031157216acba0",
+  "scripts/publish.mjs": "e33d465050071d1880b924f22ac3bb440ed22e65b4c7a69299889fef7478a5f4",
   "references/custom-domain.md": "cac818abac9021f9b7d4583ccecda240dd4a71d9f74f4753c83fc2abdd80f0ef",
-  "references/ownership.md": "489f1860ce7d765ddeeccef4a52d214dcf3446a1cfc9d6c14e85ba2b5b6f451b",
-  "references/page-data.md": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a",
-  "references/publishing.md": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
+  "references/ownership.md": "22aeaefc11f5e1766f8256446eb8ccba54a73696f441974341dd2fbefea00776",
+  "references/page-data.md": "03d3027b22978adc332e92513aede535f1a8481643788341db422ca92dec522b",
+  "references/publishing.md": "b72f155e2edb4129b4828f98994373a556a2faab826f3ead1f53ae1e9568512a"
 }
