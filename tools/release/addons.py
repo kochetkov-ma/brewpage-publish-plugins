@@ -91,18 +91,22 @@ def refresh(repo, upstream, commit, version):
         root = repo / folder
         provenance = load(root / 'PROVENANCE.json')
         old = entries(upstream, provenance['upstream']['commit'], SOURCE)
-        if set(old) != set(new):
-            fail('OpenClaw member inventory changed; update the add-on member lists by hand')
+        if set(old) - set(new):
+            fail('OpenClaw members were removed; update the add-on member lists by hand')
+        # A member added upstream is vendored as new; it must not exist in the add-on yet.
+        added = [BODY + name for name in sorted(set(new) - set(old))]
+        if any((root / path).exists() for path in added):
+            fail('a newly added OpenClaw member already exists in ' + folder)
         rows = []
-        for row in provenance['vendoredFiles']:
-            name, target = row['path'].removeprefix(BODY), root / row['path']
-            if target.read_bytes() != old[name][1].replace(user_agent(old), provenance['userAgent'].encode()):
-                fail(f'{folder}/{row["path"]} differs from its recorded upstream; fold that edit upstream first')
+        for path in sorted([row['path'] for row in provenance['vendoredFiles']] + added):
+            name, target = path.removeprefix(BODY), root / path
+            if path not in added and target.read_bytes() != old[name][1].replace(user_agent(old), provenance['userAgent'].encode()):
+                fail(f'{folder}/{path} differs from its recorded upstream; fold that edit upstream first')
             mode, raw = new[name]
             content = raw.replace(user_agent(new), agent(product, version).encode())
             target.write_bytes(content)
             target.chmod(int(mode[-3:], 8))
-            rows.append({'path': row['path'], 'mode': '0' + mode[-3:], 'upstreamSha256': sha(raw), 'sha256': sha(content)})
+            rows.append({'path': path, 'mode': '0' + mode[-3:], 'upstreamSha256': sha(raw), 'sha256': sha(content)})
         provenance['version'] = version
         provenance['upstream'].update(commit=commit, memberManifestSha256=manifest(new))
         provenance['userAgent'] = agent(product, version)

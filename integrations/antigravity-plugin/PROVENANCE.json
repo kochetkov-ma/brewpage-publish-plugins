@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "version": "1.1.2",
+  "version": "1.1.3",
   "upstream": {
     "repository": "https://github.com/kochetkov-ma/claude-brewcode",
-    "commit": "94e3d609e3308be34c0696276a20331fb65c26f4",
+    "commit": "2a51a61fbe1fe2344543fa2f89318edb6b9803d9",
     "directory": "openclaw/brewpage-publish",
-    "memberManifestSha256": "9352b2f18162de72e2b9c7250b57d210471aa4c024d36a891a15e24c2eae1fdc"
+    "memberManifestSha256": "bdb5e9447bbea552901c72c4b21b7d3608d25af7b01f9c9cb822e2e387ddd903"
   },
-  "userAgent": "brewpage-antigravity/1.1.2 (+https://brewpage.app)",
+  "userAgent": "brewpage-antigravity/1.1.3 (+https://brewpage.app)",
   "hostEntry": "skills/brewpage-publish/SKILL.md",
   "hostPolicy": "MCP writes; authorized local preflight and cleanup",
   "vendoredFiles": [
@@ -26,44 +26,50 @@
     {
       "path": "skills/brewpage-publish/references/ownership.md",
       "mode": "0644",
-      "upstreamSha256": "489f1860ce7d765ddeeccef4a52d214dcf3446a1cfc9d6c14e85ba2b5b6f451b",
-      "sha256": "489f1860ce7d765ddeeccef4a52d214dcf3446a1cfc9d6c14e85ba2b5b6f451b"
+      "upstreamSha256": "d75c75f4a5fb9495d5b1ad2debdfdd362dea2991550cdff6abcc333b0e65b9df",
+      "sha256": "d75c75f4a5fb9495d5b1ad2debdfdd362dea2991550cdff6abcc333b0e65b9df"
     },
     {
       "path": "skills/brewpage-publish/references/page-data.md",
       "mode": "0644",
-      "upstreamSha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a",
-      "sha256": "f28ebd9145913db6c95391cdfbe60f601422d6e926f755349e6cc63bc280070a"
+      "upstreamSha256": "03d3027b22978adc332e92513aede535f1a8481643788341db422ca92dec522b",
+      "sha256": "03d3027b22978adc332e92513aede535f1a8481643788341db422ca92dec522b"
     },
     {
       "path": "skills/brewpage-publish/references/publishing.md",
       "mode": "0644",
-      "upstreamSha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae",
-      "sha256": "27f54bff62bd1d4ae1a5617d7c8d922c490620eba6a79f1adb3d46c1149d3dae"
+      "upstreamSha256": "fb0f2c332f2b44f9f5e8e5d71dadbd749a6bff692455e3ddcfe27f445de264fd",
+      "sha256": "fb0f2c332f2b44f9f5e8e5d71dadbd749a6bff692455e3ddcfe27f445de264fd"
+    },
+    {
+      "path": "skills/brewpage-publish/references/rest-runner.md",
+      "mode": "0644",
+      "upstreamSha256": "0735f86b76c3d0e116ffe78f546834c61f7970085d0723ca2465bd8e8c71cbb2",
+      "sha256": "0735f86b76c3d0e116ffe78f546834c61f7970085d0723ca2465bd8e8c71cbb2"
     },
     {
       "path": "skills/brewpage-publish/scripts/brewpage-lib.sh",
       "mode": "0644",
-      "upstreamSha256": "2220984978dfab8b5cae2dd7f695d9803b37b6bdabc4062fc7845e0189cf3808",
-      "sha256": "19e2374f4361f65bbfbd260b06711ce12bdc2d2b00721fc188fe6ec60f26d8f4"
+      "upstreamSha256": "c5b781051470f41885722ea6d9a9bb56019d2e9145925e123fd4a923329efafd",
+      "sha256": "e80c519cc5dc1778abade01438dc919c5705c02761b8940383b3ee59099a6880"
     },
     {
       "path": "skills/brewpage-publish/scripts/brewpage-run.sh",
       "mode": "0755",
-      "upstreamSha256": "8f9c93403105ed0fdeef0773806440580b618e4187c31217240480be6820d470",
-      "sha256": "8f9c93403105ed0fdeef0773806440580b618e4187c31217240480be6820d470"
+      "upstreamSha256": "b7b9dff1cdc73c4f42a45ce819c79c539d86cff8aca30de50ea37bae65628421",
+      "sha256": "b7b9dff1cdc73c4f42a45ce819c79c539d86cff8aca30de50ea37bae65628421"
     },
     {
       "path": "skills/brewpage-publish/scripts/history.py",
       "mode": "0644",
-      "upstreamSha256": "fad17d23de92e836b48dfef98c239e73d355948a5a80a3bdeb1da5d878847148",
-      "sha256": "fad17d23de92e836b48dfef98c239e73d355948a5a80a3bdeb1da5d878847148"
+      "upstreamSha256": "3ea0d6c014a4b83bd1cc29c16c407f3a3b68ebd253b6e2a1ed031157216acba0",
+      "sha256": "3ea0d6c014a4b83bd1cc29c16c407f3a3b68ebd253b6e2a1ed031157216acba0"
     },
     {
       "path": "skills/brewpage-publish/scripts/publish.mjs",
       "mode": "0755",
-      "upstreamSha256": "16ce9d394f0cdd04e91bccbccdd761b83b589cab1b5ea9aaebd37226d7abaf3f",
-      "sha256": "16ce9d394f0cdd04e91bccbccdd761b83b589cab1b5ea9aaebd37226d7abaf3f"
+      "upstreamSha256": "e33d465050071d1880b924f22ac3bb440ed22e65b4c7a69299889fef7478a5f4",
+      "sha256": "e33d465050071d1880b924f22ac3bb440ed22e65b4c7a69299889fef7478a5f4"
     }
   ]
 }
