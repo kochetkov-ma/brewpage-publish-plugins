@@ -26,8 +26,10 @@ ARCHIVES = {
 PUBLISHED = {
     ('agent-plugin', 'brewpage-agent-plugin-v1.1.1'): '89c0d76e258b8e94f98d54174c7e3ecb71a0d9ad42e0ad6ede7318907c95d7ae',
     ('agent-plugin', 'brewpage-agent-plugin-v1.1.2'): 'a7c8791bcd069a419258dd3d803f52c2312873e9dc46fbebe497f6e7afcfd613',
+    ('agent-plugin', 'brewpage-agent-plugin-v1.1.3'): '2150e6ab10923d173ce19e9d19b38c9a11461e327c456b4c1999c64c3a9615c2',
     ('buildwithclaude', 'brewpage-buildwithclaude-plugin-v1.1.2'): 'a40408247ec646219e085c4ef403e1eb459a12fc25ea29625eb4e6f6e8ebc2f8',
     ('buildwithclaude', 'brewpage-buildwithclaude-plugin-v1.1.3'): 'cc46c589a27a2fc78af947f0f484dc4ded4490f30a77ba6d4efed6d3df7c3614',
+    ('buildwithclaude', 'brewpage-buildwithclaude-plugin-v1.1.4'): '5f9c52f5a32d085d40052337275a760121b14c79bfffe6aee526db763eab42d9',
 }
 REFRESH_REPLAY = ('585373a578d70135a86f967270e1da4e3caf8df2', '82c303d1ee5f0324cfebc8f4529f463bbdc0fc16',
                   '94e3d609e3308be34c0696276a20331fb65c26f4', '1.1.2')

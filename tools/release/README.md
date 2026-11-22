@@ -178,8 +178,8 @@ upstream commit.
    Antigravity installs from the checkout and has no archive.
 
 `python3 tools/release/addons.py check --upstream ../claude-brewcode` rebuilds the
-published archives of agent-plugin 1.1.1 and 1.1.2 and BuildWithClaude 1.1.2 and
-1.1.3 and compares their SHA-256. It then replays the 1.1.2 refresh and the 1.1.3
+published archives of agent-plugin 1.1.1 to 1.1.3 and BuildWithClaude 1.1.2 to
+1.1.4 and compares their SHA-256. It then replays the 1.1.2 refresh and the 1.1.3
 catalog rebase from their parent commits. Every package file must come out byte
 for byte, with the same mode.
 
