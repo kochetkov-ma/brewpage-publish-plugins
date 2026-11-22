@@ -140,13 +140,26 @@ def catalog(repo, git_dir, base_ref, version):
             fail(f'{CATALOG_BASE}/{name} differs from {base_ref}; run catalog on the released add-on tree')
     old = entries(git_dir, provenance['base']['commit'], CATALOG_BASE)
     old_agent = json.loads(old['PROVENANCE.json'][1])['userAgent'].encode()
+    new_agent = agent(ADDONS[CATALOG_BASE], version).encode()
+    # A skill member new in the base is copied as released; it must not exist in the catalog yet.
+    added = sorted(name for name in released if name.startswith(BODY) and name not in old)
+    if any((root / name).exists() for name in added):
+        fail('a newly added base member already exists in ' + CATALOG)
+    for name in added:
+        mode, data = released[name]
+        (root / name).write_bytes(data.replace(base_provenance['userAgent'].encode(), new_agent))
+        (root / name).chmod(int(mode[-3:], 8))
     for target in sorted(path for path in (root / BODY).rglob('*') if path.is_file()):
         name = target.relative_to(root).as_posix()
+        if name in added:
+            continue
         ours = target.read_bytes().replace(provenance['userAgent'].encode(), TOKEN)
         merged = merge(ours, old[name][1].replace(old_agent, TOKEN), released[name][1].replace(base_provenance['userAgent'].encode(), TOKEN))
         if merged is None:
             fail(f'{CATALOG}/{name}: catalog edit overlaps the new base; resolve by hand')
-        target.write_bytes(merged.replace(TOKEN, agent(ADDONS[CATALOG_BASE], version).encode()))
+        target.write_bytes(merged.replace(TOKEN, new_agent))
+    rows = provenance['files'] + [{'path': name, 'mode': '0' + released[name][0][-3:], 'sha256': ''} for name in added]
+    provenance['files'] = sorted(rows, key=lambda row: row['path'])
     provenance['version'] = version
     provenance['base'].update(tag=base_ref, commit=commit)
     provenance['upstream'] = base_provenance['upstream']

@@ -162,12 +162,16 @@ upstream commit.
    and `integrations/antigravity-plugin/plugin.json`, and the versions in both READMEs.
 2. `python3 tools/release/addons.py refresh --upstream ../claude-brewcode --commit SHA --version V`
    rewrites the vendored files and both `PROVENANCE.json`. It refuses when a
-   vendored file differs from its recorded upstream.
+   vendored file differs from its recorded upstream or an upstream member was
+   removed; a member added upstream is vendored as a new file.
 3. Commit, push and tag `brewpage-agent-plugin-vV` (lightweight, like the host tags).
 4. Edit `version` in `catalogs/buildwithclaude/.claude-plugin/plugin.json` and its
    README, then `python3 tools/release/addons.py catalog --base-ref brewpage-agent-plugin-vV --version C`.
    It three-way merges the catalog skill edits onto that tag, keeps a new upstream
-   insertion next to an unchanged catalog line, and stops on any other overlap.
+   insertion next to an unchanged catalog line, copies a skill file new in that
+   tag with the catalog User-Agent, and stops on any other overlap; then edit the
+   overlapping catalog line to the new base wording, rerun, restore the catalog
+   wording by hand and rerun once more to refresh the digests.
    Commit, push and tag `brewpage-buildwithclaude-plugin-vC`.
 5. `python3 tools/release/addons.py zip --ref <tag> --package agent-plugin|buildwithclaude --out DIR`
    writes the release archive; upload it with `gh release create <tag>`.
