@@ -14,7 +14,7 @@ an account.
 | Skill | `skills/brewpage-publish/` | Bundled workflow, recipes and local runner |
 
 The skill ships the eleven reviewed OpenClaw source members with the User-Agent
-`brewpage-agent-plugin/1.1.3 (+https://brewpage.app)`. [Source and file digests](PROVENANCE.json)
+`brewpage-agent-plugin/1.1.4 (+https://brewpage.app)`. [Source and file digests](PROVENANCE.json)
 
 ## Install
 
@@ -27,7 +27,7 @@ plugin. To test this candidate, register a local checkout as the marketplace.
 ```
 
 Grok Build also reads Claude Code plugins. Load the candidate directly with
-`grok --plugin-dir /path/to/brewpage-publish-plugins/agent-plugin`. Version 1.1.3
+`grok --plugin-dir /path/to/brewpage-publish-plugins/agent-plugin`. Version 1.1.4
 is a release candidate. Marketplace availability applies to the published version.
 
 ## Use it
