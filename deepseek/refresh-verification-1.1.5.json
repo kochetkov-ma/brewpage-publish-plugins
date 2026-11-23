@@ -1,0 +1,33 @@
+{
+  "version": "1.1.5",
+  "user_agent": "brewpage-deepseek/1.1.5 (+https://brewpage.app)",
+  "upstream_commit": "66ea30dde0553a5984be446ffc9b59b28f2b9505",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "dsh-brewpage-1.1.5.tgz",
+  "sha256": "19416d83799a7d4bd1828197734a8e6c9d800a9c264573582724e48a73261c0e",
+  "baseline_artifact": "dsh-brewpage-1.1.4.tgz",
+  "baseline_sha256": "cf26f73f6827da1944a508d940ad00ce6cc76b9b6e7377ee94415aa166cd15cb",
+  "changed_files": [
+    "README.md",
+    "package.json",
+    "skills/brewpage-publish/upstream/README.md",
+    "skills/brewpage-publish/upstream/SKILL.md",
+    "skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
+    "skills/brewpage-publish/upstream/scripts/brewpage-run.sh"
+  ],
+  "file_count": 21,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 11,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "verify-isolation.py": "pass; asserts upload -A == brewpage-deepseek/1.1.5 (+https://brewpage.app), reader-safe receipt output, private receipt delivery with no printed owner key or management link, a declined-history receipt directory, protected recovery of unsaved owner proof, and refusal to upload reserved history and recovery files",
+    "verify-native.mjs": "Pass for the exact 1.1.5 tarball (SHA-256 19416d83799a7d4bd1828197734a8e6c9d800a9c264573582724e48a73261c0e, 21 members) installed in an isolated temporary directory with Harness 0.2.1-rc.2 from npm and Node 24.15.0. The installed skill had exactly the eleven canonical members, and native discovery verified the skill body and both invocation policies."
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "limits": [
+    "Local checks cover the packaged bytes and synthetic transport. Provider import, model-driven publishing and catalog acceptance are separate."
+  ],
+  "change": "Publishing skill synced to upstream 66ea30dd (claude-brewcode v6.13.8). The runner runs every Python check isolated from the workspace (python3 -I -S), so a module file in the project folder cannot run during an archive review, an HTML check or an owner-record update. User-Agent version moved to 1.1.5"
+}

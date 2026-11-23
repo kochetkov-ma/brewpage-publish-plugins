@@ -1,0 +1,32 @@
+{
+  "version": "1.1.5",
+  "user_agent": "brewpage-qwen/1.1.5 (+https://brewpage.app)",
+  "upstream_commit": "66ea30dde0553a5984be446ffc9b59b28f2b9505",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "brewpage-qwen-1.1.5.zip",
+  "sha256": "7a807eb8be36475aed554767a0fc7a4641f23979d928df434a1d16db2e7303f6",
+  "baseline_artifact": "brewpage-qwen-1.1.4.zip",
+  "baseline_sha256": "f9a358b4320ccab56fd6e7adc4f12294cf481ce42f3028f4874422a6c99830ed",
+  "changed_files": [
+    "qwen/README.md",
+    "qwen/plugin.json",
+    "qwen/skills/brewpage-publish/upstream/README.md",
+    "qwen/skills/brewpage-publish/upstream/SKILL.md",
+    "qwen/skills/brewpage-publish/upstream/scripts/brewpage-lib.sh",
+    "qwen/skills/brewpage-publish/upstream/scripts/brewpage-run.sh"
+  ],
+  "file_count": 18,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 11,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass",
+    "verify-isolation.py": "pass; asserts upload -A == brewpage-qwen/1.1.5 (+https://brewpage.app), reader-safe receipt output, private receipt delivery with no printed owner key or management link, a declined-history receipt directory, protected recovery of unsaved owner proof, and refusal to upload reserved history and recovery files"
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "limits": [
+    "Local checks cover the packaged bytes and synthetic transport. Provider import, model-driven publishing and catalog acceptance are separate."
+  ],
+  "change": "Publishing skill synced to upstream 66ea30dd (claude-brewcode v6.13.8). The runner runs every Python check isolated from the workspace (python3 -I -S), so a module file in the project folder cannot run during an archive review, an HTML check or an owner-record update. User-Agent version moved to 1.1.5"
+}

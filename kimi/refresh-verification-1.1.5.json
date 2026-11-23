@@ -1,0 +1,31 @@
+{
+  "version": "1.1.5",
+  "user_agent": "brewpage-kimi/1.1.5 (+https://brewpage.app)",
+  "upstream_commit": "66ea30dde0553a5984be446ffc9b59b28f2b9505",
+  "upstream_deviation": "User-Agent value only: BP_UA line, delete hint, README/SKILL curl examples",
+  "artifact": "brewpage-kimi-code-1.1.5.zip",
+  "sha256": "ba81ca6a8404f4c5f52fc608ba54a3f36d55cb524d57959c3e1917e2305ee9bb",
+  "baseline_artifact": "brewpage-kimi-code-1.1.4.zip",
+  "baseline_sha256": "cbb5e00aa6b037517559e807dad413dc1122ba41bbc25a517933f71c0c711595",
+  "changed_files": [
+    "kimi.plugin.json",
+    "skills/brewpage-publish/README.md",
+    "skills/brewpage-publish/SKILL.md",
+    "skills/brewpage-publish/scripts/brewpage-lib.sh",
+    "skills/brewpage-publish/scripts/brewpage-run.sh"
+  ],
+  "file_count": 12,
+  "archive_roundtrip": "pass",
+  "synced_upstream_files": 11,
+  "tests": {
+    "syntax": "bash -n, node --check, Python parse: pass"
+  },
+  "native_import_repeated": false,
+  "mcp_execution_repeated": false,
+  "live_publish": "not run",
+  "note": "Kimi uses the connected BrewPage MCP tools. The host sets the MCP User-Agent.",
+  "limits": [
+    "Local checks cover the packaged bytes and synthetic transport. Provider import, model-driven publishing and catalog acceptance are separate.",
+    "Native Kimi import and execution of 1.1.5 need separate evidence."
+  ]
+}

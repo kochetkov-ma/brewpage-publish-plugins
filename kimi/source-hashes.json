@@ -1,9 +1,9 @@
 {
   "LICENSE": "4513bfc94a4eae4fe4d49f0b5727992266aa003bcfea7437d25bbf0869f04a84",
-  "README.md": "9d8e801817b194ead03fa36553292294200f63af23380ea207b47bdc61e3fadb",
-  "SKILL.md": "485299eae0a4597451d9abb5de30a9d1f782d19610047975f7c04d198a0dac63",
-  "scripts/brewpage-lib.sh": "398d42f24c1fcd0f6d2b046b0a483365a1d5021db76ac18619b87c20ecbf3c8a",
-  "scripts/brewpage-run.sh": "8e502e7c948965d4c9661859be29f8aafc6c49353d266c49a7eae50775db4780",
+  "README.md": "5b1c474451f40c78ac05af4b4c8a1d94cb5d6d5b45193e5613bfced85b412388",
+  "SKILL.md": "7c0154d6dc90694da033c3a0051dc574382fb7dcd96ccd223c6f9e50db9fb16e",
+  "scripts/brewpage-lib.sh": "197715f81c8071fb6ec4f1dcd6590c054cbfaba4a9ea839ed870bc60103a09f4",
+  "scripts/brewpage-run.sh": "df67781602b2d846a49b944ff5cc592ca1d448e67afb3a18cf239554208d4d4e",
   "scripts/history.py": "3ea0d6c014a4b83bd1cc29c16c407f3a3b68ebd253b6e2a1ed031157216acba0",
   "scripts/publish.mjs": "e33d465050071d1880b924f22ac3bb440ed22e65b4c7a69299889fef7478a5f4",
   "references/custom-domain.md": "cac818abac9021f9b7d4583ccecda240dd4a71d9f74f4753c83fc2abdd80f0ef",

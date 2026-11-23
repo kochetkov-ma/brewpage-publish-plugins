@@ -1,0 +1,38 @@
+{
+  "distribution_version": "1.1.5",
+  "baseline": "v1.1.4",
+  "upstream_commit": "66ea30dde0553a5984be446ffc9b59b28f2b9505",
+  "upstream_label": "claude-brewcode v6.13.8",
+  "skill_layout": "recipes",
+  "versions": {
+    "qwen": "1.1.5",
+    "deepseek": "1.1.5",
+    "mistral-vibe": "1.1.5",
+    "kimi": "1.1.5",
+    "yandex": "1.1.5",
+    "mistral-work": "1.1.5"
+  },
+  "catalog_versions": {
+    "gitverse": "1.1.5",
+    "sourcecraft": "1.1.5"
+  },
+  "tools": {
+    "python": "3.14.10",
+    "zlib": "1.2.12",
+    "node": "24.15.0",
+    "npm": "11.12.1"
+  },
+  "notes": {
+    "change": "The runner runs every Python check isolated from the workspace (python3 -I -S), so a module file in the project folder cannot run during an archive review, an HTML check or an owner-record update",
+    "limit": "Local checks cover the packaged bytes and synthetic transport. Provider import, model-driven publishing and catalog acceptance are separate.",
+    "isolation_asserts": "reader-safe receipt output, private receipt delivery with no printed owner key or management link, a declined-history receipt directory, protected recovery of unsaved owner proof, and refusal to upload reserved history and recovery files",
+    "deepseek_verify_native": "Pass for the exact 1.1.5 tarball (SHA-256 19416d83799a7d4bd1828197734a8e6c9d800a9c264573582724e48a73261c0e, 21 members) installed in an isolated temporary directory with Harness 0.2.1-rc.2 from npm and Node 24.15.0. The installed skill had exactly the eleven canonical members, and native discovery verified the skill body and both invocation policies.",
+    "mistral_work_adaptation": "The active instruction keeps publishing within compatible connected tools and requires private result delivery.",
+    "kimi_tests": {},
+    "kimi_note": "Kimi uses the connected BrewPage MCP tools. The host sets the MCP User-Agent.",
+    "kimi_limits": [
+      "Native Kimi import and execution of 1.1.5 need separate evidence."
+    ],
+    "yandex_native_import": "pending native import of the 1.1.5 archive; prior provider evidence applies to its recorded version"
+  }
+}
