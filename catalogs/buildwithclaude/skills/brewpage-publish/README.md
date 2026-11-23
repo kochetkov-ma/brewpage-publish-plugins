@@ -36,7 +36,7 @@ Ask to publish `./dist` to share a new built site. If you omit `--entry` on crea
 Use `--ttl N` to request the confirmed lifetime in days. Use `--delivery-mode path|subdomain` to request an address type for a new publication. Sites and HTML pages outside the `public` namespace use a dedicated subdomain. Check current upload limits with the runner's `limits` command or this read-only request.
 
 ```bash
-curl -q -fsS -A "brewpage-agent-plugin/1.1.4 (+https://brewpage.app)" https://brewpage.app/api/limits
+curl -q -fsS -A "brewpage-agent-plugin/1.1.5 (+https://brewpage.app)" https://brewpage.app/api/limits
 ```
 
 ## Ownership and updates

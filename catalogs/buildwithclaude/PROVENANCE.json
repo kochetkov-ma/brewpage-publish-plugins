@@ -1,27 +1,27 @@
 {
   "schemaVersion": 1,
-  "version": "1.1.4",
+  "version": "1.1.5",
   "catalog": "BuildWithClaude",
   "base": {
     "repository": "https://github.com/kochetkov-ma/brewpage-publish-plugins",
-    "tag": "brewpage-agent-plugin-v1.1.3",
-    "commit": "167a5465b123dc8f615c11cd62e6cf73a5886d4a",
+    "tag": "brewpage-agent-plugin-v1.1.4",
+    "commit": "75b65c7fce2981beb236b2d52642bf8ff5830ad0",
     "directory": "agent-plugin"
   },
   "upstream": {
     "repository": "https://github.com/kochetkov-ma/claude-brewcode",
-    "commit": "2a51a61fbe1fe2344543fa2f89318edb6b9803d9",
+    "commit": "66ea30dde0553a5984be446ffc9b59b28f2b9505",
     "directory": "openclaw/brewpage-publish",
-    "memberManifestSha256": "bdb5e9447bbea552901c72c4b21b7d3608d25af7b01f9c9cb822e2e387ddd903"
+    "memberManifestSha256": "081abaecbfcad77c4e99433d4d2705517eac78c38da97e7688d2ac6358ac4f30"
   },
-  "userAgent": "brewpage-agent-plugin/1.1.4 (+https://brewpage.app)",
+  "userAgent": "brewpage-agent-plugin/1.1.5 (+https://brewpage.app)",
   "hostEntry": "skills/brewpage-publish/SKILL.md",
   "hostPolicy": "User confirmation of visibility, password and expiry before each new upload. MCP preferred; authorized REST available.",
   "files": [
     {
       "path": ".claude-plugin/plugin.json",
       "mode": "0644",
-      "sha256": "e7b2e20aa75222774daf7a5c44e21f08f31aefdc0bc33ce1e5b875d19ba87dbe"
+      "sha256": "2f3532e3673c0c8722d9facc8f34f750dcc4ddedfaf7ea6745188625dd714809"
     },
     {
       "path": ".mcp.json",
@@ -36,7 +36,7 @@
     {
       "path": "README.md",
       "mode": "0644",
-      "sha256": "9337c0779475738add5291e99b3ca742c93a3ee98afc4be62148e659eec2bad5"
+      "sha256": "8ccd4b8db68b0f6fcf70cfb5267a65b0d0087e4d55073b4b56f50f7d313f4534"
     },
     {
       "path": "assets/icon.svg",
@@ -51,12 +51,12 @@
     {
       "path": "skills/brewpage-publish/README.md",
       "mode": "0644",
-      "sha256": "8595b3b354066f98a64554c6aaa9651bf293132d5f00e6d445678c03d0b6574b"
+      "sha256": "7c1498a0f6fd84aec4424d8303e2781c9bc4294e921547cf253234593b8907aa"
     },
     {
       "path": "skills/brewpage-publish/SKILL.md",
       "mode": "0644",
-      "sha256": "0dbf71849e5645f0dec5e51bf750aa70b219ee3c43dcb55c9f08d59ccf73ad5d"
+      "sha256": "7a8158c837e9251dfa71a6597c078f34c37edda2c0f838721ffda77a04e96217"
     },
     {
       "path": "skills/brewpage-publish/references/custom-domain.md",
@@ -86,12 +86,12 @@
     {
       "path": "skills/brewpage-publish/scripts/brewpage-lib.sh",
       "mode": "0644",
-      "sha256": "31a4f0cdcd91454f84798de906d296d8e066eff6de063c974e3c6e43b72ed0d4"
+      "sha256": "153a75a32542800a15fb28050f4e5d3c0d20e3091bc1f8977dab5ac783ae9d64"
     },
     {
       "path": "skills/brewpage-publish/scripts/brewpage-run.sh",
       "mode": "0755",
-      "sha256": "b7b9dff1cdc73c4f42a45ce819c79c539d86cff8aca30de50ea37bae65628421"
+      "sha256": "008ee180088e70084d8e25c3dc5016c950b4c2b4d3d0067776ba6cb2bf220601"
     },
     {
       "path": "skills/brewpage-publish/scripts/history.py",
